@@ -1,0 +1,22 @@
+digraph "test" {
+label="test";
+rankdir="LR";
+remincross=true;
+n3 [ shape=octagon, label="clk", color="black", fontcolor="black" ];
+n4 [ shape=octagon, label="r", color="black", fontcolor="black" ];
+n5 [ shape=octagon, label="rst", color="black", fontcolor="black" ];
+n6 [ shape=octagon, label="s1", color="black", fontcolor="black" ];
+n7 [ shape=octagon, label="x", color="black", fontcolor="black" ];
+n8 [ shape=octagon, label="y", color="black", fontcolor="black" ];
+c12 [ shape=record, label="{{<p9> A|<p10> B}|$28\n$add|{<p11> Y}}" ];
+c17 [ shape=record, label="{{<p13> ARST|<p14> CLK|<p15> D}|$32.flipflop\n$adff|{<p16> Q}}" ];
+c20 [ shape=record, label="{{<p14> CLK|<p18> GATE}|$32.genblk1.genblk1.clk_gate\nsky130_fd_sc_hd__dlclkp_4|{<p19> GCLK}}" ];
+c12:p11:e -> c17:p15:w [color="black", style="setlinewidth(3)", label=""];
+c20:p19:e -> c17:p14:w [color="black", label=""];
+n3:e -> c20:p14:w [color="black", label=""];
+c17:p16:e -> n4:w [color="black", style="setlinewidth(3)", label=""];
+n5:e -> c17:p13:w [color="black", label=""];
+n6:e -> c20:p18:w [color="black", label=""];
+n7:e -> c12:p9:w [color="black", style="setlinewidth(3)", label=""];
+n8:e -> c12:p10:w [color="black", style="setlinewidth(3)", label=""];
+}

@@ -1,0 +1,16 @@
+# reading and elaborating the RTL 
+read_verilog test1.v
+hierarchy -check
+# generic RTL synthesis and optimization 
+synth -top test
+# flattening the resultant generic gate level netlist 
+flatten; opt
+# Technology mapping to sky130
+dfflibmap -liberty scl_trim.lib
+abc -D 1250 -constr abc_constr.txt -liberty scl_trim.lib
+# Clean up and write the synthesized design (gate-level netlist) 
+opt_clean -purge
+write_verilog -noattr -noexpr test_out_gatelevel.gl.v
+# Report design statistics 
+stat -liberty scl_trim.lib
+
