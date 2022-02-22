@@ -1,0 +1,36 @@
+read_verilog sp_mul.v
+read_verilog blackbox_clk_gates.v
+
+
+hierarchy -check -top multiplier
+#show -prefix before_all -format pdf multiplier 
+proc;
+
+#show -prefix before_opt -format pdf multiplier 
+opt;; 
+memory_collect
+opt;; 
+
+#show -prefix first_techmap -format pdf test 
+
+#show -prefix before -format pdf multiplier 
+techmap -map map_file.v;;
+
+#show -prefix  after_techmap_pass -format pdf multiplier
+
+
+
+#generic synthesis
+
+synth -top multiplier
+
+#mapping to sky130 SCL
+dfflibmap -liberty sky130_hd.lib 
+abc -D 1250 -liberty sky130_hd.lib 
+
+splitnets
+opt_clean -purge
+
+write_verilog -noattr -noexpr -nohex -nodec -defparam  test_outout_gatelevel.gl.v
+write_blif  output.blif
+write_edif  synth.edif

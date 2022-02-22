@@ -1,0 +1,62 @@
+read_verilog PPU.v
+read_verilog blackbox_clk_gates.v
+
+
+hierarchy -check -top LoopyGen
+#show -prefix before_all -format pdf LoopyGen 
+proc;
+
+#show -prefix before_opt -format pdf LoopyGen 
+opt;; 
+memory_collect
+opt;; 
+#techmap
+#show -prefix first_techmap -format pdf test 
+
+#show -prefix before -format pdf LoopyGen 
+techmap -map map_file.v;;
+
+#show -prefix  after_techmap_pass -format pdf LoopyGen
+
+
+
+#generic synthesis
+
+synth -top LoopyGen
+
+
+
+#proc
+#opt
+#wreduce alumacc
+#share
+#opt
+#fsm
+#opt -fast 
+#memory -nomap 
+#opt_clean
+#
+#opt -fast -full
+#memory_map 
+#opt -full 
+#techmap 
+#opt -fast
+#
+#abc -fast
+#opt -fast
+
+
+
+
+
+#mapping to sky130 SCL
+dfflibmap -liberty sky130_hd.lib 
+abc -D 1250 -liberty sky130_hd.lib 
+
+splitnets
+opt_clean -purge
+
+
+write_verilog -noattr -noexpr -nohex -nodec -defparam  test_outout_gatelevel.gl.v
+write_blif  output.blif
+write_edif  synth.edif
