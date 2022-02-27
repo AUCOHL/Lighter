@@ -4,16 +4,16 @@
 
 read_liberty sky130_hd.lib
 
-read_verilog testing_PPU/before_gl.v
+read_verilog riscv/before_gl.v
 
-link_design LoopyGen
+link_design riscv
 
-report_power
+report_power riscv
 
 
 
-read_verilog testing_PPU/test_outout_gatelevel.gl.v
-link_design LoopyGen
-report_power
+read_verilog riscv/test_outout_gatelevel.gl.v
+link_design riscv
+report_power riscv
 
 

@@ -1,22 +1,22 @@
 
-read_verilog testing_memory/test_2.v
-read_verilog blackbox_clk_gates.v
+read_verilog riscv/riscv.v
+#read_verilog blackbox_clk_gates.v
 
-hierarchy -check -top NfiVe32_RF
+hierarchy -check -top riscv
 proc;
 opt;; 
 
-memory_collect
-memory_map
-opt;; 
-techmap -map map_file.v;;
+#memory_collect
+#memory_map
+#opt;; 
+#techmap -map map_file.v;;
 
-synth -top NfiVe32_RF
+synth -top riscv
 dfflibmap -liberty sky130_hd.lib 
 abc -D 1250 -liberty sky130_hd.lib 
 splitnets
 opt_clean -purge
 
-write_verilog -noattr -noexpr -nohex -nodec -defparam   testing_memory/test_outout_gatelevel.v
+write_verilog -noattr -noexpr -nohex -nodec -defparam   riscv/before_gl.v
 
 
