@@ -10,3 +10,4 @@ An automatic clock gating utility that is generic for all SKY_130 RTL designs.\n
 
 # Testcases overview 
 
+<img width="660" alt="Screen Shot 2022-02-27 at 12 49 44 PM" src="https://user-images.githubusercontent.com/63082375/155879361-87a6d3b4-d7ff-4541-b379-1694e8468c69.png">
