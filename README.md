@@ -8,5 +8,5 @@ An automatic clock gating utility that is generic for all SKY_130 RTL designs.\n
     
 
 
-# Testcases overview 
+# Test cases overview 
 
