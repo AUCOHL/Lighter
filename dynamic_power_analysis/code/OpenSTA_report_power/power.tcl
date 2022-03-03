@@ -3,17 +3,21 @@
 
 
 read_liberty sky130_hd.lib
+set design blabla
 
-read_verilog riscv/before_gl.v
+read_verilog $design/before_gl.v
 
-link_design riscv
+link_design $design
 
-report_power riscv
+report_power $design
 
 
 
-read_verilog riscv/test_outout_gatelevel.gl.v
-link_design riscv
-report_power riscv
+read_verilog $design/test_outout_gatelevel.gl.v
+link_design $design
+report_power $design
+
+
+
 
 

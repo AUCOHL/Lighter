@@ -1,22 +1,23 @@
+set design aes256
+read_verilog $design/$design.v
 
-read_verilog riscv/riscv.v
+
+
 #read_verilog blackbox_clk_gates.v
 
-hierarchy -check -top riscv
+hierarchy -check -top $design
 proc;
 opt;; 
 
-#memory_collect
-#memory_map
-#opt;; 
+memory_collect
+memory_map
+opt;; 
 #techmap -map map_file.v;;
 
-synth -top riscv
+synth -top $design
 dfflibmap -liberty sky130_hd.lib 
 abc -D 1250 -liberty sky130_hd.lib 
 splitnets
 opt_clean -purge
 
-write_verilog -noattr -noexpr -nohex -nodec -defparam   riscv/before_gl.v
-
-
+write_verilog -noattr -noexpr -nohex -nodec -defparam   $design/before_gl.v

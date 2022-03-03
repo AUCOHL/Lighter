@@ -1,0 +1,20 @@
+set design aes256
+read_verilog $design/$design.v
+read_verilog blackbox_clk_gates.v
+
+hierarchy -check -top $design
+proc;
+opt;; 
+
+memory_collect
+memory_map
+opt;; 
+techmap -map map_file.v;;
+
+synth -top $design
+dfflibmap -liberty sky130_hd.lib 
+abc -D 1250 -liberty sky130_hd.lib 
+splitnets
+opt_clean -purge
+
+write_verilog -noattr -noexpr -nohex -nodec -defparam   $design/test_outout_gatelevel.gl.v
