@@ -1900,7 +1900,14 @@ module ldpcenc_cu(clk, rst_n, srst, vld_in, sop_in, mode_in, data_in, rdy_in, vl
     .Q(data_r1[26]),
     .RESET_B(rst_n)
   );
-  assign mode[3:2] = cnt_vld_max;
+  sky130_fd_sc_hd__buf_2 _420_ (
+    .A(cnt_vld_max[0]),
+    .X(mode[2])
+  );
+  sky130_fd_sc_hd__buf_2 _421_ (
+    .A(cnt_vld_max[1]),
+    .X(mode[3])
+  );
 endmodule
 
 module ldpcenc_dpu(clk, rst_n, state, mode, cnt_sym, cnt_vld, cnt_vld_max, clr_acc, vld, data_r1, data_r2, data_r3, data_out);
@@ -63096,6 +63103,10 @@ module ldpcenc_tbl(clk, addr, sh1, sh2, sh3, sh4, sh5, sh6, sh7, sh8, sh9, sh10,
     .D(\sh12_w[7] ),
     .Q(sh12[7])
   );
-  assign sh11[6] = 1'b0;
-  assign sh12[6] = 1'b0;
+  sky130_fd_sc_hd__conb_1 _2194_ (
+    .LO(sh11[6])
+  );
+  sky130_fd_sc_hd__conb_1 _2195_ (
+    .LO(sh12[6])
+  );
 endmodule

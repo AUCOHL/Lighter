@@ -1,23 +1,34 @@
-set design aes256
-read_verilog $design/$design.v
+#yosys -import
+#set design blabla
+read_verilog blabla/blabla.v
 
 
 
-#read_verilog blackbox_clk_gates.v
 
-hierarchy -check -top $design
+hierarchy -check -top blabla
 proc;
 opt;; 
 
 memory_collect
 memory_map
 opt;; 
-#techmap -map map_file.v;;
 
-synth -top $design
+
+
+
+synth -top blabla
 dfflibmap -liberty sky130_hd.lib 
 abc -D 1250 -liberty sky130_hd.lib 
+
 splitnets
 opt_clean -purge
 
-write_verilog -noattr -noexpr -nohex -nodec -defparam   $design/before_gl.v
+
+hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
+#hilomap -hicell "sky130_fd_sc_hd__conb_1 HI" -locell "sky130_fd_sc_hd__conb_1 LO" 
+splitnets
+opt_clean -purge
+insbuf -buf sky130_fd_sc_hd__buf_2 A X
+dffinit
+opt;; 
+write_verilog -noattr -noexpr -nohex -nodec -defparam   blabla/before_gl.v

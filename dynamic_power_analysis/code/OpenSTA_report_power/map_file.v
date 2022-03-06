@@ -159,6 +159,9 @@ endmodule
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 
+//$sdffe #(.CLK_POLARITY(1'b1), .EN_POLARITY(1'b1), .SRST_POLARITY(1'b0),
+// .SRST_VALUE(2'h2), .WIDTH(2)) ff1 (.CLK(CLK), .SRST(1'b0), .EN(EN), .D(D), .Q(Q[3:2]));
+
 module \$sdffe ( CLK, EN, SRST, D, Q);
     parameter CLK_POLARITY =1'b1;
     parameter EN_POLARITY =1'b1;

@@ -1,8 +1,10 @@
-set design aes256
-read_verilog $design/$design.v
+#yosys -import
+#set design blabla
+
+read_verilog blabla/blabla.v
 read_verilog blackbox_clk_gates.v
 
-hierarchy -check -top $design
+hierarchy -check -top blabla
 proc;
 opt;; 
 
@@ -11,10 +13,17 @@ memory_map
 opt;; 
 techmap -map map_file.v;;
 
-synth -top $design
+synth -top blabla
 dfflibmap -liberty sky130_hd.lib 
 abc -D 1250 -liberty sky130_hd.lib 
+
 splitnets
 opt_clean -purge
+hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
 
-write_verilog -noattr -noexpr -nohex -nodec -defparam   $design/test_outout_gatelevel.gl.v
+splitnets
+opt_clean -purge
+insbuf -buf sky130_fd_sc_hd__buf_2 A X
+dffinit
+opt;; 
+write_verilog -noattr -noexpr -nohex -nodec -defparam   blabla/test_outout_gatelevel.gl.v

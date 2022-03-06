@@ -72965,6 +72965,196 @@ module blabla_qr(a, b, c, d, a_prim, b_prim, c_prim, d_prim);
     .B(_0384_),
     .Y(a_prim[63])
   );
-  assign b_prim[63:32] = 32'b00000000000000000000000000000000;
-  assign d_prim[63:32] = 32'b00000000000000000000000000000000;
+  sky130_fd_sc_hd__conb_1 _1976_ (
+    .LO(b_prim[32])
+  );
+  sky130_fd_sc_hd__conb_1 _1977_ (
+    .LO(b_prim[33])
+  );
+  sky130_fd_sc_hd__conb_1 _1978_ (
+    .LO(b_prim[34])
+  );
+  sky130_fd_sc_hd__conb_1 _1979_ (
+    .LO(b_prim[35])
+  );
+  sky130_fd_sc_hd__conb_1 _1980_ (
+    .LO(b_prim[36])
+  );
+  sky130_fd_sc_hd__conb_1 _1981_ (
+    .LO(b_prim[37])
+  );
+  sky130_fd_sc_hd__conb_1 _1982_ (
+    .LO(b_prim[38])
+  );
+  sky130_fd_sc_hd__conb_1 _1983_ (
+    .LO(b_prim[39])
+  );
+  sky130_fd_sc_hd__conb_1 _1984_ (
+    .LO(b_prim[40])
+  );
+  sky130_fd_sc_hd__conb_1 _1985_ (
+    .LO(b_prim[41])
+  );
+  sky130_fd_sc_hd__conb_1 _1986_ (
+    .LO(b_prim[42])
+  );
+  sky130_fd_sc_hd__conb_1 _1987_ (
+    .LO(b_prim[43])
+  );
+  sky130_fd_sc_hd__conb_1 _1988_ (
+    .LO(b_prim[44])
+  );
+  sky130_fd_sc_hd__conb_1 _1989_ (
+    .LO(b_prim[45])
+  );
+  sky130_fd_sc_hd__conb_1 _1990_ (
+    .LO(b_prim[46])
+  );
+  sky130_fd_sc_hd__conb_1 _1991_ (
+    .LO(b_prim[47])
+  );
+  sky130_fd_sc_hd__conb_1 _1992_ (
+    .LO(b_prim[48])
+  );
+  sky130_fd_sc_hd__conb_1 _1993_ (
+    .LO(b_prim[49])
+  );
+  sky130_fd_sc_hd__conb_1 _1994_ (
+    .LO(b_prim[50])
+  );
+  sky130_fd_sc_hd__conb_1 _1995_ (
+    .LO(b_prim[51])
+  );
+  sky130_fd_sc_hd__conb_1 _1996_ (
+    .LO(b_prim[52])
+  );
+  sky130_fd_sc_hd__conb_1 _1997_ (
+    .LO(b_prim[53])
+  );
+  sky130_fd_sc_hd__conb_1 _1998_ (
+    .LO(b_prim[54])
+  );
+  sky130_fd_sc_hd__conb_1 _1999_ (
+    .LO(b_prim[55])
+  );
+  sky130_fd_sc_hd__conb_1 _2000_ (
+    .LO(b_prim[56])
+  );
+  sky130_fd_sc_hd__conb_1 _2001_ (
+    .LO(b_prim[57])
+  );
+  sky130_fd_sc_hd__conb_1 _2002_ (
+    .LO(b_prim[58])
+  );
+  sky130_fd_sc_hd__conb_1 _2003_ (
+    .LO(b_prim[59])
+  );
+  sky130_fd_sc_hd__conb_1 _2004_ (
+    .LO(b_prim[60])
+  );
+  sky130_fd_sc_hd__conb_1 _2005_ (
+    .LO(b_prim[61])
+  );
+  sky130_fd_sc_hd__conb_1 _2006_ (
+    .LO(b_prim[62])
+  );
+  sky130_fd_sc_hd__conb_1 _2007_ (
+    .LO(b_prim[63])
+  );
+  sky130_fd_sc_hd__conb_1 _2008_ (
+    .LO(d_prim[32])
+  );
+  sky130_fd_sc_hd__conb_1 _2009_ (
+    .LO(d_prim[33])
+  );
+  sky130_fd_sc_hd__conb_1 _2010_ (
+    .LO(d_prim[34])
+  );
+  sky130_fd_sc_hd__conb_1 _2011_ (
+    .LO(d_prim[35])
+  );
+  sky130_fd_sc_hd__conb_1 _2012_ (
+    .LO(d_prim[36])
+  );
+  sky130_fd_sc_hd__conb_1 _2013_ (
+    .LO(d_prim[37])
+  );
+  sky130_fd_sc_hd__conb_1 _2014_ (
+    .LO(d_prim[38])
+  );
+  sky130_fd_sc_hd__conb_1 _2015_ (
+    .LO(d_prim[39])
+  );
+  sky130_fd_sc_hd__conb_1 _2016_ (
+    .LO(d_prim[40])
+  );
+  sky130_fd_sc_hd__conb_1 _2017_ (
+    .LO(d_prim[41])
+  );
+  sky130_fd_sc_hd__conb_1 _2018_ (
+    .LO(d_prim[42])
+  );
+  sky130_fd_sc_hd__conb_1 _2019_ (
+    .LO(d_prim[43])
+  );
+  sky130_fd_sc_hd__conb_1 _2020_ (
+    .LO(d_prim[44])
+  );
+  sky130_fd_sc_hd__conb_1 _2021_ (
+    .LO(d_prim[45])
+  );
+  sky130_fd_sc_hd__conb_1 _2022_ (
+    .LO(d_prim[46])
+  );
+  sky130_fd_sc_hd__conb_1 _2023_ (
+    .LO(d_prim[47])
+  );
+  sky130_fd_sc_hd__conb_1 _2024_ (
+    .LO(d_prim[48])
+  );
+  sky130_fd_sc_hd__conb_1 _2025_ (
+    .LO(d_prim[49])
+  );
+  sky130_fd_sc_hd__conb_1 _2026_ (
+    .LO(d_prim[50])
+  );
+  sky130_fd_sc_hd__conb_1 _2027_ (
+    .LO(d_prim[51])
+  );
+  sky130_fd_sc_hd__conb_1 _2028_ (
+    .LO(d_prim[52])
+  );
+  sky130_fd_sc_hd__conb_1 _2029_ (
+    .LO(d_prim[53])
+  );
+  sky130_fd_sc_hd__conb_1 _2030_ (
+    .LO(d_prim[54])
+  );
+  sky130_fd_sc_hd__conb_1 _2031_ (
+    .LO(d_prim[55])
+  );
+  sky130_fd_sc_hd__conb_1 _2032_ (
+    .LO(d_prim[56])
+  );
+  sky130_fd_sc_hd__conb_1 _2033_ (
+    .LO(d_prim[57])
+  );
+  sky130_fd_sc_hd__conb_1 _2034_ (
+    .LO(d_prim[58])
+  );
+  sky130_fd_sc_hd__conb_1 _2035_ (
+    .LO(d_prim[59])
+  );
+  sky130_fd_sc_hd__conb_1 _2036_ (
+    .LO(d_prim[60])
+  );
+  sky130_fd_sc_hd__conb_1 _2037_ (
+    .LO(d_prim[61])
+  );
+  sky130_fd_sc_hd__conb_1 _2038_ (
+    .LO(d_prim[62])
+  );
+  sky130_fd_sc_hd__conb_1 _2039_ (
+    .LO(d_prim[63])
+  );
 endmodule
