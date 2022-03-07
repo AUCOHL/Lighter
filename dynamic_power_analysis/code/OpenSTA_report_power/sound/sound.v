@@ -450,10 +450,10 @@ end
 
 wire [7:0] dma_id_q;
 
-simple_single_rom  (
+simple_single_rom(
     .widthad    (10),
     .width      (8),
-    .datafile   ("./designs/sound/src/dsp_dma_identification_rom.hex")
+    .datafile   ("./sound/dsp_dma_identification_rom.hex")
 )
 dma_id_rom_inst (
     .clk        (clk),

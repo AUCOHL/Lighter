@@ -1,8 +1,16 @@
 import os
 
 
-dir_list = ["aes156", "blabla", "chacha", "ldpc_decoder_802_3an","ldpcenc", "sp_mul", "ppu", "ula", "vm80a", "xtea", "y_huff", "y_quantizer", "zigzag", "zipdiv", "y_dct"] 
-#dir_list = ["aes156",]
+#dir_list = ["aes156", "blabla", "chacha", "ldpc_decoder_802_3an",
+#"ldpcenc", "sp_mul", "PPU","3des", "sbox", "ula", "vm80a", "xtea",
+# "y_huff", "y_quantizer", "zigzag", "zipdiv", "y_dct", "jpeg_encoder", "aes_cipher","sha512", "picorv32a", "riscv_top_151"] 
+
+
+dir_list = ["rv32cpu"]
+
+#genericfir fires an error 6. Executing PROC_INIT pass (extract init attributes).
+#Found init rule in `$paramod$75d9adb446428879bf1d097f1d2f41fbd2dcad71\firtap.$proc$genericfir/genericfir.v:0$21'.
+#ERROR: Failed to get a constant init value for \genblk1.tap: $1\genblk1.tap[11:0]
 
 for test in dir_list:
     print(test)

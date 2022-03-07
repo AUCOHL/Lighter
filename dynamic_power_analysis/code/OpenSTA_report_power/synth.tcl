@@ -1,6 +1,6 @@
 
 yosys -import
-set design y_dct
+set design rv32cpu
 puts "in tcl $design"
 read_verilog $design/$design.v
 hierarchy -check -top $design

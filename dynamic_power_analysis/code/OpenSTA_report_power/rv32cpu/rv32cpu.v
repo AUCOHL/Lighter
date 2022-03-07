@@ -325,7 +325,7 @@ end
 endmodule
 
 
-module CPU (
+module rv32cpu (
 	input   wire          clk, 
 	input   wire          rst, 
 	output  wire	[31:0] 	mAddr, 
