@@ -6,11 +6,20 @@ import os
 # "y_huff", "y_quantizer", "zigzag", "zipdiv", "y_dct", "jpeg_encoder", "aes_cipher","sha512", "picorv32a", "riscv_top_151"] 
 
 
-dir_list = ["rv32cpu"]
+dir_list = ["riscv"]
 
-#genericfir fires an error 6. Executing PROC_INIT pass (extract init attributes).
+#genericfir fires an error 
+# 6. Executing PROC_INIT pass (extract init attributes).
 #Found init rule in `$paramod$75d9adb446428879bf1d097f1d2f41fbd2dcad71\firtap.$proc$genericfir/genericfir.v:0$21'.
 #ERROR: Failed to get a constant init value for \genblk1.tap: $1\genblk1.tap[11:0]
+
+
+
+# riscv design fails in running proc_init
+#6. Executing PROC_INIT pass (extract init attributes).
+#Found init rule in `\Four_Digit_Seven_Segment_Driver_OptimizedFour_Digit_Seven_Segment_Driver_Optimized.$proc$riscv/riscv.v:1065$223'.
+#ERROR: Failed to get a constant init value for \refresh_counter: $1\refresh_counter[19:0]
+
 
 for test in dir_list:
     print(test)

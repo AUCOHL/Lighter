@@ -1,6 +1,6 @@
 
 yosys -import
-set design rv32cpu
+set design riscv
 puts "in tcl $design"
 read_verilog $design/$design.v
 read_verilog blackbox_clk_gates.v
