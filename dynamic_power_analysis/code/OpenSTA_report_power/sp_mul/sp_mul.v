@@ -1,7 +1,7 @@
 //IEEE Floating Point Multiplier (Single Precision)
 //Copyright (C) Jonathan P Dawson 2013
 //2013-12-12
-module multiplier(
+module sp_mul(
         input_a,
         input_b,
         input_a_stb,

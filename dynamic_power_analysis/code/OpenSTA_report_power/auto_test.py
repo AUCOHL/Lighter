@@ -1,52 +1,35 @@
 import os
+import csv
+
+dir_list = ["aes256", "blabla", "chacha", "ldpc_decoder_802_3an",
+"ldpcenc", "sp_mul", "PPU","des", "sbox", "ula", "vm80a", "xtea",
+ "y_huff", "y_quantizer", "zigzag", "zipdiv", "y_dct", "jpeg_encoder",
+  "aes_cipher","sha512", "picorv32a", "riscv_top_151", "riscv"] 
 
 
-#dir_list = ["aes156", "blabla", "chacha", "ldpc_decoder_802_3an",
-#"ldpcenc", "sp_mul", "PPU","3des", "sbox", "ula", "vm80a", "xtea",
-# "y_huff", "y_quantizer", "zigzag", "zipdiv", "y_dct", "jpeg_encoder", "aes_cipher","sha512", "picorv32a", "riscv_top_151"] 
-
-
-dir_list = ["riscv"]
-
-#genericfir fires an error 
-# 6. Executing PROC_INIT pass (extract init attributes).
-#Found init rule in `$paramod$75d9adb446428879bf1d097f1d2f41fbd2dcad71\firtap.$proc$genericfir/genericfir.v:0$21'.
-#ERROR: Failed to get a constant init value for \genblk1.tap: $1\genblk1.tap[11:0]
+#dir_list = ["y_huff"]
 
 
 
-# riscv design fails in running proc_init
-#6. Executing PROC_INIT pass (extract init attributes).
-#Found init rule in `\Four_Digit_Seven_Segment_Driver_OptimizedFour_Digit_Seven_Segment_Driver_Optimized.$proc$riscv/riscv.v:1065$223'.
-#ERROR: Failed to get a constant init value for \refresh_counter: $1\refresh_counter[19:0]
 
+states=[["module", "clock gates", "cells before","cells difference", "cells after", "a211oi_1 before", "a21oi_1 before","a22o_1 before", "a22oi_1 before" ,"a211oi_1 after", "a21oi_1 after","a22o_1 after", "a22oi_1 after", "aoi/ao difference"]]
 
 for test in dir_list:
     print(test)
     command_list = []
-    with open("./synth.tcl", "w") as f:
+    with open("./synth.ys", "w") as f:
         
         f.write(
             '''
-yosys -import
-set design ''' + test + '''
-puts "in tcl $design"
-read_verilog $design/$design.v
-hierarchy -check -top $design
-proc_clean
-proc_rmdead
-proc_init
-proc_arst
-proc_mux
-proc_dlatch
-proc_dff
-proc_clean
+read_verilog ''' + test + '''/''' + test + '''.v
+hierarchy -check -top ''' + test + '''
 
+proc;
 opt;; 
 memory_collect
 memory_map
 opt;; 
-synth -top $design
+synth -top ''' + test + '''
 dfflibmap -liberty sky130_hd.lib 
 abc -D 1250 -liberty sky130_hd.lib 
 splitnets
@@ -57,39 +40,29 @@ opt_clean -purge
 insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit
 opt;; 
-write_verilog -noattr -noexpr -nohex -nodec -defparam   $design/before_gl.v
+write_verilog -noattr -noexpr -nohex -nodec -defparam   ''' + test + '''/before_gl.v
             '''
         )
 
 
-    os.system("yosys ./synth.tcl" )
+    os.system("yosys ./synth.ys" )
 
-    with open("./synth2.tcl", "w") as f:
+    with open("./synth2.ys", "w") as f:
         
         f.write(
             '''
-yosys -import
-set design ''' + test + '''
-puts "in tcl $design"
-read_verilog $design/$design.v
+read_verilog ''' + test + '''/''' + test + '''.v
 read_verilog blackbox_clk_gates.v
-hierarchy -check -top $design
-proc_clean
-proc_rmdead
-proc_init
-proc_arst
-proc_mux
-proc_dlatch
-proc_dff
-proc_clean
+hierarchy -check -top ''' + test + '''
 
+proc;
 opt;; 
 memory_collect
 memory_map
 techmap -map map_file.v;;
 opt;; 
 
-synth -top $design
+synth -top ''' + test + '''
 dfflibmap -liberty sky130_hd.lib 
 abc -D 1250 -liberty sky130_hd.lib 
 splitnets
@@ -100,11 +73,77 @@ opt_clean -purge
 insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit
 opt;; 
-write_verilog -noattr -noexpr -nohex -nodec -defparam   $design/after_gl.v
+write_verilog -noattr -noexpr -nohex -nodec -defparam   ''' + test + '''/after_gl.v
             '''
         )
 
 
-    os.system("yosys ./synth2.tcl" )
+  
+    os.system("yosys ./synth2.ys" )
+    cells_before= os.popen('grep sky130_fd_sc_hd '+test+'/before_gl.v | wc -l' )
+    cells_before_no = cells_before.read()
+    cells_before_no=cells_before_no[:-1]
+    cells_after= os.popen('grep sky130_fd_sc_hd '+test+'/after_gl.v | wc -l' )
+    cells_after_no = cells_after.read()
+    cells_after_no=cells_after_no[:-1]
+    clk_gates=os.popen('grep dlclk '+test+'/after_gl.v | wc -l' )
+    clk_gates_no = clk_gates.read()
+    clk_gates_no=clk_gates_no[:-1]
+    cell_diff= int (cells_after_no)-int (cells_before_no)
 
 
+    cell1_before= os.popen('grep sky130_fd_sc_hd__a211oi_1 '+test+'/before_gl.v | wc -l' )
+    cell1_before_no = cell1_before.read()
+    cell1_before_no=cell1_before_no[:-1]
+
+    cell2_before= os.popen('grep sky130_fd_sc_hd__a21oi_1 '+test+'/before_gl.v | wc -l' )
+    cell2_before_no = cell2_before.read()
+    cell2_before_no=cell2_before_no[:-1]
+
+    cell3_before= os.popen('grep sky130_fd_sc_hd__a22o_1 '+test+'/before_gl.v | wc -l' )
+    cell3_before_no = cell3_before.read()
+    cell3_before_no=cell3_before_no[:-1]
+
+    cell4_before= os.popen('grep sky130_fd_sc_hd__a22oi_1 '+test+'/before_gl.v | wc -l' )
+    cell4_before_no = cell4_before.read()
+    cell4_before_no=cell4_before_no[:-1]
+
+
+    cell1_after= os.popen('grep sky130_fd_sc_hd__a211oi_1 '+test+'/after_gl.v | wc -l' )
+    cell1_after_no = cell1_after.read()
+    cell1_after_no=cell1_after_no[:-1]
+
+    cell2_after= os.popen('grep sky130_fd_sc_hd__a21oi_1 '+test+'/after_gl.v | wc -l' )
+    cell2_after_no = cell2_after.read()
+    cell2_after_no=cell2_after_no[:-1]
+
+    cell3_after= os.popen('grep sky130_fd_sc_hd__a22o_1 '+test+'/after_gl.v | wc -l' )
+    cell3_after_no = cell3_after.read()
+    cell3_after_no=cell3_after_no[:-1]
+
+    cell4_after= os.popen('grep sky130_fd_sc_hd__a22oi_1 '+test+'/after_gl.v | wc -l' )
+    cell4_after_no = cell4_after.read()
+    cell4_after_no=cell4_after_no[:-1]
+    aoi_diff= int(cell1_after_no)+ int(cell2_after_no)+ int(cell3_after_no)+int(cell4_after_no) -int(cell1_before_no)- int(cell2_before_no)- int(cell3_before_no)-int(cell4_before_no)
+   
+    row= [test,clk_gates_no, cells_before_no, cells_after_no,cell_diff,
+    cell1_before_no, cell2_before_no, cell3_before_no,cell4_before_no,  
+    cell1_after_no, cell2_after_no, cell3_after_no,cell4_after_no, aoi_diff ]
+    states.append(row)
+
+
+
+
+
+# open the file in the write mode
+f = open('./stats_file.csv', 'w')
+
+# create the csv writer
+writer = csv.writer(f)
+
+# write a row to the csv file
+for row in states:
+    writer.writerow(row)
+
+# close the file
+f.close()

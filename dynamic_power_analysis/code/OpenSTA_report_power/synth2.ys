@@ -1,0 +1,25 @@
+
+read_verilog riscv/riscv.v
+read_verilog blackbox_clk_gates.v
+hierarchy -check -top riscv
+
+proc;
+opt;; 
+memory_collect
+memory_map
+techmap -map map_file.v;;
+opt;; 
+
+synth -top riscv
+dfflibmap -liberty sky130_hd.lib 
+abc -D 1250 -liberty sky130_hd.lib 
+splitnets
+opt_clean -purge
+hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
+splitnets
+opt_clean -purge
+insbuf -buf sky130_fd_sc_hd__buf_2 A X
+dffinit
+opt;; 
+write_verilog -noattr -noexpr -nohex -nodec -defparam   riscv/after_gl.v
+            

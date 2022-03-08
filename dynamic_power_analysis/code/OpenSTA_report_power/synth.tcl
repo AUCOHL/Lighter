@@ -1,23 +1,15 @@
 
 yosys -import
-set design riscv
+set design PPU
 puts "in tcl $design"
 read_verilog $design/$design.v
 hierarchy -check -top $design
-proc_clean
-proc_rmdead
-proc_init
-proc_arst
-proc_mux
-proc_dlatch
-proc_dff
-proc_clean
-
+synth -top $design
 opt;; 
 memory_collect
 memory_map
 opt;; 
-synth -top $design
+
 dfflibmap -liberty sky130_hd.lib 
 abc -D 1250 -liberty sky130_hd.lib 
 splitnets
