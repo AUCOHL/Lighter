@@ -120,41 +120,44 @@ endmodule
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 
-//module \$aldffe ( CLK, EN, ALOAD, D, Q);
-//    parameter CLK_POLARITY =1'b1;
-//    parameter EN_POLARITY =1'b1;
-//    parameter ALOAD_POLARITY =1'b1;
-//    parameter WIDTH =1;
 
-//    input  CLK, EN, CLR, SET;
-//    input [WIDTH -1:0] D; 
-//    output [WIDTH -1:0] Q;
+module \$aldffe ( CLK, EN, ALOAD, AD, D, Q);
+    parameter CLK_POLARITY =1'b1;
+    parameter EN_POLARITY =1'b1;
+    parameter ALOAD_POLARITY =1'b1;
+    parameter WIDTH =1;
 
-//    wire GCLK;
+    input  CLK, EN, ALOAD;
+    input [WIDTH -1:0] D; 
+    input [WIDTH-1:0] AD;
+    output [WIDTH -1:0] Q;
 
-//    generate
-//        if (WIDTH < 4) begin
-//                sky130_fd_sc_hd__dlclkp_1  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
-//                end
-//            else if (WIDTH < 17) begin
-//                sky130_fd_sc_hd__dlclkp_2  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
-//                end
-//            else begin
-//                sky130_fd_sc_hd__dlclkp_4  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
-//        end
-//    endgenerate
+    wire GCLK;
 
-//    $aldff  #( 
-//            .WIDTH(WIDTH), 
-//            .CLK_POLARITY(CLK_POLARITY),
-//            .CLR_POLARITY(CLR_POLARITY), 
-//            ) 
-//            flipflop(  
-//            .CLK(GCLK), 
-//            .D(D), 
-//            .Q(Q)
-//            );
-//endmodule
+    generate
+        if (WIDTH < 4) begin
+                sky130_fd_sc_hd__dlclkp_1  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
+                end
+            else if (WIDTH < 17) begin
+                sky130_fd_sc_hd__dlclkp_2  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
+                end
+            else begin
+                sky130_fd_sc_hd__dlclkp_4  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
+        end
+    endgenerate
+
+    $aldff  #( 
+            .WIDTH(WIDTH), 
+            .CLK_POLARITY(CLK_POLARITY),
+            .ALOAD_POLARITY(ALOAD_POLARITY), 
+            ) 
+            flipflop(  
+            .CLK(GCLK), 
+            .D(D),
+            .AD(AD),
+            .Q(Q)
+            );
+endmodule
 
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
@@ -201,11 +204,9 @@ module \$sdffe ( CLK, EN, SRST, D, Q);
             );
 endmodule
 
-
-//$sdff #(.CLK_POLARITY(1'b1), .SRST_POLARITY(1'b1), .SRST_VALUE(2'h2), .WIDTH(2)) ff0 (.CLK(CLK), .SRST(1'b1), .D(D), .Q(Q[1:0]));
-
 	//RTLIL::Cell* addSr    (RTLIL::IdString name, const RTLIL::SigSpec &sig_set, const RTLIL::SigSpec &sig_clr, const RTLIL::SigSpec &sig_q, bool set_polarity = true, bool clr_polarity = true, const std::string &src = "");
-	//RTLIL::Cell* addFf    (RTLIL::IdString name, const RTLIL::SigSpec &sig_d, const RTLIL::SigSpec &sig_q, const std::string &src = "");
+	
+    //RTLIL::Cell* addFf    (RTLIL::IdString name, const RTLIL::SigSpec &sig_d, const RTLIL::SigSpec &sig_q, const std::string &src = "");
 	//RTLIL::Cell* addDff   (RTLIL::IdString name, const RTLIL::SigSpec &sig_clk, const RTLIL::SigSpec &sig_d,   const RTLIL::SigSpec &sig_q, bool clk_polarity = true, const std::string &src = "");
 	//RTLIL::Cell* addDffe  (RTLIL::IdString name, const RTLIL::SigSpec &sig_clk, const RTLIL::SigSpec &sig_en,  const RTLIL::SigSpec &sig_d, const RTLIL::SigSpec &sig_q, bool clk_polarity = true, bool en_polarity = true, const std::string &src = "");
 	
@@ -227,3 +228,6 @@ endmodule
 	//RTLIL::Cell* addDlatch (RTLIL::IdString name, const RTLIL::SigSpec &sig_en, const RTLIL::SigSpec &sig_d, const RTLIL::SigSpec &sig_q, bool en_polarity = true, const std::string &src = "");
 	//RTLIL::Cell* addAdlatch (RTLIL::IdString name, const RTLIL::SigSpec &sig_en, const RTLIL::SigSpec &sig_arst, const RTLIL::SigSpec &sig_d, const RTLIL::SigSpec &sig_q, RTLIL::Const arst_value, bool en_polarity = true, bool arst_polarity = true, const std::string &src = "");
 	//RTLIL::Cell* addDlatchsr (RTLIL::IdString name, const RTLIL::SigSpec &sig_en, const RTLIL::SigSpec &sig_set, const RTLIL::SigSpec &sig_clr, RTLIL::SigSpec sig_d, const RTLIL::SigSpec &sig_q, bool en_polarity = true, bool set_polarity = true, bool clr_polarity = true, const std::string &src = "");
+
+
+
