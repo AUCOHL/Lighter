@@ -1,18 +1,43 @@
 import os
 import csv
 
-#dir_list = ["aes256", "blabla", "chacha", "ldpc_decoder_802_3an",
-#"ldpcenc", "sp_mul", "PPU","des", "sbox", "ula", "vm80a", "xtea",
-# "y_huff", "y_quantizer", "zigzag", "zipdiv", "y_dct", "jpeg_encoder",
-#  "aes_cipher","sha512", "picorv32a", "riscv_top_151", "riscv"] 
+dir_list = [ 
+            #"aes256",
+            "blabla", 
+            "chacha", 
+            "ldpc_decoder_802_3an",
+            "ldpcenc", 
+            #"sp_mul", 
+            "PPU",
+            #"des", 
+            #"sbox", 
+            #"ula", 
+            #"vm80a", 
+            #"xtea",
+            "y_huff", 
+            "y_quantizer", 
+            #"zigzag", 
+            #"zipdiv", 
+            "y_dct", 
+            "jpeg_encoder",
+            #"aes_cipher",
+            "sha512", 
+            "picorv32a", 
+            "riscv_top_151", 
+            "genericfir",
+            "NfiVe32_RF", 
+            "rf_64x64"
+            ] 
 
 
-dir_list = ["NfiVe32_RF"]
+#dir_list = ["NfiVe32_RF"]
 
 
 
 
 states=[["module", "clock gates", "cells before","cells difference", "cells after", "a211oi_1 before", "a21oi_1 before","a22o_1 before", "a22oi_1 before" ,"a211oi_1 after", "a21oi_1 after","a22o_1 after", "a22oi_1 after", "aoi/ao difference"]]
+
+
 
 for test in dir_list:
     print(test)

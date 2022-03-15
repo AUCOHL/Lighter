@@ -1,7 +1,7 @@
 
-read_verilog NfiVe32_RF/NfiVe32_RF.v
+read_verilog rf_64x64/rf_64x64.v
 read_verilog blackbox_clk_gates.v
-hierarchy -check -top NfiVe32_RF
+hierarchy -check -top rf_64x64
 
 proc;
 opt;; 
@@ -10,7 +10,7 @@ memory_map
 techmap -map map_file.v;;
 opt;; 
 
-synth -top NfiVe32_RF
+synth -top rf_64x64
 dfflibmap -liberty sky130_hd.lib 
 abc -D 1250 -liberty sky130_hd.lib 
 splitnets
@@ -21,5 +21,5 @@ opt_clean -purge
 insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit
 opt;; 
-write_verilog -noattr -noexpr -nohex -nodec -defparam   NfiVe32_RF/after_gl.v
+write_verilog -noattr -noexpr -nohex -nodec -defparam   rf_64x64/after_gl.v
             

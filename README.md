@@ -9,7 +9,7 @@ An automatic clock gating utility that is generic for all SKY_130 RTL designs. T
 https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content=DAE4K_5a9jc&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent
     
 # Dependancies
-    - Python3: 3.7 or later
+    - Python3   3.7 or later
     - Yosys     latest version
     - TCL       latest version
     - OpenSta   latest version
