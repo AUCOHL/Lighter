@@ -18,6 +18,22 @@ states_two=[["module", "all cells power before at 0.1","flipflops power before a
                     "all cells power after at 0.1","flipflops power after at 0.1","flipflops power after at 0.05","total power after",
                      "total power difference", "percentage reduction"],]
 
+
+
+states_internal=[["module","all cells Internal before at 0.1", "all cells power before at 0.1","ff Internal before at 0.1","ff power before at 0.1","ff Internal before at 1.0","ff power before at 1.0","total power before",
+                    "all cells Internal after at 0.1", "all cells power after at 0.1","ff Internal after at 0.1", "ff power after at 0.1", "ff Internal after at 0.05","ff power after at 0.05","total power after",
+                     "total power difference", "percentage reduction"],]
+
+states_switching=[["module","all cells switching before at 0.1", "all cells power before at 0.1","ff switching before at 0.1","ff power before at 0.1","ff switching before at 1.0","ff power before at 1.0","total power before",
+                    "all cells switching after at 0.1", "all cells power after at 0.1","ff switching after at 0.1", "ff power after at 0.1", "ff switching after at 0.05","ff power after at 0.05","total power after",
+                     "total power difference", "percentage reduction"],]
+
+
+states_leakage=[["module","all cells leakage before at 0.1", "all cells power before at 0.1","ff leakage before at 0.1","ff power before at 0.1","ff leakage before at 1.0","ff power before at 1.0","total power before",
+                    "all cells leakage after at 0.1", "all cells power after at 0.1","ff leakage after at 0.1", "ff power after at 0.1", "ff leakage after at 0.05","ff power after at 0.05","total power after",
+                     "total power difference", "percentage reduction"],]
+
+
 dir_list = [
             ["blabla",               "clk",         "65.0"],
             ["chacha",               "clk",         "25.0"],
@@ -125,13 +141,13 @@ read_verilog $design/after_gl.v
 link_design $design
 create_clock -period $period $clk
 
-set_clock_gating_check $clk
+#set_clock_gating_check $clk
 set_power_activity -input -activity 0.1
 report_power $design >>./stats/all_dump_stats_0_1_after.txt
 report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_0_1_after.txt
 
 set_power_activity -input -activity 0.05
-report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_0_03125_after.txt
+report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_0_05_after.txt
 exit
 ##############################
             '''
@@ -143,7 +159,7 @@ exit
 
     ff_1_0_before =parse_ff_power("./stats/ff_dump_stats_1_0_before.txt")
     ff_0_1_after =parse_ff_power("./stats/ff_dump_stats_0_1_after.txt")
-    ff_0_03125_after =parse_ff_power("./stats/ff_dump_stats_0_03125_after.txt")
+    ff_0_05_after =parse_ff_power("./stats/ff_dump_stats_0_05_after.txt")
 
     all_0_1_before =parse_all_power("./stats/all_dump_stats_0_1_before.txt")
     all_0_1_after =parse_all_power('./stats/all_dump_stats_0_1_after.txt')
@@ -162,10 +178,10 @@ exit
     before_power.append(all_0_1_before[3] - ff_0_1_before[3] + ff_1_0_before[3])
 
     after_power=list()
-    after_power.append(all_0_1_after[0] - ff_0_1_after[0] + ff_0_03125_after[0])
-    after_power.append(all_0_1_after[1] - ff_0_1_after[1] + ff_0_03125_after[1])
-    after_power.append(all_0_1_after[2] - ff_0_1_after[2] + ff_0_03125_after[2])
-    after_power.append(all_0_1_after[3] - ff_0_1_after[3] + ff_0_03125_after[3])
+    after_power.append(all_0_1_after[0] - ff_0_1_after[0] + ff_0_05_after[0])
+    after_power.append(all_0_1_after[1] - ff_0_1_after[1] + ff_0_05_after[1])
+    after_power.append(all_0_1_after[2] - ff_0_1_after[2] + ff_0_05_after[2])
+    after_power.append(all_0_1_after[3] - ff_0_1_after[3] + ff_0_05_after[3])
 
     states.append(
                   [
@@ -184,7 +200,30 @@ exit
     states_two.append([
                         test[0],
                         str(all_0_1_before[3]), str(ff_0_1_before[3]),str(ff_1_0_before[3]),str(before_power[3]),
-                        str(all_0_1_after[3]), str(ff_0_1_after[3]),str(ff_0_03125_after[3]),str(after_power[3]),
+                        str(all_0_1_after[3]), str(ff_0_1_after[3]),str(ff_0_05_after[3]),str(after_power[3]),
+                        str(before_power[3]-after_power[3]), str(((before_power[3]-after_power[3])/before_power[3])*100)+" %"
+    ])
+
+
+
+    states_internal.append([
+                        test[0],
+                        str(all_0_1_before[0]),str(all_0_1_before[3]),str(ff_0_1_before[0]), str(ff_0_1_before[3]),str(ff_1_0_before[0]),str(ff_1_0_before[3]),str(before_power[3]),
+                        str(all_0_1_after[0]),str(all_0_1_after[3]),str(ff_0_1_after[0]), str(ff_0_1_after[3]),str(ff_0_05_after[0]),str(ff_0_05_after[3]),str(after_power[3]),
+                        str(before_power[3]-after_power[3]), str(((before_power[3]-after_power[3])/before_power[3])*100)+" %"
+    ])
+
+    states_switching.append([
+                        test[0],
+                        str(all_0_1_before[1]),str(all_0_1_before[3]),str(ff_0_1_before[1]), str(ff_0_1_before[3]),str(ff_1_0_before[1]),str(ff_1_0_before[3]),str(before_power[3]),
+                        str(all_0_1_after[1]),str(all_0_1_after[3]),str(ff_0_1_after[1]), str(ff_0_1_after[3]),str(ff_0_05_after[1]),str(ff_0_05_after[3]),str(after_power[3]),
+                        str(before_power[3]-after_power[3]), str(((before_power[3]-after_power[3])/before_power[3])*100)+" %"
+    ])
+
+    states_leakage.append([
+                        test[0],
+                        str(all_0_1_before[2]),str(all_0_1_before[3]),str(ff_0_1_before[2]), str(ff_0_1_before[3]),str(ff_1_0_before[2]),str(ff_1_0_before[3]),str(before_power[3]),
+                        str(all_0_1_after[2]),str(all_0_1_after[3]),str(ff_0_1_after[2]), str(ff_0_1_after[3]),str(ff_0_05_after[2]),str(ff_0_05_after[3]),str(after_power[3]),
                         str(before_power[3]-after_power[3]), str(((before_power[3]-after_power[3])/before_power[3])*100)+" %"
     ])
 
@@ -213,4 +252,42 @@ for row in states_two:
 # close the file
 f.close()
 
-                    
+f = open('./stats/stats_internal_file.csv', 'w')
+
+# create the csv writer
+writer = csv.writer(f)
+
+# write a row to the csv file
+for row in states_internal:
+    writer.writerow(row)
+
+# close the file
+f.close()
+
+
+
+f = open('./stats/stats_switching_file.csv', 'w')
+
+# create the csv writer
+writer = csv.writer(f)
+
+# write a row to the csv file
+for row in states_switching:
+    writer.writerow(row)
+
+# close the file
+f.close()
+
+
+f = open('./stats/stats_leakage_file.csv', 'w')
+
+# create the csv writer
+writer = csv.writer(f)
+
+# write a row to the csv file
+for row in states_leakage:
+    writer.writerow(row)
+
+# close the file
+f.close()
+
