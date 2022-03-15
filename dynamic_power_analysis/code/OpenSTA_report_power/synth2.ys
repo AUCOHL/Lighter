@@ -1,7 +1,7 @@
 
-read_verilog riscv/riscv.v
+read_verilog NfiVe32_RF/NfiVe32_RF.v
 read_verilog blackbox_clk_gates.v
-hierarchy -check -top riscv
+hierarchy -check -top NfiVe32_RF
 
 proc;
 opt;; 
@@ -10,7 +10,7 @@ memory_map
 techmap -map map_file.v;;
 opt;; 
 
-synth -top riscv
+synth -top NfiVe32_RF
 dfflibmap -liberty sky130_hd.lib 
 abc -D 1250 -liberty sky130_hd.lib 
 splitnets
@@ -21,5 +21,5 @@ opt_clean -purge
 insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit
 opt;; 
-write_verilog -noattr -noexpr -nohex -nodec -defparam   riscv/after_gl.v
+write_verilog -noattr -noexpr -nohex -nodec -defparam   NfiVe32_RF/after_gl.v
             

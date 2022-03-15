@@ -1,13 +1,13 @@
 import os
 import csv
 
-dir_list = ["aes256", "blabla", "chacha", "ldpc_decoder_802_3an",
-"ldpcenc", "sp_mul", "PPU","des", "sbox", "ula", "vm80a", "xtea",
- "y_huff", "y_quantizer", "zigzag", "zipdiv", "y_dct", "jpeg_encoder",
-  "aes_cipher","sha512", "picorv32a", "riscv_top_151", "riscv"] 
+#dir_list = ["aes256", "blabla", "chacha", "ldpc_decoder_802_3an",
+#"ldpcenc", "sp_mul", "PPU","des", "sbox", "ula", "vm80a", "xtea",
+# "y_huff", "y_quantizer", "zigzag", "zipdiv", "y_dct", "jpeg_encoder",
+#  "aes_cipher","sha512", "picorv32a", "riscv_top_151", "riscv"] 
 
 
-#dir_list = ["y_huff"]
+dir_list = ["NfiVe32_RF"]
 
 
 
@@ -16,7 +16,6 @@ states=[["module", "clock gates", "cells before","cells difference", "cells afte
 
 for test in dir_list:
     print(test)
-    command_list = []
     with open("./synth.ys", "w") as f:
         
         f.write(
