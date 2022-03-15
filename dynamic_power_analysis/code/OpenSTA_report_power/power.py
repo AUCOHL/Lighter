@@ -56,7 +56,7 @@ dir_list = [
             ["riscv_top_151",        "clk",         "50.0"], 
             ["NfiVe32_RF",        "HCLK",         "50.0"]
             ] 
-
+# add generic fir
 
 #dir_list = [
 ##        #   ["FF",        "clk",         "10.0"]
