@@ -5,14 +5,24 @@
 # Automatic clock gating on Yosys RTLIL level
 An automatic clock gating utility that is generic for all SKY_130 RTL designs. The tool takes an RTL HDL design (typically Verilog) and applies synthesis and clock gating using over-the-shelf commands provided by Yosys.The clock-gating problem is transformed into a graph problem with the help of Yosys RTLIL (register transfer level intermediate language), where the tool replaces all flipflops with enable inputs into clock-gated flipflops. The tool produces a clock-gated gatelevel netlist. 
 
-# presentation slides
+# Documentation slides
 https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content=DAE4K_5a9jc&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent
     
+# Dependancies
+    - Python3: 3.7 or later
+    - Yosys     latest version
+    - TCL       latest version
+    - OpenSta   latest version
+
+# Dependancies references
+    - https://github.com/YosysHQ/yosys
+    - https://github.com/The-OpenROAD-Project/OpenSTA
+
 
 
 # Test cases overview 
 
-To evaluate the performance of this tool, the OpenSta API was used to claculate the dynamic power of the input design before and after clock gating, and produce power reduction summary. 
+To evaluate the performance of this tool, the OpenSta API was used to calculate the dynamic power of the input design before and after clock gating, and produce a power reduction summary. 
 
 | module               | Internal before | Switching before | Leakage before | Total before | Internal after | Switching after | Leakage after | Total after | total power difference | percentage reduction |
 |----------------------|-----------------|------------------|----------------|--------------|----------------|-----------------|---------------|-------------|------------------------|----------------------|
@@ -38,3 +48,10 @@ To evaluate the performance of this tool, the OpenSta API was used to claculate 
 | NfiVe32_RF           | 1.45E-03        | 2.29E-04         | 1.76E-08       | 1.68E-03     | 9.71E-04       | 3.35E-05        | 1.76E-08      | 1.00E-03    | 6.77E-04               | 40.26%               |
 |                      |                 |                  |                |              |                |                 |               |             |                        | avg percentage       |
 |                      |                 |                  |                |              |                |                 |               |             |                        | 43.89%               |
+
+
+
+# Contributers:
+    - Dr. Mohamed Shalan
+    - Youssef Kandil
+    
