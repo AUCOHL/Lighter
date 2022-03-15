@@ -1,5 +1,5 @@
 # The American University In Cairo  
-![the_american_university_in_cairo_0]( <p align="center">https://user-images.githubusercontent.com/63082375/145812500-c4416b84-b1f0-4c99-b2f5-39622d864d2b.jpg </p>)
+![the_american_university_in_cairo_0](https://user-images.githubusercontent.com/63082375/145812500-c4416b84-b1f0-4c99-b2f5-39622d864d2b.jpg)
 
 
 # Automatic clock gating on Yosys RTLIL level
