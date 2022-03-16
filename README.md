@@ -49,6 +49,3 @@ To evaluate the performance of this tool, the OpenSta API was used to calculate 
     - Dr. Mohamed Shalan
     - Youssef Kandil
 
-
-#dd
-    
