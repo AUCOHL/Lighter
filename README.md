@@ -4,7 +4,7 @@
 * Overview
 * 
 
-# OverView
+# Overview
 This project provides an automatic clock gating utility that is generic for all SKY_130 RTL designs. The automatic clock gating tool provided takes a RTL HDL design (typically Verilog) and applies synthesis and clock gating using over-the-shelf commands provided by Yosys, and outputs a clock-gated gatelevel netlist. Clock gating is a technique used to reduce the dynamic power by reducing the activation factor of the flipflops in the design significantly, correspondingly reducing their swithing frequency, by adding a clock gate cell at the input of each register.
 
 ![image](https://user-images.githubusercontent.com/63082375/159457330-bbe795a6-c30b-4bd7-9a41-eacfc6692682.jpeg)
@@ -17,10 +17,12 @@ This repo provides a script to by run by the Yosys software, and attached to it 
 https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content=DAE4K_5a9jc&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent
     
 # Dependancies
-    - Python3   3.7 or later
-    - Yosys     latest version
+
     - TCL       latest version
+    - Yosys     latest version
     - OpenSta   latest version
+
+You can find their installation steps in requirements.txt
 
 # Dependancies references
     - https://github.com/YosysHQ/yosys
@@ -28,7 +30,7 @@ https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content
 
 
 
-# Test cases overview 
+# Benchmarks
 
 To evaluate the performance of this tool, the OpenSta API was used to calculate the dynamic power of the input design before and after clock gating, and produce a power reduction summary. 
 
@@ -63,4 +65,4 @@ To evaluate the performance of this tool, the OpenSta API was used to calculate 
 # file structure
 
 
-Standard command for installing dependencies to include in documentation: python3 -m pip install -r requirements.txt
+
