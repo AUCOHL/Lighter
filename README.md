@@ -1,9 +1,16 @@
-# The American University In Cairo  
-![the_american_university_in_cairo_0](https://user-images.githubusercontent.com/63082375/145812500-c4416b84-b1f0-4c99-b2f5-39622d864d2b.jpg)
+# Project Name
+
+# Table of contents
+* Overview
+* 
+
+# OverView
+This project provides an automatic clock gating utility that is generic for all SKY_130 RTL designs. The automatic clock gating tool provided takes a RTL HDL design (typically Verilog) and applies synthesis and clock gating using over-the-shelf commands provided by Yosys, and outputs a clock-gated gatelevel netlist. Clock gating is a technique used to reduce the dynamic power by reducing the activation factor of the flipflops in the design significantly, correspondingly reducing their swithing frequency, by adding a clock gate cell at the input of each register.
 
 
-# Automatic clock gating on Yosys RTLIL level
-An automatic clock gating utility that is generic for all SKY_130 RTL designs. The tool takes an RTL HDL design (typically Verilog) and applies synthesis and clock gating using over-the-shelf commands provided by Yosys.The clock-gating problem is transformed into a graph problem with the help of Yosys RTLIL (register transfer level intermediate language), where the tool replaces all flipflops with enable inputs into clock-gated flipflops. The tool produces a clock-gated gatelevel netlist. 
+.The clock-gating problem is transformed into a graph problem with the help of Yosys RTLIL (register transfer level intermediate language), where the tool replaces all flipflops with enable inputs into clock-gated flipflops. The tool produces a  
+
+This repo provides a script to by run by the Yosys software, and attached to it is a mapfile that is used to map all flipflops with enable inputs into clock-gated flipflops. An auto testing python code is also implemented to auto test and analyze the dynamic power reduction of the provided design.
 
 # Documentation slides
 https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content=DAE4K_5a9jc&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent
@@ -49,3 +56,10 @@ To evaluate the performance of this tool, the OpenSta API was used to calculate 
     - Dr. Mohamed Shalan
     - Youssef Kandil
 
+
+
+
+# file structure
+
+
+Standard command for installing dependencies to include in documentation: python3 -m pip install -r requirements.txt

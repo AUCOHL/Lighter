@@ -1,0 +1,26 @@
+
+read_verilog designs/AHB_UART_MASTER/AHB_UART_MASTER.v
+read_verilog lib/blackbox_clk_gates.v
+hierarchy -check -top AHB_UART_MASTER
+
+proc;
+opt;; 
+memory_collect
+memory_map
+opt;; 
+techmap -map lib/map_file.v;;
+
+
+synth -top AHB_UART_MASTER
+dfflibmap -liberty lib/sky130_hd.lib 
+abc -D 1250 -liberty lib/sky130_hd.lib 
+splitnets
+opt_clean -purge
+hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
+splitnets
+opt_clean -purge
+insbuf -buf sky130_fd_sc_hd__buf_2 A X
+dffinit
+opt;; 
+write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/AHB_UART_MASTER/after_gl.v
+            
