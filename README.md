@@ -7,6 +7,7 @@
 # OverView
 This project provides an automatic clock gating utility that is generic for all SKY_130 RTL designs. The automatic clock gating tool provided takes a RTL HDL design (typically Verilog) and applies synthesis and clock gating using over-the-shelf commands provided by Yosys, and outputs a clock-gated gatelevel netlist. Clock gating is a technique used to reduce the dynamic power by reducing the activation factor of the flipflops in the design significantly, correspondingly reducing their swithing frequency, by adding a clock gate cell at the input of each register.
 
+![image](https://user-images.githubusercontent.com/63082375/159457330-bbe795a6-c30b-4bd7-9a41-eacfc6692682.jpeg)
 
 .The clock-gating problem is transformed into a graph problem with the help of Yosys RTLIL (register transfer level intermediate language), where the tool replaces all flipflops with enable inputs into clock-gated flipflops. The tool produces a  
 
