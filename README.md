@@ -5,6 +5,7 @@
 * File structure
 * Procedure
 * Dependencies
+* Dynamic Power Analysis
 * Benchmarks
 * Authors
 
@@ -50,7 +51,7 @@ Here is an example guided illustration of the clock-gating process done by the t
 
 Consider a normal n-bit enable register.
 
-First, the design is read and converted to RTLIL (register transfer level intermediate language) graphical representation inside Yosys frontend synthesizer
+First, the design is read and converted to RTLIL (register transfer level intermediate language) graphical representation inside Yosys frontend synthesizer.
 
 <img width="587" alt="Screen Shot 2022-03-22 at 1 09 19 PM" src="https://user-images.githubusercontent.com/63082375/159468706-791b13c4-5131-476a-bdcc-2dbe5c1cd360.png">
 
@@ -72,15 +73,19 @@ Now, using the technology mapping command provided by Yosys, the enabled flip-fl
 <img width="692" alt="Screen Shot 2022-03-22 at 1 12 16 PM" src="https://user-images.githubusercontent.com/63082375/159469114-804c4746-bcd1-433f-b174-17cdb1005c03.png">
 
 
+# Dynamic Power Analysis
 
+To evaluate the performance of this tool, the OpenSta API was used to calculate the dynamic power of the input design before and after clock gating, and produce a power reduction summary. Since that OpenSta calculates the activity factors by propagation over the cells, and does not assign a 100% activity factor for flipflops nor recognizes clock gates activity factor contribution, we applied the following formula to get reasonable and accurate power reports:
 
+- Total power before clk_gating = (power of all cells at alpha(0.1)) - (flipflops power at alpha(0.1)) + (flipflops power at alpha(1.0))
 
+- Total power after clk_gating =  (power of all cells at alpha(0.1)) - (flipflops power at alpha(0.1)) + (flipflops power at alpha(0.05))
+
+Where alpha is the activity factor.
 
 # Benchmarks
 
-To evaluate the performance of this tool, the OpenSta API was used to calculate the dynamic power of the input design before and after clock gating, and produce a power reduction summary. 
-
-| module                  | clock gates | Total before | Total after | total power difference | percentage reduction |
+| Module                  | Clock Gates | Total before | Total after | Total power difference | Percentage reduction |
 | ----------------------- | ----------- | ------------ | ----------- | ---------------------- | -------------------- |
 | blabla                  | 24          | 2.34E-03     | 1.71E-03    | 6.35E-04               | 27.11%               |
 | chacha                  | 52          | 6.90E-03     | 4.66E-03    | 2.24E-03               | 32.43%               |
@@ -96,7 +101,7 @@ To evaluate the performance of this tool, the OpenSta API was used to calculate 
 | genericfir              | 5           | 8.43E-02     | 5.61E-02    | 2.81E-02               | 33.39%               |
 | NfiVe32\_RF             | 32          | 7.84E-03     | 5.39E-03    | 2.45E-03               | 31.26%               |
 | rf\_64x64               | 64          | 3.14E-02     | 2.12E-02    | 1.02E-02               | 32.39%               |
-|                         |             |              |             |                        | avg percentage       |
+|                         |             |              |             |                        | Avg percentage       |
 |                         |             |              |             |                        | 29.88%               |
 
 # Authors:
