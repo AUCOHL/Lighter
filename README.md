@@ -3,9 +3,11 @@
 # Table of contents
 * Overview
 * File structure
-* Benchmarks
+* Procedure
 * Dependencies
+* Benchmarks
 * Authors
+
 # Overview
 This project provides an automatic clock gating utility that is generic for all SKY_130 RTL designs. The automatic clock gating tool provided takes an RTL HDL design (typically Verilog) and applies synthesis and clock gating using over-the-shelf commands provided by Yosys, and outputs a clock-gated gate-level netlist. Clock gating is a technique used to reduce the dynamic power by reducing the activation factor of the flip-flops in the design significantly, correspondingly reducing their switching frequency, by adding a clock gate cell at the input of each register.
 
@@ -25,6 +27,7 @@ This repo provides a script to be run by the Yosys software, and attached to it 
 * validation/ contains automatic validation python code for clock gated designs
 
 # Documentation slides
+
 https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content=DAE4K_5a9jc&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent
     
 # Dependencies
@@ -36,8 +39,37 @@ https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content
 You can find their installation steps in requirements.txt
 
 Dependancies references
+
     - https://github.com/YosysHQ/yosys
     - https://github.com/The-OpenROAD-Project/OpenSTA
+
+
+# Procedure
+
+Here is an example guided illustration of the clock-gating process done by the tool.
+
+Consider a normal n-bit enable register.
+
+First, the design is read and converted to RTLIL (register transfer level intermediate language) graphical representation inside Yosys frontend synthesizer
+
+image one 
+
+Then the design is optimized to combine multiplexors and flip-flops into one cell (enabled flip-flop)
+
+image two
+
+Note; For a register file or a memory component, the design needs to be further optimized to break down the memory components in RTLIL into basic cells for the mapping to take place later.
+
+image three
+
+optimized memory cell
+
+image four
+
+Now, using the technology mapping command provided by Yosys, the enabled flip-flop cells are replaced with clock-gated flip-flop cells, which are provided in the map file. 
+
+image five
+
 
 
 
@@ -49,7 +81,6 @@ To evaluate the performance of this tool, the OpenSta API was used to calculate 
 | ----------------------- | ----------- | ------------ | ----------- | ---------------------- | -------------------- |
 | blabla                  | 24          | 2.34E-03     | 1.71E-03    | 6.35E-04               | 27.11%               |
 | chacha                  | 52          | 6.90E-03     | 4.66E-03    | 2.24E-03               | 32.43%               |
-| ldpc\_decoder\_802\_3an | 2048        | 4.12E-03     | 4.30E-03    | \-1.71E-04             | \-4.13%              |
 | ldpcenc                 | 28          | 1.88E-02     | 9.60E-03    | 9.25E-03               | 49.05%               |
 | PPU                     | 375         | 6.33E-02     | 4.84E-02    | 1.49E-02               | 23.57%               |
 | y\_huff                 | 450         | 1.36E-02     | 1.06E-02    | 3.05E-03               | 22.38%               |
@@ -66,6 +97,7 @@ To evaluate the performance of this tool, the OpenSta API was used to calculate 
 |                         |             |              |             |                        | 29.88%               |
 
 # Authors:
+
 * Dr. Mohamed Shalan
 * Youssef Kandil
 
