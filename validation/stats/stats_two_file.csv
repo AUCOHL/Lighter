@@ -1,0 +1,2 @@
+module,all cells power before at 0.1,flipflops power before at 0.1,flipflops power before at 1.0,total power before,all cells power after at 0.1,flipflops power after at 0.1,flipflops power after at 0.05,total power after,total power difference,percentage reduction
+AHB_UART_MASTER,0.000771,0.0006925300000000000002,0.001146330000000000001,0.0012248000000000000008,0.000941,0.00068859999999999999896,0.0006654300000000000005,0.00091783000000000000154,0.00030696999999999999926,25.062867406923579281 %

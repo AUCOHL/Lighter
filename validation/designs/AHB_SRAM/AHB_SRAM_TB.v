@@ -1,7 +1,33 @@
 `define CHECK_W(X, T)  if(rdata == X) $display("Test %0d: passed", T); else $display("Test %0d: failed", T);
 `define CHECK_H(X, T) if(rdata == X) $display("Test %0d: passed", T); else $display("Test %0d: failed", T);
 `define CHECK_B(X, T)  if(rdata == X) $display("Test %0d: passed", T); else $display("Test %0d: failed", T);
+`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/AHB_FLASH_CTRL/sky130_hd.v"
+`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/AHB_FLASH_CTRL/primitives.v"
 
+
+
+module sram32 #(parameter AW=10, VERBOSE=1) (
+    input  wire         clk,
+    input  wire         cs,
+    input  wire [3:0]   we,
+    input  wire [AW-1:0] A,
+    input  wire [31:0]  Di,
+    output reg  [31:0]  Do
+);
+    reg[31:0] ram[(2**AW)-1:0];
+    always @(posedge clk)
+        if(cs) begin
+            Do <= ram[A];
+            if(we[0]) ram[A][ 7: 0] <= Di[7:0];
+            if(we[1]) ram[A][15:8] <= Di[15:8];
+            if(we[2]) ram[A][23:16] <= Di[23:16];
+            if(we[3]) ram[A][31:24] <= Di[31:24];
+            if(VERBOSE==1) begin
+                if(we==0) $display("SRAM READ from %0h data %0h", A, Do);
+                else $display("SRAM Write (%0h):  %0h to %0h", we, Di, A);
+            end
+        end 
+endmodule
 
 module AHB_SRAM_TB;
     localparam SRAM_AW = 10;
@@ -22,7 +48,7 @@ module AHB_SRAM_TB;
     wire                    SRAMCS;     // SRAM Chip Select (active high)
     wire [SRAM_AW-1:0]      SRAMADDR;    // SRAM address
         
-    always #5 HCLK = !HCLK;
+    always #10 HCLK = !HCLK;
 
     initial begin
         $dumpfile("ahb_srm_tb.vcd");
@@ -75,7 +101,139 @@ sram32 #( .AW(SRAM_AW), .VERBOSE(0) ) SRAM (
     .Do(SRAMRDATA)
 );
 
-`include "AHB_tasks.vh"
+/*
+	Copyright 2022 Mohamed Shalan
+	
+	Licensed under the Apache License, Version 2.0 (the "License"); 
+	you may not use this file except in compliance with the License. 
+	You may obtain a copy of the License at:
+	http://www.apache.org/licenses/LICENSE-2.0
+	Unless required by applicable law or agreed to in writing, software 
+	distributed under the License is distributed on an "AS IS" BASIS, 
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+	See the License for the specific language governing permissions and 
+	limitations under the License.
+*/
+
+task AHB_READ_WORD(input [31:0] ADDR, output [31:0] data);
+    begin : task_body
+        wait (HREADY == 1'b1);
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b10;
+        HWRITE <= 1'b0;
+        HADDR <= ADDR;
+        HSIZE <= 3'd2;
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b00;
+        wait (HREADY == 1'b1);
+        @(posedge HCLK) data = HRDATA;
+    end
+endtask
+
+task AHB_WRITE_WORD(input [31:0] ADDR, input [31:0] data);
+    begin : task_body
+        //wait (HREADY == 1'b1);
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b10;
+        HWRITE <= 1'b1;
+        HADDR <= ADDR;
+        HSIZE <= 3'd2;
+        @(posedge HCLK);
+        HTRANS <= 0;
+        HWDATA <= data;
+    end
+endtask
+
+
+task AHB_READ_HALF(input [31:0] ADDR, output [15:0] data);
+    begin : task_body
+        wait (HREADY == 1'b1);
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b10;
+        HWRITE <= 1'b0;
+        HADDR <= ADDR;
+        HSIZE <= 3'd1;
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b00;
+        wait (HREADY == 1'b1);
+        @(posedge HCLK) data = HRDATA;
+    end
+endtask
+
+task AHB_WRITE_HALF(input [31:0] ADDR, input [15:0] data);
+    begin : task_body
+        //wait (HREADY == 1'b1);
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b10;
+        HWRITE <= 1'b1;
+        HADDR <= ADDR;
+        HSIZE <= 3'd1;
+        @(posedge HCLK);
+        HTRANS <= 0;
+        HWDATA <= data;
+    end
+endtask
+
+
+task AHB_READ_BYTE(input [31:0] ADDR, output [7:0] data);
+    begin : task_body
+        wait (HREADY == 1'b1);
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b10;
+        HWRITE <= 1'b0;
+        HADDR <= ADDR;
+        HSIZE <= 3'd0;
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b00;
+        wait (HREADY == 1'b1);
+        @(posedge HCLK) data = HRDATA;
+    end
+endtask
+
+task AHB_WRITE_BYTE(input [31:0] ADDR, input [7:0] data);
+    begin : task_body
+        //wait (HREADY == 1'b1);
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b10;
+        HWRITE <= 1'b1;
+        HADDR <= ADDR;
+        HSIZE <= 3'd0;
+        @(posedge HCLK);
+        HTRANS <= 0;
+        HWDATA <= data;
+    end
+endtask
+
+task AHB_WRITE_READ_WORD(input [31:0] WADDR, input [31:0] RADDR, input [31:0] WDATA, output [31:0] RDATA);
+    begin : task_body
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b10;
+        HWRITE <= 1'b1;
+        HADDR <= WADDR;
+        HSIZE <= 3'd2;
+        @(posedge HCLK);
+        #1;
+        HTRANS <= 2'b10;
+        HWRITE <= 1'b0;
+        HADDR <= RADDR;
+        HSIZE <= 3'd2;
+        HWDATA <= WDATA;
+        @(posedge HCLK);
+        HTRANS <= 2'b00;
+        @(posedge HCLK);
+        RDATA = HRDATA;
+    end
+endtask
 
 // test case
 reg [31:0] rdata;

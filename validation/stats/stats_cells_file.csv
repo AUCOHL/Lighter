@@ -1,4 +1,2 @@
 module,clock gates,cells before,cells difference,cells after,a211oi_1 before,a21oi_1 before,a22o_1 before,a22oi_1 before,a211oi_1 after,a21oi_1 after,a22o_1 after,a22oi_1 after,aoi/ao difference
-AHB_FLASH_CTRL,       0,       0,       0,0,       0,       0,       0,       0,       0,       0,       0,       0,0
-AHB_SRAM,       0,       0,       0,0,       0,       0,       0,       0,       0,       0,       0,       0,0
-AHB_UART_MASTER,       0,       0,       0,0,       0,       0,       0,       0,       0,       0,       0,       0,0
+AHB_SRAM,       7,     245,     182,-63,       1,       6,       0,       2,       0,       6,       0,       0,-3

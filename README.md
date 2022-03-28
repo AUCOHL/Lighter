@@ -1,6 +1,6 @@
-# Project Name
+# name
 
-# Table of contents
+## Table of contents
 * Overview
 * File structure
 * Procedure
@@ -8,17 +8,20 @@
 * Dynamic Power Analysis
 * Benchmarks
 * Authors
+* Copyright and Licensing
 
 # Overview
 This project provides an automatic clock gating utility that is generic for all SKY_130 RTL designs. The automatic clock gating tool provided takes an RTL HDL design (typically Verilog) and applies synthesis and clock gating using over-the-shelf commands provided by Yosys, and outputs a clock-gated gate-level netlist. Clock gating is a technique used to reduce the dynamic power by reducing the activation factor of the flip-flops in the design significantly, correspondingly reducing their switching frequency, by adding a clock gate cell at the input of each register.
 
-![image](https://user-images.githubusercontent.com/63082375/159457330-bbe795a6-c30b-4bd7-9a41-eacfc6692682.jpeg)
+//include clkgate image
+
+<!--![image](https://user-images.githubusercontent.com/63082375/159457330-bbe795a6-c30b-4bd7-9a41-eacfc6692682.jpeg)-->
 
 .The clock-gating problem is transformed into a graph problem with the help of Yosys RTLIL (register transfer level intermediate language), where the tool replaces all flipflops with enable inputs into clock-gated flipflops. The tool produces a 
 
 This repo provides a script to be run by the Yosys software, and attached to it is a map file that is used to map all flipflops with enable inputs into clock-gated flipflops. An auto-testing python code is also implemented to autotest and analyze the dynamic power reduction of the provided design.
 
-# File structure
+## File structure
 * docs/ contains documentation
 * code/ contains clock gating Yosys scripts and their dependencies
 * power_report/ contains automatic testing and power reporting python code (auto_test.py) 
@@ -27,22 +30,27 @@ This repo provides a script to be run by the Yosys software, and attached to it 
 * tests/ contains simple test cases and graphical representation of the clock gating process
 * validation/ contains automatic validation python code for clock gated designs
 
-# Documentation slides
+## Documentation slides
+//clickable link 
 
 https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content=DAE4K_5a9jc&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent
     
-# Dependencies
+## Dependencies
 
     - TCL       latest version
     - Yosys     latest version
     - OpenSta   latest version
 
 You can find their installation steps in requirements.txt
+// clickable link
 
+// another readme file for installation
+
+<!--
 Dependancies references
 
     - https://github.com/YosysHQ/yosys
-    - https://github.com/The-OpenROAD-Project/OpenSTA
+    - https://github.com/The-OpenROAD-Project/OpenSTA-->
 
 
 # Procedure
@@ -83,7 +91,7 @@ To evaluate the performance of this tool, the OpenSta API was used to calculate 
 
 Where alpha is the activity factor.
 
-# Benchmarks
+## Benchmarks
 
 | Module                  | Clock Gates | Total before | Total after | Total power difference | Percentage reduction |
 | ----------------------- | ----------- | ------------ | ----------- | ---------------------- | -------------------- |
@@ -110,4 +118,4 @@ Where alpha is the activity factor.
 * Youssef Kandil
 
 
-
+# Copyright and Licensing

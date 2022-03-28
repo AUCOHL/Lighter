@@ -29,9 +29,9 @@ dir_list = [
             #"rf_64x64"
 
 
-            "AHB_FLASH_CTRL",
+            #"AHB_FLASH_CTRL",
             "AHB_SRAM",
-            "AHB_UART_MASTER"
+            #"AHB_UART_MASTER"
             ] 
 
 
