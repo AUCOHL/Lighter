@@ -1,2 +1,2 @@
 module,clock gates,cells before,cells difference,cells after,a211oi_1 before,a21oi_1 before,a22o_1 before,a22oi_1 before,a211oi_1 after,a21oi_1 after,a22o_1 after,a22oi_1 after,aoi/ao difference
-AHB_SRAM,       7,     245,     182,-63,       1,       6,       0,       2,       0,       6,       0,       0,-3
+regfile,      32,    3362,    2334,-1028,       0,      38,       0,      16,       7,      33,       0,       9,-5

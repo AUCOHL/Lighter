@@ -30,7 +30,8 @@ dir_list = [
 
 
             #"AHB_FLASH_CTRL",
-            "AHB_SRAM",
+            #"AHB_SRAM",
+            "regfile"
             #"AHB_UART_MASTER"
             ] 
 

@@ -1,13 +1,13 @@
 
-read_verilog designs/AHB_SRAM/AHB_SRAM.v
-hierarchy -check -top AHB_SRAM
+read_verilog designs/regfile/regfile.v
+hierarchy -check -top regfile
 
 proc;
 opt;; 
 memory_collect
 memory_map
 opt;; 
-synth -top AHB_SRAM
+synth -top regfile
 dfflibmap -liberty lib/sky130_hd.lib 
 abc -D 1250 -liberty lib/sky130_hd.lib 
 splitnets
@@ -18,5 +18,5 @@ opt_clean -purge
 insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit
 opt;; 
-write_verilog -noattr -noexpr -nohex -nodec    designs/AHB_SRAM/before_gl.v
+write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/regfile/before_gl.v
             

@@ -7,6 +7,7 @@
 * Dependencies
 * Dynamic Power Analysis
 * Benchmarks
+* Validation
 * Authors
 * Copyright and Licensing
 
@@ -112,7 +113,17 @@ Where alpha is the activity factor.
 |                         |             |              |             |                        | Avg percentage       |
 |                         |             |              |             |                        | 29.88%               |
 
-# Authors:
+
+
+
+# Validation
+
+The clock gated gate-level netlists produced by the tool pass the functional validation, such that the functionalities of the designs are not affected by the gate-level modifications applied by the tool. 
+
+
+
+
+# Authors
 
 * Dr. Mohamed Shalan
 * Youssef Kandil

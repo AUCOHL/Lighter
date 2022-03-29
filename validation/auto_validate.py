@@ -37,8 +37,9 @@ dir_list = [
             #"genericfir",
             #"NfiVe32_RF", 
             #"rf_64x64"
-            "AHB_FLASH_CTRL",
+            #"AHB_FLASH_CTRL",
             #"AHB_SRAM",
+            "regfile"
             #"AHB_UART_MASTER"
             ] 
 
