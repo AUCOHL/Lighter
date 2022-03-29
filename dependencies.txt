@@ -161,3 +161,9 @@ The default install directory is /usr/local. To install in a different directory
 cmake .. -DCMAKE_INSTALL_PREFIX=<prefix_path>
 If you make changes to CMakeLists.txt you may need to clean out existing CMake cached variable values by deleting all of the files in the build directory.
 ///////////////////////////////////////////////////////////////////////////////
+
+
+Dependancies references
+
+    - https://github.com/YosysHQ/yosys
+    - https://github.com/The-OpenROAD-Project/OpenSTA
