@@ -26,7 +26,9 @@ dir_list = [
             "riscv_top_151", 
             "genericfir",
             "NfiVe32_RF", 
-            "rf_64x64"
+            "rf_64x64",
+            "AHB_FLASH_CTRL",
+            "AHB_SRAM",
             ] 
 
 

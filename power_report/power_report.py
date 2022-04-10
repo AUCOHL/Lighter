@@ -56,7 +56,9 @@ dir_list = [
             ["riscv_top_151",        "clk",         "50.0"], 
             ["genericfir",        "i_clk",           "15.0"],
             ["NfiVe32_RF",        "HCLK",           "10.0"],
-            ["rf_64x64",        "HCLK",           "10.0"]
+            ["rf_64x64",        "HCLK",           "10.0"],
+            ["AHB_FLASH_CTRL"  ,    "HCLK" ,          "10.0"    ],
+            ["AHB_SRAM"        ,    "HCLK" ,          "10.0"    ],
             ] 
 # add generic fir
             #"genericfir",

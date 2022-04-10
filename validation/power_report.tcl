@@ -2,8 +2,8 @@
 read_liberty lib/sky130_hd.lib
 ##############################
 ##############################
-puts "AHB_UART_MASTER"
-set design AHB_UART_MASTER
+puts "AHB_SRAM"
+set design AHB_SRAM
 set clk HCLK
 set period 10.0
 ##############################

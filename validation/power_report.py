@@ -57,9 +57,9 @@ dir_list = [
             #["genericfir",        "i_clk",           "15.0"],
             #["NfiVe32_RF",        "HCLK",           "10.0"],
             #["rf_64x64",        "HCLK",                "10.0"]
-            #["AHB_FLASH_CTRL"  ,    "HCLK" ,          "10.0"    ],
-            #["AHB_SRAM"        ,    "HCLK" ,          "10.0"    ],
-            ["AHB_UART_MASTER" ,    "HCLK" ,          "10.0"    ]
+            ["AHB_FLASH_CTRL"  ,    "HCLK" ,          "10.0"    ],
+            ["AHB_SRAM"        ,    "HCLK" ,          "10.0"    ],
+            #["AHB_UART_MASTER" ,    "HCLK" ,          "10.0"    ]
             ] 
 # add generic fir
             #"genericfir",
