@@ -207,44 +207,46 @@ endmodule
 
 
 
-//module \$sdffce ( CLK, EN, SRST, D, Q);
-//    parameter CLK_POLARITY =1'b1;
-//    parameter EN_POLARITY =1'b1;
-//    parameter SRST_POLARITY =1'b1;
-//    parameter SRST_VALUE =1'b1;
-//    parameter WIDTH =1;
+module \$sdffce ( CLK, EN, SRST, D, Q);
+    parameter CLK_POLARITY =1'b1;
+    parameter EN_POLARITY =1'b1;
+    parameter SRST_POLARITY =1'b1;
+    parameter SRST_VALUE =1'b1;
+    parameter WIDTH =1;
 
-//    input  CLK, EN, SRST;
-//    input [WIDTH -1:0] D; 
-//    output [WIDTH -1:0] Q;
+    input  CLK, EN, SRST;
+    input [WIDTH -1:0] D; 
+    output [WIDTH -1:0] Q;
 
-//    wire GCLK;
+    wire GCLK;
 
-//    generate
-//        if (WIDTH < 5) begin
-//                sky130_fd_sc_hd__dlclkp_1  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
-//                end
-//            else if (WIDTH < 17) begin
-//                sky130_fd_sc_hd__dlclkp_2  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
-//                end
-//            else begin
-//                sky130_fd_sc_hd__dlclkp_4  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
-//        end
-//    endgenerate
+    generate
+        if (WIDTH < 5) begin
+                sky130_fd_sc_hd__dlclkp_1  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
+                end
+            else if (WIDTH < 17) begin
+                sky130_fd_sc_hd__dlclkp_2  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
+                end
+            else begin
+                sky130_fd_sc_hd__dlclkp_4  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
+        end
+    endgenerate
 
-//    $sdff  #( 
-//            .WIDTH(WIDTH), 
-//            .CLK_POLARITY(CLK_POLARITY),
-//            .SRST_POLARITY(SRST_POLARITY), 
-//            .SRST_VALUE(SRST_VALUE)
-//            ) 
-//            flipflop(  
-//            .CLK(GCLK), 
-//            .SRST(SRST),
-//            .D(D), 
-//            .Q(Q)
-//            );
-//endmodule
+    $sdff  #( 
+            .WIDTH(WIDTH), 
+            .CLK_POLARITY(CLK_POLARITY),
+            .SRST_POLARITY(SRST_POLARITY), 
+            .SRST_VALUE(SRST_VALUE)
+            ) 
+            flipflop(  
+            .CLK(GCLK), 
+            .SRST(SRST),
+            .D(D), 
+            .Q(Q)
+            );
+endmodule
+
+
 	//RTLIL::Cell* addSr    (RTLIL::IdString name, const RTLIL::SigSpec &sig_set, const RTLIL::SigSpec &sig_clr, const RTLIL::SigSpec &sig_q, bool set_polarity = true, bool clr_polarity = true, const std::string &src = "");
 	
     //RTLIL::Cell* addFf    (RTLIL::IdString name, const RTLIL::SigSpec &sig_d, const RTLIL::SigSpec &sig_q, const std::string &src = "");
