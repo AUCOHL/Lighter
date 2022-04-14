@@ -6,16 +6,20 @@ dir_list = [
 #validation
             #"AHB_FLASH_CTRL",
             #"AHB_SRAM",
-            #"regfile"
-            #"AHB_UART_MASTER"
-
+            #"regfile",
+            #"AHB_UART_MASTER",
             #"blake2s",
-            "blake2s_core",
+            #"blake2s_core",
             #"blake2s_G",
             #"blake2s_m_select",
-
             #"chacha"
 
+
+
+            #'TMR32',
+            'TDI_AHB',
+            #'div',
+            'APB_UART',
             ] 
 
 
@@ -30,22 +34,17 @@ for test in dir_list:
         f.write(
             '''
 read_verilog designs/''' + test + '''/''' + test + '''.v
-#hierarchy -check -top ''' + test + '''
 hierarchy -check -top ''' + test + '''
 proc;
 opt;; 
 memory_collect
 memory_map
-#async2sync
 check
 opt;; 
-show -prefix  before_clkgate_pass -format pdf ''' + test + '''
-#show -prefix  before_blake2s_core -format pdf blake2s_core
 synth -top ''' + test + '''
 dfflibmap -liberty lib/sky130_hd.lib 
 abc -D 1250 -liberty lib/sky130_hd.lib 
 #splitnets
-#check
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
 #splitnets
@@ -74,12 +73,9 @@ memory_collect
 memory_map
 opt;;
 check
-#async2sync
 techmap -map lib/map_file.v
 opt;; 
 opt_clean -purge
-show -prefix  after_clkgate_pass -format pdf ''' + test + '''
-#show -prefix  after_blake2s_core -format pdf blake2s_core
 synth -top ''' + test + '''
 dfflibmap -liberty lib/sky130_hd.lib 
 abc -D 1250 -liberty lib/sky130_hd.lib 
