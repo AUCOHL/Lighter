@@ -63,7 +63,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/''' + test + '''
         
         f.write(
             '''
-read_verilog designs/''' + test + '''/''' + test + '''.v
+read_verilog designs/''' + test + '''/''' + test + '''6.v
 read_verilog lib/blackbox_clk_gates.v
 hierarchy -check -top ''' + test + '''
 
