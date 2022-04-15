@@ -38,25 +38,32 @@ dir_list = [
             #"genericfir",
             #"NfiVe32_RF", 
             #"rf_64x64",
+           
+                    #   "AHB_UART_MASTER",
+           
+
+            "blake2s",      #passed 
+            "blake2s_core",      #passed 
+            "blake2s_G",      #passed 
+            "blake2s_m_select",      #passed 
+            "chacha",      #passed 
+            "regfile",      #passed 
+            "AHB_SRAM",      #passed 
             #"AHB_FLASH_CTRL",
-            #"AHB_SRAM",
-            #"regfile",
-            #"AHB_UART_MASTER",
 
+            'TMR32',
+            'TDI_AHB',
+            #'div',
+            'APB_UART',
 
-
-            #"blake2s",
-            "blake2s_core",
-            #"blake2s_G",
-            #"blake2s_m_select",
-
-            #"chacha"
             ] 
+
+            
 
 for test in dir_list:
     print(test)
-    #os.system('iverilog -o designs/'+test+'/'+test+'.vvp designs/'+test+'/'+test+'.v designs/'+test+'/'+test+'_tb.v')
-    #os.system('vvp designs/'+test+'/'+test+'.vvp ')  
+    os.system('iverilog -o designs/'+test+'/'+test+'.vvp designs/'+test+'/'+test+'.v designs/'+test+'/'+test+'_tb.v')
+    os.system('vvp designs/'+test+'/'+test+'.vvp ')  
     print("\n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n")
     os.system('iverilog -o designs/'+test+'/before.vvp designs/'+test+'/before_gl.v designs/'+test+'/'+test+'_tb.v')
     os.system('vvp designs/'+test+'/before.vvp')

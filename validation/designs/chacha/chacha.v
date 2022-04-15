@@ -38,7 +38,7 @@
 `default_nettype none
 
 
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/chacha/chacha_core.v"
+`include "designs/chacha/chacha_core.v"
 
 
 

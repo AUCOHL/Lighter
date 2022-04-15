@@ -37,9 +37,8 @@
 //======================================================================
 
 
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/includes/primitives.v"
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/includes/sky130_hd.v"
-
+`include "includes/primitives.v"
+`include "includes/sky130_hd.v"
 module tb_blake2s_G();
 
   //----------------------------------------------------------------

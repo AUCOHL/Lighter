@@ -164,46 +164,49 @@ endmodule
 
 //$sdffe #(.CLK_POLARITY(1'b1), .EN_POLARITY(1'b1), .SRST_POLARITY(1'b0),
 // .SRST_VALUE(2'h2), .WIDTH(2)) ff1 (.CLK(CLK), .SRST(1'b0), .EN(EN), .D(D), .Q(Q[3:2]));
-
-module \$sdffe ( CLK, EN, SRST, D, Q);
-    parameter CLK_POLARITY =1'b1;
-    parameter EN_POLARITY =1'b1;
-    parameter SRST_POLARITY =1'b1;
-    parameter SRST_VALUE =1'b1;
-    parameter WIDTH =1;
+// issue and disable
 
 
-    input  CLK, EN, SRST;
-    input [WIDTH -1:0] D; 
-    output [WIDTH -1:0] Q;
+//module \$sdffe ( CLK, EN, SRST, D, Q);
+//    parameter CLK_POLARITY =1'b1;
+//    parameter EN_POLARITY =1'b1;
+//    parameter SRST_POLARITY =1'b1;
+//    parameter SRST_VALUE =1'b1;
+//    parameter WIDTH =1;
 
-    wire GCLK;
 
-    generate
-        if (WIDTH < 5) begin
-                sky130_fd_sc_hd__dlclkp_1  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
-                end
-            else if (WIDTH < 17) begin
-                sky130_fd_sc_hd__dlclkp_2  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
-                end
-            else begin
-                sky130_fd_sc_hd__dlclkp_4  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
-        end
-    endgenerate
+//    input  CLK, EN, SRST;
+//    input [WIDTH -1:0] D; 
+//    output [WIDTH -1:0] Q;
 
-    $sdff  #( 
-            .WIDTH(WIDTH), 
-            .CLK_POLARITY(CLK_POLARITY),
-            .SRST_POLARITY(SRST_POLARITY), 
-            .SRST_VALUE(SRST_VALUE)
-            ) 
-            flipflop(  
-            .CLK(GCLK), 
-            .SRST(SRST),
-            .D(D), 
-            .Q(Q)
-            );
-endmodule
+//    wire GCLK;
+
+//    generate
+//            if (WIDTH < 5) begin
+//                    sky130_fd_sc_hd__dlclkp_1  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
+//                    end
+//                else if (WIDTH < 17) begin
+//                    sky130_fd_sc_hd__dlclkp_2  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
+//                    end
+//                else begin
+//                    sky130_fd_sc_hd__dlclkp_4  clk_gate ( .GCLK(GCLK), .CLK(CLK), .GATE(EN) );
+//            end
+//        endgenerate
+
+
+//    $sdff  #( 
+//            .WIDTH(WIDTH), 
+//            .CLK_POLARITY(CLK_POLARITY),
+//            .SRST_POLARITY(SRST_POLARITY), 
+//            .SRST_VALUE(SRST_VALUE)
+//            ) 
+//            flipflop(  
+//            .CLK(GCLK), 
+//            .SRST(SRST),
+//            .D(D), 
+//            .Q(Q)
+//            );
+//endmodule
 
 
 

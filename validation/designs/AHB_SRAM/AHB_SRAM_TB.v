@@ -2,9 +2,12 @@
 `define CHECK_H(X, T) if(rdata == X) $display("Test %0d: passed", T); else $display("Test %0d: failed", T);
 `define CHECK_B(X, T)  if(rdata == X) $display("Test %0d: passed", T); else $display("Test %0d: failed", T);
 
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/includes/primitives.v"
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/includes/sky130_hd.v"
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/AHB_SRAM/sram32.v"
+
+`include "includes/primitives.v"
+`include "includes/sky130_hd.v"
+
+
+include "designs/AHB_SRAM/sram32.v"
 
 module AHB_SRAM_TB;
     localparam SRAM_AW = 10;
@@ -78,7 +81,7 @@ sram32 #( .AW(SRAM_AW), .VERBOSE(0) ) SRAM (
     .Do(SRAMRDATA)
 );
 
-`include "./designs/includes/AHB_tasks.vh"
+`include "includes/AHB_tasks.vh"
 
 // test case
 reg [31:0] rdata;

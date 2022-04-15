@@ -36,9 +36,8 @@
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //======================================================================
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/blake2s_G/blake2s_G.v"
-
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/blake2s_m_select/blake2s_m_select.v"
+`include "designs/blake2s_G/blake2s_G.v"
+`include "designs/blake2s_m_select/blake2s_m_select.v"
 
 
 

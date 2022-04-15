@@ -37,8 +37,8 @@
 
 `default_nettype none
 
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/includes/primitives.v"
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/includes/sky130_hd.v"
+`include "includes/primitives.v"
+`include "includes/sky130_hd.v"
 
 
 module tb_chacha();
@@ -158,6 +158,9 @@ module tb_chacha();
   reg display_cycle_ctr;
   reg display_read_write;
   reg display_core_state;
+
+
+
 
 
   //----------------------------------------------------------------
@@ -793,6 +796,20 @@ module tb_chacha();
       $display("*** chacha simulation done.");
       $finish;
     end // chacha_test
+
+
+
+
+initial begin
+    $display("*******in here*******");
+  
+    $monitor("tb_data_out=0x%0h",tb_data_out);
+//, expected=0x%0h
+        $display("*******in here*******");
+
+end
+
+
 endmodule // tb_chacha
 
 //======================================================================

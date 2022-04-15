@@ -37,7 +37,7 @@
 
 
 
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/blake2s_core/blake2s_core.v"
+`include "sdesigns/blake2s_core/blake2s_core.v"
 
 
 module blake2s(

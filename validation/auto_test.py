@@ -19,7 +19,7 @@ dir_list = [
             #'TMR32',
             'TDI_AHB',
             #'div',
-            'APB_UART',
+            #'APB_UART',
             ] 
 
 
@@ -44,10 +44,10 @@ opt;;
 synth -top ''' + test + '''
 dfflibmap -liberty lib/sky130_hd.lib 
 abc -D 1250 -liberty lib/sky130_hd.lib 
-#splitnets
+splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
-#splitnets
+splitnets
 opt_clean -purge
 insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit
@@ -79,10 +79,10 @@ opt_clean -purge
 synth -top ''' + test + '''
 dfflibmap -liberty lib/sky130_hd.lib 
 abc -D 1250 -liberty lib/sky130_hd.lib 
-#splitnets
+splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
-#splitnets
+splitnets
 opt_clean -purge
 insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit

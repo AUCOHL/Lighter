@@ -35,7 +35,7 @@
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //======================================================================
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/chacha/chacha_qr.v"
+`include "designs/chacha/chacha_qr.v"
 
 `default_nettype none
 

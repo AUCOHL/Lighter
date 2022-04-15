@@ -2,10 +2,9 @@
 `define CHECK_H(X, T) if(rdata == X) $display("Test %0d: passed", T); else $display("Test %0d: failed", T);
 `define CHECK_B(X, T)  if(rdata == X) $display("Test %0d: passed", T); else $display("Test %0d: failed", T);
 
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/includes/primitives.v"
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/includes/sky130_hd.v"
-
-`include "/Users/youssef/Desktop/EDA/Dynamic_Power_Clock_Gating/validation/designs/AHB_FLASH_CTRL/sst26wf080b.v"
+`include "includes/primitives.v"
+`include "includes/sky130_hd.v"
+`include "designs/AHB_FLASH_CTRL/sst26wf080b.v"
 
 module AHB_FLASH_CTRL_TB;
     reg  HCLK;
@@ -90,7 +89,7 @@ module AHB_FLASH_CTRL_TB;
     end
 
 
-`include "./designs/includes/AHB_tasks.vh"
+`include "includes/AHB_tasks.vh"
 
 // test case
 reg [31:0] rdata;

@@ -1,28 +1,23 @@
 
-read_verilog designs/blake2s_core/blake2s_core.v
-#hierarchy -check -top blake2s_core
-hierarchy -check -top blake2s_core
+read_verilog designs/TDI_AHB/TDI_AHB.v
+hierarchy -check -top TDI_AHB
 proc;
 opt;; 
 memory_collect
 memory_map
-#async2sync
 check
 opt;; 
-show -prefix  before_clkgate_pass -format pdf blake2s_core
-#show -prefix  before_blake2s_core -format pdf blake2s_core
-synth -top blake2s_core
+synth -top TDI_AHB
 dfflibmap -liberty lib/sky130_hd.lib 
 abc -D 1250 -liberty lib/sky130_hd.lib 
-#splitnets
-#check
+splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
-#splitnets
+splitnets
 opt_clean -purge
 insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit
 opt;; 
 check
-write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/blake2s_core/before_gl.v
+write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/TDI_AHB/before_gl.v
             
