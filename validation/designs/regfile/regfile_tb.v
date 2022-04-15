@@ -5,10 +5,6 @@
 //`define FUNCTIONAL
 //`define UNIT_DELAY #1
 
-
-
-
-
 `define CHECK_DA(X, T)  if(DA == X) $display("Test %0d: passed", T); else $display("Test %0d: failed", T);
 `define CHECK_DB(X, T)  if(DB == X) $display("Test %0d: passed", T); else $display("Test %0d: failed", T);
 //`define CHECK_B(X, T)  if(rdata == X) $display("Test %0d: passed", T); else $display("Test %0d: failed", T);
