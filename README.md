@@ -71,7 +71,7 @@ To evaluate the performance of this tool, the OpenSta API was used to calculate 
 Where alpha is the activity factor.
 
 
-// include total number of cells , fliflops, number of added clockgates, total power before, total power after , 
+// include total number of cells , fliflops, number of added clockgates, total power before, total power after , number_of_gated_ff
 
 ## Power reduction analysis
 
