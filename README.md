@@ -8,8 +8,9 @@
 * [Dynamic Power Analysis](https://github.com/kanndil/Lighter#dynamic-power-analysis)
 * [Power reduction analysis](https://github.com/kanndil/Lighter#power-reduction-analysis)
 * [Validation](https://github.com/kanndil/Lighter#validation)
-* [Authors](https://github.com/kanndil/Lighter#overview)
-* [Copyright and Licensing](https://github.com/kanndil/Lighter#how-does-it-work)
+* [How does it work](https://github.com/kanndil/Lighter#how-does-it-work)
+* [Authors](https://github.com/kanndil/Lighter#authors)
+* [Copyright and Licensing](https://github.com/kanndil/Lighter#authorss)
 
 
 # Overview
