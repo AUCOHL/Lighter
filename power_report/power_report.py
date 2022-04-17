@@ -36,29 +36,29 @@ states_leakage=[["module","all cells leakage before at 0.1", "all cells power be
 
 dir_list = [
             ["blabla",               "clk",         "65.0"],
-            ["chacha",               "clk",         "25.0"],
-            ["ldpc_decoder_802_3an", "clk",         "77.0"],
-            ["ldpcenc",              "clk",         "12.9"], 
-            #["sp_mul" ,              "clk",         "4.4"], 
-            ["PPU" ,                 "clk",         "3.5"],
-            #["ula",                  "clk14",       "0.8"], 
-            #["vm80a",                "pin_clk",     "3.2"], 
-            #["xtea" ,                "clock",       "26.03"],
-            ["y_huff",               "clk",         "14.0"], 
-            ["y_quantizer",          "clk",         "1.0"], 
-            #["zigzag",               "clk",         "0.8"], 
-            #["zipdiv" ,              "i_clk",       "20.0"], 
-            ["y_dct" ,               "clk",         "20.0"], 
-            ["jpeg_encoder",         "clk",         "16.0"],
-            #["aes_cipher",           "clk",         "10.0"],
-            ["sha512",               "clk",         "40.0"], 
-            ["picorv32a",            "clk",         "24.0"], 
-            ["riscv_top_151",        "clk",         "50.0"], 
-            ["genericfir",        "i_clk",           "15.0"],
-            ["NfiVe32_RF",        "HCLK",           "10.0"],
-            ["rf_64x64",        "HCLK",           "10.0"],
-            ["AHB_FLASH_CTRL"  ,    "HCLK" ,          "10.0"    ],
-            ["AHB_SRAM"        ,    "HCLK" ,          "10.0"    ],
+            #["chacha",               "clk",         "25.0"],
+            #["ldpc_decoder_802_3an", "clk",         "77.0"],
+            #["ldpcenc",              "clk",         "12.9"], 
+            ##["sp_mul" ,              "clk",         "4.4"], 
+            #["PPU" ,                 "clk",         "3.5"],
+            ##["ula",                  "clk14",       "0.8"], 
+            ##["vm80a",                "pin_clk",     "3.2"], 
+            ##["xtea" ,                "clock",       "26.03"],
+            #["y_huff",               "clk",         "14.0"], 
+            #["y_quantizer",          "clk",         "1.0"], 
+            ##["zigzag",               "clk",         "0.8"], 
+            ##["zipdiv" ,              "i_clk",       "20.0"], 
+            #["y_dct" ,               "clk",         "20.0"], 
+            #["jpeg_encoder",         "clk",         "16.0"],
+            ##["aes_cipher",           "clk",         "10.0"],
+            #["sha512",               "clk",         "40.0"], 
+            #["picorv32a",            "clk",         "24.0"], 
+            #["riscv_top_151",        "clk",         "50.0"], 
+            #["genericfir",        "i_clk",           "15.0"],
+            #["NfiVe32_RF",        "HCLK",           "10.0"],
+            #["rf_64x64",        "HCLK",           "10.0"],
+            #["AHB_FLASH_CTRL"  ,    "HCLK" ,          "10.0"    ],
+            #["AHB_SRAM"        ,    "HCLK" ,          "10.0"    ],
             ] 
 # add generic fir
             #"genericfir",
@@ -86,7 +86,7 @@ def parse_ff_power(filename):
             x= line[3].split(" ")
             acc_total   +=  np.longdouble(x[0])
     power_array=[acc_internal,acc_switch,acc_leakage,acc_total]
-    f.truncate(0)
+    #f.truncate(0)
     f.close()
     return power_array
 
@@ -109,7 +109,7 @@ def parse_all_power(filename):
             x= line[3].split(" ")
             acc_total   +=  np.longdouble(x[0])
     power_array=[acc_internal,acc_switch,acc_leakage,acc_total]
-    f.truncate(0)
+    #f.truncate(0)
     f.close()
     return power_array
 
@@ -129,30 +129,30 @@ set period '''+test[2]+'''
 ##############################
 ##############################
 
-read_verilog designs/$design/before_gl.v
-link_design $design
+read_verilog designs/FF/FF.v
+link_design FF
 create_clock -period $period $clk
 set_power_activity -global -activity 0.1
-report_power $design >>./stats/all_dump_stats_0_1_before.txt
-report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_0_1_before.txt
+report_power FF >>./stats/all_dump_stats_0_1_before.txt
+report_power FF -instances [all_registers -cells] >>./stats/ff_dump_stats_0_1_before.txt
 
 set_power_activity -global -activity 1.0
-report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_1_0_before.txt
+report_power FF -instances [all_registers -cells] >>./stats/ff_dump_stats_1_0_before.txt
 ##############################
 ##############################
 
-read_verilog designs/$design/after_gl.v
-link_design $design
-create_clock -period $period $clk
+#read_verilog designs/$design/after_gl.v
+#link_design $design
+#create_clock -period $period $clk
 
-#set_clock_gating_check $clk
-set_power_activity -global -activity 0.1
-report_power $design >>./stats/all_dump_stats_0_1_after.txt
-report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_0_1_after.txt
+##set_clock_gating_check $clk
+#set_power_activity -global -activity 0.1
+#report_power $design >>./stats/all_dump_stats_0_1_after.txt
+#report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_0_1_after.txt
 
-set_power_activity -global -activity 0.05
-report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_0_05_after.txt
-exit
+#set_power_activity -global -activity 0.05
+#report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_0_05_after.txt
+#exit
 ##############################
             '''
         )
