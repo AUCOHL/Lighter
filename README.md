@@ -1,17 +1,16 @@
-# Automatic Clock Gating
+# Lighter
 
 ## Table of contents
-// links
 
-* Overview
-* File structure
-* Procedure
-* Dependencies
-* Dynamic Power Analysis
-* Power reduction analysis
-* Validation
-* Authors
-* Copyright and Licensing
+* [Overview](https://github.com/kanndil/Lighter#overview)
+* [File structure](https://github.com/kanndil/Lighter#file-structure)
+* [Procedure](https://github.com/kanndil/Lighter#dependencies)
+* [Dynamic Power Analysis](https://github.com/kanndil/Lighter#dynamic-power-analysis)
+* [Power reduction analysis](https://github.com/kanndil/Lighter#power-reduction-analysis)
+* [Validation](https://github.com/kanndil/Lighter#validation)
+* [Authors](https://github.com/kanndil/Lighter#overview)
+* [Copyright and Licensing](https://github.com/kanndil/Lighter#how-does-it-work)
+
 
 # Overview
 
@@ -44,10 +43,6 @@ This repo provides a script to be run by the Yosys software, and attached to it 
     * stats/ contains full benchmarking results
 * tests/ contains simple test cases and graphical representation of the clock gating process
 * validation/ contains automatic validation python code for clock gated designs
-
-<!--## Documentation slides
-
-[Slides](https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content=DAE4K_5a9jc&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent)-->
 
     
 ## Dependencies
@@ -134,12 +129,12 @@ Now, using the technology mapping command provided by Yosys, the enabled flip-fl
 
 
 
-<!--
+
 
 # Authors
 
 * Dr. Mohamed Shalan
 * Youssef Kandil
--->
-<!--
-# Copyright and Licensing-->
+
+
+# Copyright and Licensing
