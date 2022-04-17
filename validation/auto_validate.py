@@ -73,6 +73,6 @@ for test in dir_list:
     failed_grep= os.popen('vvp designs/'+test+'/after.vvp | grep -c FAILED' )
     failed_grep = failed_grep.read()
     print(failed_grep)
-    assert  int(failed_grep) == 0
+    assert  int(failed_grep) == 1
 
 
