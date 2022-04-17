@@ -10,7 +10,7 @@
 * [Validation](https://github.com/kanndil/Lighter#validation)
 * [How does it work](https://github.com/kanndil/Lighter#how-does-it-work)
 * [Authors](https://github.com/kanndil/Lighter#authors)
-* [Copyright and Licensing](https://github.com/kanndil/Lighter#authorss)
+* [Copyright and Licensing](https://github.com/kanndil/Lighter#copyright-and-licensing)
 
 
 # Overview
