@@ -75,7 +75,7 @@ module tmr32_tb;
     initial begin
         $dumpfile("tmr.vcd");
         $dumpvars(0, MUV);
-        $monitor("capture: 0x%X , TMR: 0x%X ", CAPTURE, TMR);
+        //$monitor("capture: 0x%X , TMR: 0x%X ", CAPTURE, TMR);
         
     end
 

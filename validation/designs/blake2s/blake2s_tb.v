@@ -273,7 +273,7 @@ end
       if (error_ctr == 0) begin
         $display("--- All %02d test cases completed successfully", tc_ctr);
       end else begin
-        $display("--- %02d tests completed - %02d test cases did not complete successfully.",
+        $display("--- %02d tests completed - %02d test cases FAILED .",
                  tc_ctr, error_ctr);
       end
     end

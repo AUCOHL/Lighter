@@ -1,4 +1,4 @@
-`include "designs/includes/tb_util.vh"
+`include "includes/tb_util.vh"
 
 
 `include "includes/primitives.v"
@@ -70,7 +70,7 @@ module APB_UART_tb;
     APB_RD(DATA_REG_OFF);
     $display("UART RX: 0x%X (Expected 0x70)", PRDATA);
     if(PRDATA != 8'h70) begin
-      $display("Test Failed");
+      $display("Test FAILED");
       $finish;
     end
 
