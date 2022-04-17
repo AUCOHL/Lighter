@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
-      - name: validation
-        run: |
-          cd validation/
-          ./auto_validate.py
+    - name: validation
+      run: |
+        cd validation/
+        ./auto_validate.py
