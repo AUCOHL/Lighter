@@ -33,6 +33,8 @@ module AHB_SRAM_TB;
     initial begin
         $dumpfile("ahb_srm_tb.vcd");
         $dumpvars;
+    //$monitor("rdata=0x%0h",rdata);
+
         # 45_000_000 $finish;
     end
 
