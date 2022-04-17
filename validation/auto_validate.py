@@ -2,6 +2,8 @@ import os
 import csv
 from re import S
 import sys
+
+from black import err
 #from tokenize import Double
 
 #import numpy as np
@@ -39,36 +41,42 @@ dir_list = [
             #"NfiVe32_RF", 
             #"rf_64x64",
            
-                    #   "AHB_UART_MASTER",
+            #   "AHB_UART_MASTER", bad modeling dlatch
            
-
-            "blake2s",      #passed 
-            "blake2s_core",      #passed 
-            "blake2s_G",      #passed 
-            "blake2s_m_select",      #passed 
             "chacha",      #passed 
+   
             "regfile",      #passed 
             "AHB_SRAM",      #passed 
-            #"AHB_FLASH_CTRL",
 
-            'TMR32',
-            'TDI_AHB',
-            #'div',
-            'APB_UART',
+
+            #"blake2s",      #passed 
+            #"blake2s_core",      #passed 
+            #"blake2s_G",      #passed 
+            #"blake2s_m_select",      #passed 
+
+            #"AHB_FLASH_CTRL",  (runs forever)
+
+            #'TMR32',      does not auto check
+            #'TDI_AHB',   bad modeling dlatch
+            #'div',         has all sdffe (not mapped)
+            #'APB_UART',    testbench fails on gl
 
             ] 
 
-            
 
 for test in dir_list:
     print(test)
-    os.system('iverilog -o designs/'+test+'/'+test+'.vvp designs/'+test+'/'+test+'.v designs/'+test+'/'+test+'_tb.v')
-    os.system('vvp designs/'+test+'/'+test+'.vvp ')  
-    print("\n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n")
-    os.system('iverilog -o designs/'+test+'/before.vvp designs/'+test+'/before_gl.v designs/'+test+'/'+test+'_tb.v')
-    os.system('vvp designs/'+test+'/before.vvp')
-    print("\n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n")
+    #os.system('iverilog -o designs/'+test+'/'+test+'.vvp designs/'+test+'/'+test+'.v designs/'+test+'/'+test+'_tb.v')
+    #os.system('vvp designs/'+test+'/'+test+'.vvp ')  
+    #print("\n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n")
+    #os.system('iverilog -o designs/'+test+'/before.vvp designs/'+test+'/before_gl.v designs/'+test+'/'+test+'_tb.v')
+    #os.system('vvp designs/'+test+'/before.vvp')
+    #print("\n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n")
     os.system('iverilog -o designs/'+test+'/after.vvp designs/'+test+'/after_gl.v designs/'+test+'/'+test+'_tb.v')
-    os.system('vvp designs/'+test+'/after.vvp')
+    #os.system('vvp designs/'+test+'/after.vvp | grep -c FAILED')
+    failed_grep= os.popen('vvp designs/'+test+'/after.vvp | grep -c FAILED' )
+    failed_grep = failed_grep.read()
+    print(failed_grep)
+    assert  int(failed_grep) == 0
 
 

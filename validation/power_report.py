@@ -87,7 +87,7 @@ def parse_ff_power(filename):
             x= line[3].split(" ")
             acc_total   +=  np.longdouble(x[0])
     power_array=[acc_internal,acc_switch,acc_leakage,acc_total]
-    f.truncate(0)
+    #f.truncate(0)
     f.close()
     return power_array
 
@@ -110,7 +110,7 @@ def parse_all_power(filename):
             x= line[3].split(" ")
             acc_total   +=  np.longdouble(x[0])
     power_array=[acc_internal,acc_switch,acc_leakage,acc_total]
-    f.truncate(0)
+    #f.truncate(0)
     f.close()
     return power_array
 
