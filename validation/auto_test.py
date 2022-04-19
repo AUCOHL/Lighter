@@ -4,22 +4,13 @@ import csv
 dir_list = [ 
 
 #validation
-            #"AHB_FLASH_CTRL",
             #"AHB_SRAM",
             #"regfile",
-            #"AHB_UART_MASTER",
             #"blake2s",
             #"blake2s_core",
             #"blake2s_G",
             #"blake2s_m_select",
             #"chacha"
-
-
-
-            #'TMR32',
-            'TDI_AHB',
-            #'div',
-            #'APB_UART',
             ] 
 
 
