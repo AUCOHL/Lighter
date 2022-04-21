@@ -1,4 +1,7 @@
 .DS_Store
+*.DS_Store
 *.vcd
 *.out
 *.vvp
+*.tcl
+*.ys
