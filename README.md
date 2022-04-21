@@ -63,36 +63,39 @@ To evaluate the performance of this tool, the OpenSta API was used to calculate 
 Where alpha is the activity factor.
 
 
-// include total number of cells , fliflops, number of added clockgates, total power before, total power after , number_of_gated_ff
-
 ## Power reduction analysis
+|Design          |Clock Gates|Flipflops|Clock-gated Flipflops|Total power before (W)|Total power after (W)|Total power difference (W)|Percentage power reduction %|
+|----------------|-----------|---------|---------------------|----------------------|---------------------|--------------------------|----------------------------|
+|AHB_SRAM        |7.00E+00   |4.90E+01 |4.70E+01             |3.90E-04              |2.97E-04             |9.22E-05                  |23.67%                      |
+|blabla          |0.00E+00   |1.10E+03 |0.00E+00             |1.57E-03              |1.57E-03             |0.00E+00                  |0.00%                       |
+|blake2s         |1.60E+01   |1.88E+03 |5.12E+02             |8.94E-03              |8.04E-03             |9.01E-04                  |10.07%                      |
+|blake2s_core    |0.00E+00   |1.35E+03 |0.00E+00             |7.06E-03              |7.06E-03             |0.00E+00                  |0.00%                       |
+|blake2s_m_select|0.00E+00   |5.12E+02 |0.00E+00             |2.64E-03              |2.64E-03             |0.00E+00                  |0.00%                       |
+|chacha          |2.60E+01   |1.94E+03 |8.32E+02             |6.92E-03              |5.90E-03             |1.01E-03                  |14.66%                      |
+|genericfir      |1.28E+02   |1.16E+04 |1.54E+03             |8.43E-02              |8.08E-02             |3.51E-03                  |4.17%                       |
+|i2c_master      |2.10E+01   |1.45E+02 |1.06E+02             |5.79E-04              |4.89E-04             |8.96E-05                  |15.48%                      |
+|jpeg_encoder    |3.88E+02   |4.64E+03 |4.64E+03             |3.41E-02              |2.34E-02             |1.07E-02                  |31.38%                      |
+|ldpcenc         |2.80E+01   |1.37E+03 |1.27E+03             |1.90E-02              |1.04E-02             |8.58E-03                  |45.23%                      |
+|NfiVe32_RF      |3.20E+01   |1.02E+03 |1.02E+03             |7.84E-03              |5.39E-03             |2.45E-03                  |31.26%                      |
+|picorv32a       |8.50E+01   |1.62E+03 |1.01E+03             |6.45E-03              |5.04E-03             |1.41E-03                  |21.82%                      |
+|PPU             |4.05E+02   |2.85E+03 |2.82E+03             |6.26E-02              |4.83E-02             |1.43E-02                  |22.84%                      |
+|prv32_cpu       |1.00E+01   |2.11E+02 |2.07E+02             |1.03E-03              |7.28E-04             |3.00E-04                  |29.21%                      |
+|rf_64x64        |6.40E+01   |4.10E+03 |4.10E+03             |3.14E-02              |2.12E-02             |1.02E-02                  |32.39%                      |
+|sha512          |7.40E+01   |3.67E+03 |3.67E+03             |7.70E-03              |5.35E-03             |2.36E-03                  |30.59%                      |
+|spi_master      |8.00E+00   |5.30E+01 |4.30E+01             |1.92E-04              |1.65E-04             |2.66E-05                  |13.85%                      |
+|y_dct           |0.00E+00   |5.34E+03 |0.00E+00             |3.38E-02              |3.38E-02             |0.00E+00                  |0.00%                       |
+|y_huff          |0.00E+00   |2.35E+03 |0.00E+00             |1.36E-02              |1.36E-02             |0.00E+00                  |0.00%                       |
+|y_quantizer     |1.60E+01   |2.82E+03 |1.76E+02             |2.27E-01              |2.23E-01             |4.12E-03                  |1.81%                       |
+|zigzag          |6.50E+01   |7.69E+02 |7.69E+02             |8.14E-02              |5.42E-02             |2.73E-02                  |33.46%                      |
 
-| Module                  | Clock Gates | Total before | Total after | Total power difference | Percentage reduction |
-| ----------------------- | ----------- | ------------ | ----------- | ---------------------- | -------------------- |
-| blabla                  | 24          | 2.34E-03     | 1.71E-03    | 6.35E-04               | 27.11%               |
-| chacha                  | 52          | 6.90E-03     | 4.66E-03    | 2.24E-03               | 32.43%               |
-| ldpcenc                 | 28          | 1.88E-02     | 9.60E-03    | 9.25E-03               | 49.05%               |
-| PPU                     | 375         | 6.33E-02     | 4.84E-02    | 1.49E-02               | 23.57%               |
-| y\_huff                 | 450         | 1.36E-02     | 1.06E-02    | 3.05E-03               | 22.38%               |
-| y\_quantizer            | 256         | 2.27E-01     | 1.53E-01    | 7.46E-02               | 32.82%               |
-| y\_dct                  | 247         | 3.38E-02     | 2.25E-02    | 1.13E-02               | 33.33%               |
-| jpeg\_encoder           | 258         | 3.45E-02     | 2.37E-02    | 1.08E-02               | 31.26%               |
-| sha512                  | 74          | 7.68E-03     | 5.32E-03    | 2.36E-03               | 30.74%               |
-| picorv32a               | 122         | 6.43E-03     | 4.21E-03    | 2.22E-03               | 34.49%               |
-| riscv\_top\_151         | 53          | 1.77E-03     | 1.10E-03    | 6.75E-04               | 38.03%               |
-| genericfir              | 5           | 8.43E-02     | 5.61E-02    | 2.81E-02               | 33.39%               |
-| NfiVe32\_RF             | 32          | 7.84E-03     | 5.39E-03    | 2.45E-03               | 31.26%               |
-| rf\_64x64               | 64          | 3.14E-02     | 2.12E-02    | 1.02E-02               | 32.39%               |
-|                         |             |              |             |                        | Avg percentage       |
-|                         |             |              |             |                        | 29.88%               |
 
 
 
-// 
+
 # Validation
 
-The clock gated gate-level netlists produced by the tool pass the functional validation, such that the functionalities of the designs are not affected by the gate-level modifications applied by the tool. 
-
+<!--The clock gated gate-level netlists produced by the tool pass the functional validation, such that the functionalities of the designs are not affected by the gate-level modifications applied by the tool. 
+-->
 
 
 
