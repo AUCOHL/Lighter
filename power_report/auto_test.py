@@ -113,7 +113,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/''' + test + '''
     clk_gates=os.popen('grep dlclk designs/'+test+'/after_gl.v | wc -l' )
     clk_gates_no = clk_gates.read()
     clk_gates_no=clk_gates_no[:-1]
-    cell_diff= int (cells_after_no)-int (cells_before_no)
+    cell_diff= int (cells_before_no)-int (cells_after_no)
 
     flipflops= os.popen('grep sky130_fd_sc_hd__df designs/'+test+'/after_gl.v | wc -l' )
     flipflops_no = flipflops.read()

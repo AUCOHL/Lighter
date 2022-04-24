@@ -1,11 +1,17 @@
 # Lighter
+![Hex.pm](https://img.shields.io/hexpm/l/apa)
+![example workflow](https://github.com/kanndil/Lighter/actions/workflows/main.yaml/badge.svg)
+
+An automatic clock gating utility. 
+
+
 
 ## Table of contents
 
 * [Overview](https://github.com/kanndil/Lighter#overview)
 * [File structure](https://github.com/kanndil/Lighter#file-structure)
 * [Procedure](https://github.com/kanndil/Lighter#dependencies)
-* [Dynamic Power Analysis](https://github.com/kanndil/Lighter#dynamic-power-analysis)
+
 * [Power reduction analysis](https://github.com/kanndil/Lighter#power-reduction-analysis)
 * [Validation](https://github.com/kanndil/Lighter#validation)
 * [Authors](https://github.com/kanndil/Lighter#authors)
@@ -51,43 +57,31 @@ You can find their installation steps in dependencies.txt
 [dependencies](https://github.com/youssefkandil/Dynamic_Power_Clock_Gating/blob/main/dependencies.txt)
 
 
-# Dynamic Power Analysis
 
-To evaluate the performance of this tool, the OpenSta API was used to calculate the dynamic power of the input design before and after clock gating, and produce a power reduction summary. Since that OpenSta calculates the activity factors by propagation over the cells, and does not assign a 100% activity factor for flipflops nor recognizes clock gates activity factor contribution, we applied the following formula to get reasonable and accurate power reports:
-
-- Total power before clk_gating = (power of all cells at alpha(0.1)) - (flipflops power at alpha(0.1)) + (flipflops power at alpha(1.0))
-
-- Total power after clk_gating =  (power of all cells at alpha(0.1)) - (flipflops power at alpha(0.1)) + (flipflops power at alpha(0.05))
-
-Where alpha is the activity factor.
-
-
-## Power reduction analysis
-|Design          |Clock Gates|Flipflops|Clock-gated Flipflops|Total power before (W)|Total power after (W)|Total power difference (W)|Percentage power reduction %|
-|----------------|-----------|---------|---------------------|----------------------|---------------------|--------------------------|----------------------------|
-|AHB_SRAM        |7.00E+00   |4.90E+01 |4.70E+01             |3.90E-04              |2.97E-04             |9.22E-05                  |23.67%                      |
-|blabla          |0.00E+00   |1.10E+03 |0.00E+00             |1.57E-03              |1.57E-03             |0.00E+00                  |0.00%                       |
-|blake2s         |1.60E+01   |1.88E+03 |5.12E+02             |8.94E-03              |8.04E-03             |9.01E-04                  |10.07%                      |
-|blake2s_core    |0.00E+00   |1.35E+03 |0.00E+00             |7.06E-03              |7.06E-03             |0.00E+00                  |0.00%                       |
-|blake2s_m_select|0.00E+00   |5.12E+02 |0.00E+00             |2.64E-03              |2.64E-03             |0.00E+00                  |0.00%                       |
-|chacha          |2.60E+01   |1.94E+03 |8.32E+02             |6.92E-03              |5.90E-03             |1.01E-03                  |14.66%                      |
-|genericfir      |1.28E+02   |1.16E+04 |1.54E+03             |8.43E-02              |8.08E-02             |3.51E-03                  |4.17%                       |
-|i2c_master      |2.10E+01   |1.45E+02 |1.06E+02             |5.79E-04              |4.89E-04             |8.96E-05                  |15.48%                      |
-|jpeg_encoder    |3.88E+02   |4.64E+03 |4.64E+03             |3.41E-02              |2.34E-02             |1.07E-02                  |31.38%                      |
-|ldpcenc         |2.80E+01   |1.37E+03 |1.27E+03             |1.90E-02              |1.04E-02             |8.58E-03                  |45.23%                      |
-|NfiVe32_RF      |3.20E+01   |1.02E+03 |1.02E+03             |7.84E-03              |5.39E-03             |2.45E-03                  |31.26%                      |
-|picorv32a       |8.50E+01   |1.62E+03 |1.01E+03             |6.45E-03              |5.04E-03             |1.41E-03                  |21.82%                      |
-|PPU             |4.05E+02   |2.85E+03 |2.82E+03             |6.26E-02              |4.83E-02             |1.43E-02                  |22.84%                      |
-|prv32_cpu       |1.00E+01   |2.11E+02 |2.07E+02             |1.03E-03              |7.28E-04             |3.00E-04                  |29.21%                      |
-|rf_64x64        |6.40E+01   |4.10E+03 |4.10E+03             |3.14E-02              |2.12E-02             |1.02E-02                  |32.39%                      |
-|sha512          |7.40E+01   |3.67E+03 |3.67E+03             |7.70E-03              |5.35E-03             |2.36E-03                  |30.59%                      |
-|spi_master      |8.00E+00   |5.30E+01 |4.30E+01             |1.92E-04              |1.65E-04             |2.66E-05                  |13.85%                      |
-|y_dct           |0.00E+00   |5.34E+03 |0.00E+00             |3.38E-02              |3.38E-02             |0.00E+00                  |0.00%                       |
-|y_huff          |0.00E+00   |2.35E+03 |0.00E+00             |1.36E-02              |1.36E-02             |0.00E+00                  |0.00%                       |
-|y_quantizer     |1.60E+01   |2.82E+03 |1.76E+02             |2.27E-01              |2.23E-01             |4.12E-03                  |1.81%                       |
-|zigzag          |6.50E+01   |7.69E+02 |7.69E+02             |8.14E-02              |5.42E-02             |2.73E-02                  |33.46%                      |
-
-
+# Power reduction analysis
+|Design  |Clock Gates|Percentage power reduction %|Percentage # Cells reduction %|
+|--------|-----------|----------------------------|------------------------------|
+|AHB_SRAM|7          |23.67%                      |25.71%                        |
+|blabla  |24         |28.54%                      |4.30%                         |
+|blake2s |63         |34.43%                      |11.75%                        |
+|blake2s_core|46         |36.28%                      |13.07%                        |
+|blake2s_m_select|16         |43.36%                      |22.47%                        |
+|chacha  |52         |32.44%                      |5.23%                         |
+|genericfir|638        |33.55%                      |6.22%                         |
+|i2c_master|21         |15.48%                      |10.41%                        |
+|jpeg_encoder|388        |31.38%                      |11.83%                        |
+|ldpcenc |28         |45.23%                      |6.19%                         |
+|NfiVe32_RF|32         |31.26%                      |30.58%                        |
+|picorv32a|127        |25.52%                      |12.91%                        |
+|PPU     |410        |22.91%                      |32.62%                        |
+|prv32_cpu|10         |29.21%                      |23.97%                        |
+|rf_64x64|64         |32.40%                      |27.35%                        |
+|sha512  |74         |30.59%                      |12.82%                        |
+|spi_master|8          |13.85%                      |18.99%                        |
+|y_dct   |247        |30.98%                      |5.95%                         |
+|y_huff  |450        |22.07%                      |21.59%                        |
+|y_quantizer|256        |32.78%                      |30.90%                        |
+|zigzag  |65         |33.46%                      |58.21%                        |
 
 
 
