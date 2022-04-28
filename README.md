@@ -1,7 +1,7 @@
 # Lighter
-![Hex.pm](https://img.shields.io/hexpm/l/apa)
-<!--![example workflow](https://github.com/kanndil/Lighter/actions/workflows/main.yaml/badge.svg)-->
-![example workflow](https://github.com/kanndil/Lighter/actions/workflows/main.yml/badge.svg)
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) ![example workflow](https://github.com/kanndil/Lighter/actions/workflows/main.yml/badge.svg)
+[![code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 An automatic clock gating utility. 
 
