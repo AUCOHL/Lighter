@@ -1,6 +1,7 @@
 # Lighter
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
-![example workflow](https://github.com/kanndil/Lighter/actions/workflows/main.yaml/badge.svg)
+<!--![example workflow](https://github.com/kanndil/Lighter/actions/workflows/main.yaml/badge.svg)-->
+![example workflow](https://github.com/kanndil/Lighter/actions/workflows/main.yml/badge.svg)
 
 An automatic clock gating utility. 
 
@@ -13,7 +14,7 @@ An automatic clock gating utility.
 * [Procedure](https://github.com/kanndil/Lighter#dependencies)
 
 * [Power reduction analysis](https://github.com/kanndil/Lighter#power-reduction-analysis)
-* [Validation](https://github.com/kanndil/Lighter#validation)
+
 * [Authors](https://github.com/kanndil/Lighter#authors)
 * [Copyright and Licensing](https://github.com/kanndil/Lighter#copyright-and-licensing)
 
@@ -35,7 +36,7 @@ This is a technology generic automatic clock gating tool, that takes an RTL desi
 This repo provides a script to be run by the Yosys software, and attached to it is a map file that is used to map all flipflops with enable inputs into clock-gated flipflops. An auto-testing python code is also implemented to autotest and analyze the dynamic power reduction of the provided design.-->
 
 
-[Slides](https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content=DAE4K_5a9jc&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent)
+<!--[Slides](https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content=DAE4K_5a9jc&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent)-->
 
 ## File structure
 * docs/ contains documentation
@@ -59,7 +60,7 @@ You can find their installation steps in dependencies.txt
 
 
 # Power reduction analysis
-|Design  |Clock Gates|Percentage power reduction %|Percentage # Cells reduction %|
+|Design  |# Clock Gates| Power reduction %|  Cells reduction %|
 |--------|-----------|----------------------------|------------------------------|
 |AHB_SRAM|7          |23.67%                      |25.71%                        |
 |blabla  |24         |28.54%                      |4.30%                         |
@@ -84,11 +85,6 @@ You can find their installation steps in dependencies.txt
 |zigzag  |65         |33.46%                      |58.21%                        |
 
 
-
-# Validation
-
-<!--The clock gated gate-level netlists produced by the tool pass the functional validation, such that the functionalities of the designs are not affected by the gate-level modifications applied by the tool. 
--->
 
 
 # Authors
