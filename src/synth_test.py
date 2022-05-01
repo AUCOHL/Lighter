@@ -119,19 +119,22 @@ hierarchy -check -top """
             + test
             + """
 
-proc;
-opt;; 
-memory_collect
-memory_map
-opt;; 
-techmap -map lib/map_file.v;;
-opt;; 
+#proc;
+#opt;; 
+#memory_collect
+#memory_map
+#opt;; 
+#techmap -map lib/map_file.v;;
+#opt;; 
+reg_clock_gating lib/map_file.v
 opt_clean -purge
 synth -top """
             + test
             + """
 dfflibmap -liberty lib/sky130_hd.lib 
 abc -D 1250 -liberty lib/sky130_hd.lib 
+splitnets
+opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
 splitnets
 opt_clean -purge
@@ -146,7 +149,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/"""
             """
         )
 
-    os.system("yosys ./synth2.ys")
+    os.system("yosys -m cg_plugin.so ./synth2.ys")
     cells_before = os.popen(
         "grep sky130_fd_sc_hd designs/" + test + "/before_gl.v | wc -l"
     )

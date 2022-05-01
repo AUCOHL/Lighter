@@ -14,7 +14,6 @@
 	limitations under the License.
 */
 
-
 #include "kernel/yosys.h" 
 
 USING_YOSYS_NAMESPACE
@@ -72,8 +71,3 @@ struct CLK_Gating_Pass : public Pass {
         }
     }
 } CLK_Gating_Pass;
-
-//yosys-config --build plugin.so plugin.cc
-//yosys -m plugin.so -p 'clock_gating'
-
-//yosys -m ./plugin.so -p clock_gating

@@ -1,31 +1,47 @@
+"""
+    Copyright 2022 AUC Open Source Hardware Lab
+
+	Licensed under the Apache License, Version 2.0 (the "License"); 
+	you may not use this file except in compliance with the License. 
+	You may obtain a copy of the License at:
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software 
+	distributed under the License is distributed on an "AS IS" BASIS, 
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+	See the License for the specific language governing permissions and 
+	limitations under the License.
+"""
+
 import os
 import csv
 
 dir_list = [ 
             "AHB_SRAM",
-            #"blabla", 
-            #"blake2s",
-            #"blake2s_core",
-            #"blake2s_m_select",
-            #"chacha", 
-            #"genericfir",
-            #"i2c_master",
-            #"jpeg_encoder",
-            ##"ldpc_decoder_802_3an",
-            #"ldpcenc", 
-            #"NfiVe32_RF",
-            #"picorv32a",
-            #"PPU",
-            #"prv32_cpu",
-            #"rf_64x64",
-            ##"riscv_top_151",
-            ##"rv32cpu",
-            #"sha512",
-            #"spi_master",
-            #"y_dct",
-            #"y_huff",
-            #"y_quantizer",
-            #"zigzag",
+            "blabla", 
+            "blake2s",
+            "blake2s_core",
+            "blake2s_m_select",
+            "chacha", 
+            "genericfir",
+            "i2c_master",
+            "jpeg_encoder",
+            #"ldpc_decoder_802_3an",
+            "ldpcenc", 
+            "NfiVe32_RF",
+            "picorv32a",
+            "PPU",
+            "prv32_cpu",
+            "rf_64x64",
+            #"riscv_top_151",
+            #"rv32cpu",
+            "sha512",
+            "spi_master",
+            "y_dct",
+            "y_huff",
+            "y_quantizer",
+            "zigzag",
             ] 
 
 
@@ -67,7 +83,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/''' + test + '''
         )
 
 
-    #os.system("yosys ./synth.ys" )
+    os.system("yosys ./synth.ys" )
 
     with open("./synth2.ys", "w") as f:
         
@@ -85,7 +101,7 @@ hierarchy -check -top ''' + test + '''
 #opt;; 
 #techmap -map lib/map_file.v;;
 #opt;; 
-clock_gating lib/map_file.v
+reg_clock_gating lib/map_file.v
 opt_clean -purge
 synth -top ''' + test + '''
 dfflibmap -liberty lib/sky130_hd.lib 
@@ -104,7 +120,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/''' + test + '''
             '''
         )
 
-    os.system("yosys -m plugin.so ./synth2.ys" )
+    os.system("yosys -m cg_plugin.so ./synth2.ys" )
     cells_before= os.popen('grep sky130_fd_sc_hd designs/'+test+'/before_gl.v | wc -l' )
     cells_before_no = cells_before.read()
     cells_before_no=cells_before_no[:-1]
