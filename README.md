@@ -12,7 +12,7 @@ An automatic clock gating utility.
 * [Overview](https://github.com/kanndil/Lighter#overview)
 * [File structure](https://github.com/kanndil/Lighter#file-structure)
 * [How to use](https://github.com/kanndil/Lighter#how-to-use)
-* [How does it work](https://github.com/kanndil/Lighter#how-does-it-work)
+* [How it works](https://github.com/kanndil/Lighter#how-does-it-work)
 * [Power reduction analysis](https://github.com/kanndil/Lighter#power-reduction-analysis)
 * [Authors](https://github.com/kanndil/Lighter#authors)
 * [Copyright and Licensing](https://github.com/kanndil/Lighter#copyright-and-licensing)
