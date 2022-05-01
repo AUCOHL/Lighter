@@ -35,13 +35,14 @@ This repo provides a script to be run by the Yosys software, and attached to it 
 
 
 ## File structure
-* docs/ contains documentation
-* code/ contains clock gating Yosys scripts and their dependencies
-* power_report/ contains automatic testing and power reporting python code (auto_test.py) 
-    * designs/ contains designs for testing
-    * stats/ contains full benchmarking results
-* tests/ contains simple test cases and graphical representation of the clock gating process
-* validation/ contains automatic validation python code for clock gated designs
+
+* [designs](https://github.com/kanndil/Lighter/tree/main/designs) / conatains verilog designs for benchmarking
+* [docs/](https://github.com/kanndil/Lighter/tree/main/docs) contains documentation
+* [platform/](https://github.com/kanndil/Lighter/tree/main/platform/sky130) contains standard cell libraries 
+* [report_power/](https://github.com/kanndil/Lighter/tree/main/report_power) contains power reporting python code (report_power.py) 
+    * [stats/](https://github.com/kanndil/Lighter/tree/main/report_power/stats) contains full benchmarking results
+* [src/](https://github.com/kanndil/Lighter/tree/main/src) contains clock gating Yosys plugin code
+* [validation/](https://github.com/kanndil/Lighter/tree/main/validation) contains automatic validation python code for clock-gated designs
 
     
 ## Dependencies
