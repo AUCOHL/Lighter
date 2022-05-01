@@ -5,3 +5,8 @@
 *.vvp
 *.tcl
 *.ys
+*.so
+*.d
+*_gl.v
+*.plist
+*_file.csv
