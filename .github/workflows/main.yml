@@ -25,5 +25,6 @@ jobs:
     - name: validation
       run: |
         cd validation/
+        yosys-config --build cg_plugin.so clock_gating_plugin.cc
         python3 synth_test.py
         python3 validate.py
