@@ -58,7 +58,7 @@ You can find their installation steps in dependencies.txt
 
 Generate the Yosys plugin using the following command:
 
-    yosys-config --build plugin.so clock_gating_plugin.cc
+    yosys-config --build cg_plugin.so clock_gating_plugin.cc
 
 
 Add the flipflop clock gating command to your synthesis script:
@@ -84,11 +84,11 @@ For example:
 
 Run your Yosys synthesis script as follows:
 
-    yosys -m plugin.so -p your_script.ys
+    yosys -m cg_plugin.so -p your_script.ys
 
 Or TCL synthesis script as follows:
 
-    yosys -m plugin.so -p your_script.tcl
+    yosys -m cg_plugin.so -p your_script.tcl
 
 # Power reduction analysis
 |Design  |# Clock Gates| Power reduction %|  Cells reduction %|
