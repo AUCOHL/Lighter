@@ -7,7 +7,6 @@ dependencies:
   - iverilog
   - yosys
   - python
-  - gcc
   - pip
   - pytest
   - pip:
