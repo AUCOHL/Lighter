@@ -36,22 +36,6 @@ states = [
     ],
 ]
 
-states_two = [
-    [
-        "module",
-        "all cells power before at 0.1",
-        "flipflops power before at 0.1",
-        "flipflops power before at 1.0",
-        "total power before",
-        "all cells power after at 0.1",
-        "flipflops power after at 0.1",
-        "flipflops power after at 0.05",
-        "total power after",
-        "total power difference",
-        "percentage reduction",
-    ],
-]
-
 
 states_internal = [
     [
@@ -74,6 +58,7 @@ states_internal = [
         "percentage reduction",
     ],
 ]
+
 
 states_switching = [
     [
@@ -130,11 +115,22 @@ benchmarks = [
         "Total power after (W)",
         "Total power difference (W)",
         "Percentage power reduction %",
+        "Percentage # Cells reduction %",
+    ],
+]
+
+power_report_summary = [
+    [
+        "Design",
+        "Clock Gates",
+        "Percentage power reduction %",
+        "Percentage # Cells reduction %",
     ],
 ]
 
 
 dir_list = [
+    # ["FF"      ,             "clk",         "10.0"],
     ["AHB_SRAM", "HCLK", "10.0"],
     ["blabla", "clk", "65.0"],
     ["blake2s", "clk", "20.0"],
@@ -182,7 +178,6 @@ def gate_percentage(filename):
             per = 0
         ratio_list.append(per)
         stats_list.append(x)
-    # print(ratio_list)
     return stats_list, ratio_list
 
 
@@ -302,9 +297,6 @@ exit
     ff_0_1_after = parse_ff_power("./stats/ff_dump_stats_0_1_after.txt")
     ff_0_05_after = parse_ff_power("./stats/ff_dump_stats_0_05_after.txt")
 
-    # print(ratio_list[j])
-    # print(ff_0_05_after[3])
-    # print(ff_1_0_after[3])
     ff_0_05_after[0] = (ratio_list[j] * ff_0_05_after[0]) + (
         (1 - ratio_list[j]) * ff_1_0_after[0]
     )
@@ -343,22 +335,6 @@ exit
             str(after_power[0]),
             str(after_power[1]),
             str(after_power[2]),
-            str(after_power[3]),
-            str(before_power[3] - after_power[3]),
-            str(((before_power[3] - after_power[3]) / before_power[3]) * 100) + " %",
-        ]
-    )
-
-    states_two.append(
-        [
-            test[0],
-            str(all_0_1_before[3]),
-            str(ff_0_1_before[3]),
-            str(ff_1_0_before[3]),
-            str(before_power[3]),
-            str(all_0_1_after[3]),
-            str(ff_0_1_after[3]),
-            str(ff_0_05_after[3]),
             str(after_power[3]),
             str(before_power[3] - after_power[3]),
             str(((before_power[3] - after_power[3]) / before_power[3]) * 100) + " %",
@@ -430,7 +406,7 @@ exit
             str(((before_power[3] - after_power[3]) / before_power[3]) * 100) + " %",
         ]
     )
-
+    area_reduction = float(benchmarks_input[j][6]) / float(benchmarks_input[j][4]) * 100
     benchmarks.append(
         [
             benchmarks_input[j][0],
@@ -441,6 +417,16 @@ exit
             str(after_power[3]),
             str(before_power[3] - after_power[3]),
             str(((before_power[3] - after_power[3]) / before_power[3]) * 100) + " %",
+            str(area_reduction) + " %",
+        ]
+    )
+
+    power_report_summary.append(
+        [
+            benchmarks_input[j][0],
+            benchmarks_input[j][1],
+            str(((before_power[3] - after_power[3]) / before_power[3]) * 100) + " %",
+            str(area_reduction) + " %",
         ]
     )
 
@@ -448,12 +434,6 @@ exit
 f = open("./stats/stats_file.csv", "w")
 writer = csv.writer(f)
 for row in states:
-    writer.writerow(row)
-f.close()
-
-f = open("./stats/stats_two_file.csv", "w")
-writer = csv.writer(f)
-for row in states_two:
     writer.writerow(row)
 f.close()
 
@@ -478,5 +458,12 @@ f.close()
 f = open("../benchmarks.csv", "w")
 writer = csv.writer(f)
 for row in benchmarks:
+    writer.writerow(row)
+f.close()
+
+
+f = open("../power_report_summary.csv", "w")
+writer = csv.writer(f)
+for row in power_report_summary:
     writer.writerow(row)
 f.close()

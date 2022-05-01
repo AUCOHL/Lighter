@@ -3,29 +3,29 @@ import csv
 
 dir_list = [ 
             "AHB_SRAM",
-            "blabla", 
-            "blake2s",
-            "blake2s_core",
-            "blake2s_m_select",
-            "chacha", 
-            "genericfir",
-            "i2c_master",
-            "jpeg_encoder",
-            #"ldpc_decoder_802_3an",
-            "ldpcenc", 
-            "NfiVe32_RF",
-            "picorv32a",
-            "PPU",
-            "prv32_cpu",
-            "rf_64x64",
-            #"riscv_top_151",
-            #"rv32cpu",
-            "sha512",
-            "spi_master",
-            "y_dct",
-            "y_huff",
-            "y_quantizer",
-            "zigzag",
+            #"blabla", 
+            #"blake2s",
+            #"blake2s_core",
+            #"blake2s_m_select",
+            #"chacha", 
+            #"genericfir",
+            #"i2c_master",
+            #"jpeg_encoder",
+            ##"ldpc_decoder_802_3an",
+            #"ldpcenc", 
+            #"NfiVe32_RF",
+            #"picorv32a",
+            #"PPU",
+            #"prv32_cpu",
+            #"rf_64x64",
+            ##"riscv_top_151",
+            ##"rv32cpu",
+            #"sha512",
+            #"spi_master",
+            #"y_dct",
+            #"y_huff",
+            #"y_quantizer",
+            #"zigzag",
             ] 
 
 
@@ -67,7 +67,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/''' + test + '''
         )
 
 
-    os.system("yosys ./synth.ys" )
+    #os.system("yosys ./synth.ys" )
 
     with open("./synth2.ys", "w") as f:
         
@@ -78,13 +78,14 @@ read_liberty -lib -ignore_miss_dir -setattr blackbox lib/sky130_hd.lib
 #read_verilog lib/blackbox_clk_gates.v
 hierarchy -check -top ''' + test + '''
 
-proc;
-opt;; 
-memory_collect
-memory_map
-opt;; 
-techmap -map lib/map_file.v;;
-opt;; 
+#proc;
+#opt;; 
+#memory_collect
+#memory_map
+#opt;; 
+#techmap -map lib/map_file.v;;
+#opt;; 
+clock_gating lib/map_file.v
 opt_clean -purge
 synth -top ''' + test + '''
 dfflibmap -liberty lib/sky130_hd.lib 
@@ -103,7 +104,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/''' + test + '''
             '''
         )
 
-    os.system("yosys ./synth2.ys" )
+    os.system("yosys -m plugin.so ./synth2.ys" )
     cells_before= os.popen('grep sky130_fd_sc_hd designs/'+test+'/before_gl.v | wc -l' )
     cells_before_no = cells_before.read()
     cells_before_no=cells_before_no[:-1]

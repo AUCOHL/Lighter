@@ -1,2 +1,0 @@
-module,clock gates,flipflops,clock gated flipflops,cells before,cells after,cells difference
-AHB_SRAM,       7,      49,      47,     245,     182,63

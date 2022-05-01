@@ -25,4 +25,4 @@ jobs:
     - name: validation
       run: |
         cd validation/
-        python3 auto_validate.py
+        python3 validate.py
