@@ -11,10 +11,8 @@ An automatic clock gating utility.
 
 * [Overview](https://github.com/kanndil/Lighter#overview)
 * [File structure](https://github.com/kanndil/Lighter#file-structure)
-* [Procedure](https://github.com/kanndil/Lighter#dependencies)
-
+* [How to use](https://github.com/kanndil/Lighter#dependencies)
 * [Power reduction analysis](https://github.com/kanndil/Lighter#power-reduction-analysis)
-
 * [Authors](https://github.com/kanndil/Lighter#authors)
 * [Copyright and Licensing](https://github.com/kanndil/Lighter#copyright-and-licensing)
 
@@ -36,8 +34,6 @@ This is a technology generic automatic clock gating tool, that takes an RTL desi
 This repo provides a script to be run by the Yosys software, and attached to it is a map file that is used to map all flipflops with enable inputs into clock-gated flipflops. An auto-testing python code is also implemented to autotest and analyze the dynamic power reduction of the provided design.-->
 
 
-<!--[Slides](https://www.canva.com/design/DAE4K_5a9jc/peu76OEkvt6rcjPXY_-9Kg/view?utm_content=DAE4K_5a9jc&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent)-->
-
 ## File structure
 * docs/ contains documentation
 * code/ contains clock gating Yosys scripts and their dependencies
@@ -58,6 +54,41 @@ You can find their installation steps in dependencies.txt
 [dependencies](https://github.com/youssefkandil/Dynamic_Power_Clock_Gating/blob/main/dependencies.txt)
 
 
+# How to use
+
+Generate the Yosys plugin using the following command:
+
+    yosys-config --build plugin.so clock_gating_plugin.cc
+
+
+Add the flipflop clock gating command to your synthesis script:
+
+
+    read_verilog lib/blackbox_clk_gates.v
+    clock_gating lib/map_file.v
+
+
+For example:
+
+    read_verilog design
+    read_verilog lib/blackbox_clk_gates.v
+    hierarchy -check
+    synth -top design
+    dfflibmap -liberty lib/sky130_hd.lib 
+    abc -D 1250 -liberty lib/sky130_hd.lib 
+    splitnets
+    opt_clean -purge
+    opt;; 
+    write_verilog -noattr -noexpr -nohex -nodec -defparam   design.gl.v
+
+
+Run your Yosys as follows:
+
+    yosys -m plugin.so -p your_script.ys
+
+Or TCL synthesis script:
+
+    yosys -m plugin.so -p your_script.tcl
 
 # Power reduction analysis
 |Design  |# Clock Gates| Power reduction %|  Cells reduction %|
