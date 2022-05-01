@@ -11,7 +11,7 @@ An automatic clock gating utility.
 
 * [Overview](https://github.com/kanndil/Lighter#overview)
 * [File structure](https://github.com/kanndil/Lighter#file-structure)
-* [How to use](https://github.com/kanndil/Lighter#dependencies)
+* [How to use](https://github.com/kanndil/Lighter#how-to-use)
 * [Power reduction analysis](https://github.com/kanndil/Lighter#power-reduction-analysis)
 * [Authors](https://github.com/kanndil/Lighter#authors)
 * [Copyright and Licensing](https://github.com/kanndil/Lighter#copyright-and-licensing)
@@ -82,11 +82,11 @@ For example:
     write_verilog -noattr -noexpr -nohex -nodec -defparam   design.gl.v
 
 
-Run your Yosys as follows:
+Run your Yosys synthesis script as follows:
 
     yosys -m plugin.so -p your_script.ys
 
-Or TCL synthesis script:
+Or TCL synthesis script as follows:
 
     yosys -m plugin.so -p your_script.tcl
 

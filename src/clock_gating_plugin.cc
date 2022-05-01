@@ -56,15 +56,5 @@ struct CLK_Gating_Pass : public Pass {
     }
 } CLK_Gating_Pass;
 
-//proc;
-//opt;; 
-//memory_collect
-//memory_map
-//opt;; 
-//techmap -map lib/map_file.v;;
-//opt;; 
-
-//yosys-config --build plugin.so plugin.cc
+//yosys-config --build plugin.so clock_gating_plugin.cc
 //yosys -m plugin.so -p clock_gating
-
-//yosys -m ./plugin.so -p clock_gating
