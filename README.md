@@ -94,9 +94,9 @@ Or TCL synthesis script as follows:
 
 
 
-# How to use
+# How it works
 
-A detailed documentation can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/how_does_it_work.md)
+A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/how_does_it_work.md)
 
 
 # Power reduction analysis
