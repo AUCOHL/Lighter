@@ -22,10 +22,12 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
-    - name: validation
+    - name: synthesis
       run: |
         cd validation/
         conda install -c conda-forge gxx
         yosys-config --build cg_plugin.so clock_gating_plugin.cc
+    - name: validation
+      run: |
         python3 synth_test.py
         python3 validate.py

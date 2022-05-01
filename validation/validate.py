@@ -36,7 +36,7 @@ for test in dir_list:
     # os.system('iverilog -o designs/'+test+'/before.vvp designs/'+test+'/before_gl.v designs/'+test+'/'+test+'_tb.v')
     # os.system('vvp designs/'+test+'/before.vvp')
     # print("\n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n /////////////////////////////////////////////////// \n")
-    # os.system('iverilog -o designs/'+test+'/after.vvp designs/'+test+'/after_gl.v designs/'+test+'/'+test+'_tb.v')
+    os.system('iverilog -o designs/'+test+'/after.vvp designs/'+test+'/after_gl.v designs/'+test+'/'+test+'_tb.v')
     os.system("vvp designs/" + test + "/after.vvp")
     failed_grep = os.popen("vvp designs/" + test + "/after.vvp | grep -c FAILED")
     failed_grep = failed_grep.read()
