@@ -25,4 +25,5 @@ jobs:
     - name: validation
       run: |
         cd validation/
+        python3 synth_test.py
         python3 validate.py
