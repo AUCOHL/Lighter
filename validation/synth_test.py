@@ -2,12 +2,12 @@ import os
 import csv
 
 dir_list = [
-    # "AHB_SRAM",
-    # "regfile",
-    # "blake2s",
-    # "blake2s_core",
-    # "blake2s_G",
-    # "blake2s_m_select",
+     "AHB_SRAM",
+     "regfile",
+     "blake2s",
+     "blake2s_core",
+     "blake2s_G",
+     "blake2s_m_select",
      "chacha"
 ]
 
