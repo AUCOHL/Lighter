@@ -42,7 +42,7 @@ dir_list = [
     "y_dct",
     "y_huff",
     "y_quantizer",
-    "zigzag",
+    "zigzag",   # check license
 ]
 
 
@@ -65,12 +65,12 @@ for test in dir_list:
 
         f.write(
             """
-read_verilog designs/"""
+read_verilog ../designs/"""
             + test
             + """/"""
             + test
             + """.v
-read_liberty -lib -ignore_miss_dir -setattr blackbox lib/sky130_hd.lib
+read_liberty -lib -ignore_miss_dir -setattr blackbox ../platform/sky130/sky130_hd.lib 
 hierarchy -check -top """
             + test
             + """
@@ -84,8 +84,8 @@ opt_clean -purge
 synth -top """
             + test
             + """
-dfflibmap -liberty lib/sky130_hd.lib 
-abc -D 1250 -liberty lib/sky130_hd.lib 
+dfflibmap -liberty ../platform/sky130/sky130_hd.lib 
+abc -D 1250 -liberty ../platform/sky130/sky130_hd.lib 
 splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
@@ -96,7 +96,7 @@ dffinit
 flatten
 opt;; 
 check
-write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/"""
+write_verilog -noattr -noexpr -nohex -nodec -defparam   ../designs/"""
             + test
             + """/before_gl.v
             """
@@ -108,13 +108,13 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/"""
 
         f.write(
             """
-read_verilog designs/"""
+read_verilog ../designs/"""
             + test
             + """/"""
             + test
             + """.v
-read_liberty -lib -ignore_miss_dir -setattr blackbox lib/sky130_hd.lib
-#read_verilog lib/blackbox_clk_gates.v
+read_liberty -lib -ignore_miss_dir -setattr blackbox ../platform/sky130/sky130_hd.lib 
+#read_verilog blackbox_clk_gates.v
 hierarchy -check -top """
             + test
             + """
@@ -124,15 +124,15 @@ hierarchy -check -top """
 #memory_collect
 #memory_map
 #opt;; 
-#techmap -map lib/map_file.v;;
+#techmap -map map_file.v;;
 #opt;; 
-reg_clock_gating lib/map_file.v
+reg_clock_gating map_file.v
 opt_clean -purge
 synth -top """
             + test
             + """
-dfflibmap -liberty lib/sky130_hd.lib 
-abc -D 1250 -liberty lib/sky130_hd.lib 
+dfflibmap -liberty ../platform/sky130/sky130_hd.lib 
+abc -D 1250 -liberty ../platform/sky130/sky130_hd.lib 
 splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
@@ -143,7 +143,7 @@ dffinit
 flatten
 opt;; 
 check
-write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/"""
+write_verilog -noattr -noexpr -nohex -nodec -defparam   ../designs/"""
             + test
             + """/after_gl.v
             """
@@ -151,28 +151,28 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/"""
 
     os.system("yosys -m cg_plugin.so ./synth2.ys")
     cells_before = os.popen(
-        "grep sky130_fd_sc_hd designs/" + test + "/before_gl.v | wc -l"
+        "grep sky130_fd_sc_hd ../designs/" + test + "/before_gl.v | wc -l"
     )
     cells_before_no = cells_before.read()
     cells_before_no = cells_before_no[:-1]
     cells_after = os.popen(
-        "grep sky130_fd_sc_hd designs/" + test + "/after_gl.v | wc -l"
+        "grep sky130_fd_sc_hd ../designs/" + test + "/after_gl.v | wc -l"
     )
     cells_after_no = cells_after.read()
     cells_after_no = cells_after_no[:-1]
-    clk_gates = os.popen("grep dlclk designs/" + test + "/after_gl.v | wc -l")
+    clk_gates = os.popen("grep dlclk ../designs/" + test + "/after_gl.v | wc -l")
     clk_gates_no = clk_gates.read()
     clk_gates_no = clk_gates_no[:-1]
     cell_diff = int(cells_after_no) - int(cells_before_no)
 
     flipflops = os.popen(
-        "grep sky130_fd_sc_hd__df designs/" + test + "/after_gl.v | wc -l"
+        "grep sky130_fd_sc_hd__df ../designs/" + test + "/after_gl.v | wc -l"
     )
     flipflops_no = flipflops.read()
     flipflops_no = flipflops_no[:-1]
 
     icg_flipflops = os.popen(
-        "grep '    .CLK(_' designs/" + test + "/after_gl.v | wc -l"
+        "grep '    .CLK(_' ../designs/" + test + "/after_gl.v | wc -l"
     )
     icg_flipflops_no = icg_flipflops.read()
     icg_flipflops_no = icg_flipflops_no[:-1]
@@ -188,7 +188,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   designs/"""
     ]
     states.append(row)
 
-f = open("./stats/stats_cells_file.csv", "w")
+f = open("../report_power/stats/stats_cells_file.csv", "w")
 writer = csv.writer(f)
 for row in states:
     writer.writerow(row)

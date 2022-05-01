@@ -239,7 +239,7 @@ for test in dir_list:
 
         f.write(
             '''
-read_liberty lib/sky130_hd.lib
+read_liberty ../platform/sky130/sky130_hd.lib
 ##############################
 ##############################
 puts "'''
@@ -257,7 +257,7 @@ set period """
 ##############################
 ##############################
 
-read_verilog designs/$design/before_gl.v
+read_verilog ../designs/$design/before_gl.v
 link_design $design
 create_clock -period $period $clk
 set_power_activity -global -activity 0.1
@@ -269,7 +269,7 @@ report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_1
 ##############################
 ##############################
 
-read_verilog designs/$design/after_gl.v
+read_verilog ../designs/$design/after_gl.v
 link_design $design
 create_clock -period $period $clk
 
