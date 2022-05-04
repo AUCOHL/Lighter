@@ -37,7 +37,7 @@ Since that OpenSta calculates the activity factors by propagation over the cells
 
     Total power before clk_gating = (power of all cells at alpha(0.1)) - (flipflops power at alpha(0.1)) + (flipflops power at alpha(1.0))
 
-    Total power after clk_gating =  (power of all cells at alpha(0.1)) - (flipflops power at alpha(0.1)) + (flipflops power at alpha(0.05))
+    Total power after clk_gating =  (power of all cells at alpha(0.1)) - (flipflops power at alpha(0.1)) + (flipflops power at alpha(0.05)) - (Clock-gates power at alpha(0.1)) + (Clock-gates power at alpha(1.0))
 
     Where alpha is the activity factor.
 
