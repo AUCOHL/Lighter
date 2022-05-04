@@ -100,37 +100,29 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 
 
 # Power reduction analysis
-|Design  |# Clock Gates| Power reduction %|  Cells reduction %|
-|--------|-----------|----------------------------|------------------------------|
-|AHB_SRAM|7          |23.67%                      |25.71%                        |
-|blabla  |24         |28.54%                      |4.30%                         |
-|blake2s |63         |34.43%                      |11.75%                        |
-|blake2s_core|46         |36.28%                      |13.07%                        |
-|blake2s_m_select|16         |43.36%                      |22.47%                        |
-|chacha  |52         |32.44%                      |5.23%                         |
-|genericfir|638        |33.55%                      |6.22%                         |
-|i2c_master|21         |15.48%                      |10.41%                        |
-|jpeg_encoder|388        |31.38%                      |11.83%                        |
-|ldpcenc |28         |45.23%                      |6.19%                         |
-|NfiVe32_RF|32         |31.26%                      |30.58%                        |
-|picorv32a|127        |25.52%                      |12.91%                        |
-|PPU     |410        |22.91%                      |32.62%                        |
-|prv32_cpu|10         |29.21%                      |23.97%                        |
-|rf_64x64|64         |32.40%                      |27.35%                        |
-|sha512  |74         |30.59%                      |12.82%                        |
-|spi_master|8          |13.85%                      |18.99%                        |
-|y_dct   |247        |30.98%                      |5.95%                         |
-|y_huff  |450        |22.07%                      |21.59%                        |
-|y_quantizer|256        |32.78%                      |30.90%                        |
-|zigzag  |65         |33.46%                      |58.21%                        |
-
-
-
+|Design          |# Cells |# Clock Gates|Power reduction %      |Cells reduction %    |
+|----------------|--------|-------------|-----------------------|---------------------|
+|AHB_SRAM        |245     |7            |23.67%                 |25.71%               |
+|blake2s         |14225   |16           |10.05%                 |-0.20%               |
+|chacha          |12857   |26           |15.19%                 |-0.19%               |
+|genericfir      |143703  |128          |4.17%                  |-0.98%               |
+|i2c_master      |759     |21           |15.48%                 |10.41%               |
+|jpeg_encoder    |63757   |388          |31.38%                 |11.83%               |
+|ldpcenc         |19947   |28           |45.23%                 |6.19%                |
+|NfiVe32_RF      |3362    |32           |31.26%                 |30.58%               |
+|picorv32a       |14348   |85           |21.85%                 |12.02%               |
+|PPU             |10156   |405          |22.81%                 |32.55%               |
+|prv32_cpu       |2186    |10           |29.21%                 |23.97%               |
+|rf_64x64        |13461   |64           |32.39%                 |31.97%               |
+|sha512          |20240   |74           |30.59%                 |12.82%               |
+|spi_master      |179     |8            |13.85%                 |18.99%               |
+|y_quantizer     |8281    |16           |1.81%                  |1.92%                |
+|zigzag          |3807    |65           |33.46%                 |58.21%               |
 
 # Authors
 
-* Dr. Mohamed Shalan
-* Youssef Kandil
+* [Mohamed Shalan](https://github.com/shalan)
+* [Youssef Kandil](https://github.com/kanndil)
 
 
 # ⚖️ Copyright and Licensing

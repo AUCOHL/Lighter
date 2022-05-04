@@ -409,7 +409,7 @@ exit
             str(((before_power[3] - after_power[3]) / before_power[3]) * 100) + " %",
         ]
     )
-    area_reduction = float(benchmarks_input[j][6]) / float(benchmarks_input[j][4]) * 100
+    area_reduction = - float(benchmarks_input[j][6]) / float(benchmarks_input[j][4]) * 100
     benchmarks.append(
         [
             benchmarks_input[j][0],
