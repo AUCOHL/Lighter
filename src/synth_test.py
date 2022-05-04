@@ -119,13 +119,6 @@ hierarchy -check -top """
             + test
             + """
 
-#proc;
-#opt;; 
-#memory_collect
-#memory_map
-#opt;; 
-#techmap -map map_file.v;;
-#opt;; 
 reg_clock_gating map_file.v
 opt_clean -purge
 synth -top """

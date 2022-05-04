@@ -6,7 +6,6 @@
 An automatic clock gating utility. 
 
 
-
 ## Table of contents
 
 * [Overview](https://github.com/kanndil/Lighter#overview)
@@ -62,19 +61,24 @@ Generate the Yosys plugin using the following command:
 
     yosys-config --build cg_plugin.so clock_gating_plugin.cc
 
+Add the following files to your project directory:
+
+- [blackbox_clk_gates.v](https://github.com/kanndil/Lighter/blob/main/src/blackbox_clk_gates.v)
+
+- [map_file.v](https://github.com/kanndil/Lighter/blob/main/src/map_file.v)
 
 Add the flipflop clock gating command to your synthesis script:
 
-
-    read_verilog lib/blackbox_clk_gates.v
-    clock_gating lib/map_file.v
+    read_verilog blackbox_clk_gates.v
+    clock_gating map_file.v
 
 
 For example:
 
     read_verilog design
-    read_verilog lib/blackbox_clk_gates.v
+    read_verilog blackbox_clk_gates.v
     hierarchy -check
+    reg_clock_gating map_file.v
     synth -top design
     dfflibmap -liberty lib/sky130_hd.lib 
     abc -D 1250 -liberty lib/sky130_hd.lib 
