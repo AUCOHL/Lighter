@@ -45,17 +45,17 @@ This repo provides a script to be run by the Yosys software, and attached to it 
 * [validation/](https://github.com/kanndil/Lighter/tree/main/validation) contains automatic validation python code for clock-gated designs
 
     
-## Dependencies
+# Dependencies
 
-    - Yosys     latest version
-    - OpenSta   latest version
-
-You can find their installation steps in dependencies.txt
-
-[dependencies](https://github.com/youssefkandil/Dynamic_Power_Clock_Gating/blob/main/dependencies.txt)
+You can find the installation steps in [dependencies.txt](https://github.com/kanndil/Lighter/blob/main/dependencies.txt) for:
+- [MacOs](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-MacOs)
+- [Linux](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For Linux)
+- [Windows-10](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-Windows-10)
 
 
 # How to use
+
+First make sure to follow the dependancies section to install all requirements. 
 
 Generate the Yosys plugin using the following command:
 

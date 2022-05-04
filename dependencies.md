@@ -1,4 +1,118 @@
+
+# For MacOs
+
+## Install python3.6+
+- get homebrew
+
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+- install python using homebrew
+
+        export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+        brew install python3
+## Install gcc 
+
+        brew install gcc
+
+## Install Yosys 
+
+You can find the installation steps in [Yosys installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-yosys) section.
+
+## Optional to run validation
+- Install Iverilog  
+
+        brew install icarus-verilog
+
+## Optional to run report power
+- Install Pandas
+
+        pip3 install pandas
+
+- Install OpenSta  
+
+You can find the installation steps in [OpenSta installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-opensta) section.
+
+
+<br/><br/>
+
+# For Linux
+
+## Install Conda for package installation
+
+    bash Miniconda3-latest-Linux-x86_64.sh
+
+## Use  Conda to install all dependencies
+
+    conda install -y -c litex-hub -c conda-forge python yosys gxx 
+
+## Optional to run validation
+- Install Iverilog  
+
+        conda install -y -c litex-hub -c conda-forge iverilog
+
+## Optional to run report power
+- Install Pandas
+
+        pip3 install pandas
+
+- Install OpenSta  
+
+        conda install -y -c litex-hub -c conda-forge openroad
+
+    or
+
+    You can find the installation steps in [OpenSta installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-opensta) section.
+
+<br/><br/>
+
+
+# For Windows-10
+
+## Install python3.6+
+Install using the executable installer [here](https://www.python.org/downloads/windows/)
+
+## Install gcc 
+
+Install using the executable installer [here](https://sourceforge.net/projects/mingw/files/Installer/mingw-get-setup.exe/download)
+
+## Install Yosys 
+
+You can find the installation steps in [Yosys installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-yosys) section.
+
+## Optional to run validation
+- Install Iverilog  
+    Install using the executable installer [here](https://bleyer.org/icarus/)
+
+## Optional to run report power
+- Install Pandas
+
+        pip3 install pandas
+
+- Install OpenSta  
+
+You can find the installation steps in [OpenSta installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-opensta) section.
+
+
+<br/><br/>
+
+
 # Installing yosys
+
+    yosys -- Yosys Open SYnthesis Suite
+
+    Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted, provided that the above
+    copyright notice and this permission notice appear in all copies.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+    ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 You need a C++ compiler with C++11 support (up-to-date CLANG or GCC is recommended) and some standard tools such as GNU Flex, GNU Bison, and GNU Make. TCL, readline and libffi are optional (see ENABLE_* settings in Makefile). Xdot (graphviz) is used by the show command in yosys to display schematics.
 
@@ -66,8 +180,21 @@ To use a separate (out-of-tree) build directory, provide a path to the Makefile.
     $ make -f ../Makefile
 Out-of-tree builds require a clean source tree.
 
+<br/><br/>
+
 
 # Installing OpenSTA
+
+    OpenSTA is dual licensed. It is released under GPL v3 as OpenSTA and is also licensed for commerical applications by Parallax Software without the GPL's requirements.
+
+    OpenSTA, Static Timing Analyzer Copyright (c) 2022, Parallax Software, Inc.
+
+    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/.
+
 
 OpenSTA is built with CMake.
 
@@ -142,8 +269,10 @@ The default install directory is /usr/local. To install in a different directory
     cmake .. -DCMAKE_INSTALL_PREFIX=<prefix_path>       
 If you make changes to CMakeLists.txt you may need to clean out existing CMake cached variable values by deleting all of the files in the build directory.
 
+<br/><br/>
 
-Dependancies references
+## Dependancies references
 
-    - https://github.com/YosysHQ/yosys
-    - https://github.com/The-OpenROAD-Project/OpenSTA
+https://github.com/YosysHQ/yosys
+
+https://github.com/The-OpenROAD-Project/OpenSTA
