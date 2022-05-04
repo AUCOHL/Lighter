@@ -47,7 +47,7 @@ This repo provides a script to be run by the Yosys software, and attached to it 
     
 # Dependencies
 
-You can find the installation steps in [dependencies.txt](https://github.com/kanndil/Lighter/blob/main/dependencies.txt) for:
+You can find the installation steps in [dependencies.md](https://github.com/kanndil/Lighter/blob/main/dependencies.md) for:
 - [MacOs](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-MacOs)
 - [Linux](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-Linux)
 - [Windows-10](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-Windows-10)
@@ -122,6 +122,8 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 |spi_master      |179     |8            |10.64%                 |18.99%                |
 |y_quantizer     |8281    |16           |1.70%                  |1.92%                 |
 |zigzag          |3807    |65           |31.95%                 |58.21%                |
+
+Full benchmarking data be found [here](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md)
 
 # Authors
 
