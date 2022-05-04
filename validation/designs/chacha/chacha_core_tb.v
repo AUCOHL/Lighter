@@ -181,25 +181,25 @@ module tb_chacha_core();
       // Display the internal state register.
       if (display_state)
         begin
-          $display("Round state:");
-          $display("state0_reg  = 0x%08x, state0_new  = 0x%08x", dut.state_reg[00], dut.state_new[00]);
-          $display("state1_reg  = 0x%08x, state1_new  = 0x%08x", dut.state_reg[01], dut.state_new[01]);
-          $display("state2_reg  = 0x%08x, state2_new  = 0x%08x", dut.state_reg[02], dut.state_new[02]);
-          $display("state3_reg  = 0x%08x, state3_new  = 0x%08x", dut.state_reg[03], dut.state_new[03]);
-          $display("state4_reg  = 0x%08x, state4_new  = 0x%08x", dut.state_reg[04], dut.state_new[04]);
-          $display("state5_reg  = 0x%08x, state5_new  = 0x%08x", dut.state_reg[05], dut.state_new[05]);
-          $display("state6_reg  = 0x%08x, state6_new  = 0x%08x", dut.state_reg[06], dut.state_new[06]);
-          $display("state7_reg  = 0x%08x, state7_new  = 0x%08x", dut.state_reg[07], dut.state_new[07]);
-          $display("state8_reg  = 0x%08x, state8_new  = 0x%08x", dut.state_reg[08], dut.state_new[08]);
-          $display("state9_reg  = 0x%08x, state9_new  = 0x%08x", dut.state_reg[09], dut.state_new[09]);
-          $display("state10_reg = 0x%08x, state10_new = 0x%08x", dut.state_reg[10], dut.state_new[10]);
-          $display("state11_reg = 0x%08x, state11_new = 0x%08x", dut.state_reg[11], dut.state_new[11]);
-          $display("state12_reg = 0x%08x, state12_new = 0x%08x", dut.state_reg[12], dut.state_new[12]);
-          $display("state13_reg = 0x%08x, state13_new = 0x%08x", dut.state_reg[13], dut.state_new[13]);
-          $display("state14_reg = 0x%08x, state14_new = 0x%08x", dut.state_reg[14], dut.state_new[14]);
-          $display("state15_reg = 0x%08x, state15_new = 0x%08x", dut.state_reg[15], dut.state_new[15]);
-          $display("state_we    = 0x%01x", dut.state_we);
-          $display("");
+        //  $display("Round state:");
+        //  $display("state0_reg  = 0x%08x, state0_new  = 0x%08x", dut.state_reg[00], dut.state_new[00]);
+        //  $display("state1_reg  = 0x%08x, state1_new  = 0x%08x", dut.state_reg[01], dut.state_new[01]);
+        //  $display("state2_reg  = 0x%08x, state2_new  = 0x%08x", dut.state_reg[02], dut.state_new[02]);
+        //  $display("state3_reg  = 0x%08x, state3_new  = 0x%08x", dut.state_reg[03], dut.state_new[03]);
+        //  $display("state4_reg  = 0x%08x, state4_new  = 0x%08x", dut.state_reg[04], dut.state_new[04]);
+        //  $display("state5_reg  = 0x%08x, state5_new  = 0x%08x", dut.state_reg[05], dut.state_new[05]);
+        //  $display("state6_reg  = 0x%08x, state6_new  = 0x%08x", dut.state_reg[06], dut.state_new[06]);
+        //  $display("state7_reg  = 0x%08x, state7_new  = 0x%08x", dut.state_reg[07], dut.state_new[07]);
+        //  $display("state8_reg  = 0x%08x, state8_new  = 0x%08x", dut.state_reg[08], dut.state_new[08]);
+        //  $display("state9_reg  = 0x%08x, state9_new  = 0x%08x", dut.state_reg[09], dut.state_new[09]);
+        //  $display("state10_reg = 0x%08x, state10_new = 0x%08x", dut.state_reg[10], dut.state_new[10]);
+        //  $display("state11_reg = 0x%08x, state11_new = 0x%08x", dut.state_reg[11], dut.state_new[11]);
+        //  $display("state12_reg = 0x%08x, state12_new = 0x%08x", dut.state_reg[12], dut.state_new[12]);
+        //  $display("state13_reg = 0x%08x, state13_new = 0x%08x", dut.state_reg[13], dut.state_new[13]);
+        //  $display("state14_reg = 0x%08x, state14_new = 0x%08x", dut.state_reg[14], dut.state_new[14]);
+        //  $display("state15_reg = 0x%08x, state15_new = 0x%08x", dut.state_reg[15], dut.state_new[15]);
+        //  $display("state_we    = 0x%01x", dut.state_we);
+        //  $display("");
         end
 
       // Display the qround input and outputs.

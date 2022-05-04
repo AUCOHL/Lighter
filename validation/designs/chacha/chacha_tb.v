@@ -46,7 +46,7 @@ module tb_chacha();
   //----------------------------------------------------------------
   // Internal constant and parameter definitions.
   //----------------------------------------------------------------
-  parameter DEBUG = 1;
+  parameter DEBUG = 0;
 
   localparam CLK_HALF_PERIOD = 1;
   localparam CLK_PERIOD = 2 * CLK_HALF_PERIOD;
@@ -210,18 +210,18 @@ module tb_chacha();
         //           dut.core.dr_ctr_reg, dut.core.init,
         //           dut.core.next, dut.core.\ready_reg );
 
-          $display("state0_reg  = 0x%08x, state1_reg  = 0x%08x, state2_reg  = 0x%08x, state3_reg  = 0x%08x",
-                   dut.core.\state_reg[0] ,
-                    dut.core.\state_reg[1] ,
-                     dut.core.\state_reg[2] ,
-                      dut.core.\state_reg[3] );
-          $display("state4_reg  = 0x%08x, state5_reg  = 0x%08x, state6_reg  = 0x%08x, state7_reg  = 0x%08x",
-                   dut.core.\state_reg[4] , dut.core.\state_reg[5] , dut.core.\state_reg[6] , dut.core.\state_reg[7] );
-          $display("state8_reg  = 0x%08x, state9_reg  = 0x%08x, state10_reg = 0x%08x, state11_reg = 0x%08x",
-                   dut.core.\state_reg[8] , dut.core.\state_reg[9] , dut.core.\state_reg[10] , dut.core.\state_reg[11] );
-          $display("state12_reg = 0x%08x, state13_reg = 0x%08x, state14_reg = 0x%08x, state15_reg = 0x%08x",
-                   dut.core.\state_reg[12] , dut.core.\state_reg[13] , dut.core.\state_reg[14] , dut.core.\state_reg[15] );
-          $display("");
+        //  $display("state0_reg  = 0x%08x, state1_reg  = 0x%08x, state2_reg  = 0x%08x, state3_reg  = 0x%08x",
+        //           dut.core.\state_reg[0] ,
+        //            dut.core.\state_reg[1] ,
+        //             dut.core.\state_reg[2] ,
+        //              dut.core.\state_reg[3] );
+        //  $display("state4_reg  = 0x%08x, state5_reg  = 0x%08x, state6_reg  = 0x%08x, state7_reg  = 0x%08x",
+        //           dut.core.\state_reg[4] , dut.core.\state_reg[5] , dut.core.\state_reg[6] , dut.core.\state_reg[7] );
+        //  $display("state8_reg  = 0x%08x, state9_reg  = 0x%08x, state10_reg = 0x%08x, state11_reg = 0x%08x",
+        //           dut.core.\state_reg[8] , dut.core.\state_reg[9] , dut.core.\state_reg[10] , dut.core.\state_reg[11] );
+        //  $display("state12_reg = 0x%08x, state13_reg = 0x%08x, state14_reg = 0x%08x, state15_reg = 0x%08x",
+        //           dut.core.\state_reg[12] , dut.core.\state_reg[13] , dut.core.\state_reg[14] , dut.core.\state_reg[15] );
+        //  $display("");
         end
 
       if (display_read_write)
@@ -326,14 +326,14 @@ module tb_chacha();
   //----------------------------------------------------------------
   task dump_top_state;
     begin
-      $display("");
-      $display("Top internal state");
-      $display("------------------");
-      $display("init_reg   = %01x", dut.init_reg);
-      $display("next_reg   = %01x", dut.next_reg);
-      $display("keylen_reg = %01x", dut.keylen_reg);
-      $display("rounds_reg = %01x", dut.rounds_reg);
-      $display("");
+    //  $display("");
+    //  $display("Top internal state");
+    //  $display("------------------");
+    //  $display("init_reg   = %01x", dut.init_reg);
+    //  $display("next_reg   = %01x", dut.next_reg);
+    //  $display("keylen_reg = %01x", dut.keylen_reg);
+    //  $display("rounds_reg = %01x", dut.rounds_reg);
+    //  $display("");
 
     //  $display("key0_reg = %08x, key1_reg  = %08x, key2_reg = %08x, key3_reg  = %08x",
     //           \dut.key_reg[0] ,
@@ -355,19 +355,19 @@ module tb_chacha();
     //           dut.\data_in_reg[12] , dut.\data_in_reg[13] , dut.\data_in_reg[14] , dut.\data_in_reg[15] );
     //  $display("");
 
-      $display("ready = 0x%01x, data_out_valid = %01x", dut.core_ready, dut.core_data_out_valid);
-      $display("data_out00 = %08x, data_out01 = %08x, data_out02 = %08x, data_out03 = %08x",
-               dut.core_data_out[511 : 480], dut.core_data_out[479 : 448],
-               dut.core_data_out[447 : 416], dut.core_data_out[415 : 384]);
-      $display("data_out04 = %08x, data_out05 = %08x, data_out06 = %08x, data_out07 = %08x",
-               dut.core_data_out[383 : 352], dut.core_data_out[351 : 320],
-               dut.core_data_out[319 : 288], dut.core_data_out[287 : 256]);
-      $display("data_out08 = %08x, data_out09 = %08x, data_out10 = %08x, data_out11 = %08x",
-               dut.core_data_out[255 : 224], dut.core_data_out[223 : 192],
-               dut.core_data_out[191 : 160], dut.core_data_out[159 : 128]);
-      $display("data_out12 = %08x, data_out13 = %08x, data_out14 = %08x, data_out15 = %08x",
-               dut.core_data_out[127 :  96], dut.core_data_out[95  :  64],
-               dut.core_data_out[63  :  32], dut.core_data_out[31  :   0]);
+    //  $display("ready = 0x%01x, data_out_valid = %01x", dut.core_ready, dut.core_data_out_valid);
+    //  $display("data_out00 = %08x, data_out01 = %08x, data_out02 = %08x, data_out03 = %08x",
+    //           dut.core_data_out[511 : 480], dut.core_data_out[479 : 448],
+    //           dut.core_data_out[447 : 416], dut.core_data_out[415 : 384]);
+    //  $display("data_out04 = %08x, data_out05 = %08x, data_out06 = %08x, data_out07 = %08x",
+    //           dut.core_data_out[383 : 352], dut.core_data_out[351 : 320],
+    //           dut.core_data_out[319 : 288], dut.core_data_out[287 : 256]);
+    //  $display("data_out08 = %08x, data_out09 = %08x, data_out10 = %08x, data_out11 = %08x",
+    //           dut.core_data_out[255 : 224], dut.core_data_out[223 : 192],
+    //           dut.core_data_out[191 : 160], dut.core_data_out[159 : 128]);
+    //  $display("data_out12 = %08x, data_out13 = %08x, data_out14 = %08x, data_out15 = %08x",
+    //           dut.core_data_out[127 :  96], dut.core_data_out[95  :  64],
+    //           dut.core_data_out[63  :  32], dut.core_data_out[31  :   0]);
       $display("");
     end
   endtask // dump_top_state
@@ -384,36 +384,36 @@ module tb_chacha();
   //----------------------------------------------------------------
   task dump_core_state;
     begin
-      $display("");
-      $display("Core internal state");
-      $display("-------------------");
-      $display("Round state:");
-      $display("state0_reg  = 0x%08x, state1_reg  = 0x%08x, state2_reg  = 0x%08x, state3_reg  = 0x%08x",
-               dut.core.\state_reg[0] , dut.core.\state_reg[1] , dut.core.\state_reg[2] , dut.core.\state_reg[3] );
-      $display("state4_reg  = 0x%08x, state5_reg  = 0x%08x, state6_reg  = 0x%08x, state7_reg  = 0x%08x",
-               dut.core.\state_reg[4] , dut.core.\state_reg[5] , dut.core.\state_reg[6] , dut.core.\state_reg[7] );
-      $display("state8_reg  = 0x%08x, state9_reg  = 0x%08x, state10_reg = 0x%08x, state11_reg = 0x%08x",
-               dut.core.\state_reg[8] , dut.core.\state_reg[9] , dut.core.\state_reg[10] , dut.core.\state_reg[11] );
-      $display("state12_reg = 0x%08x, state13_reg = 0x%08x, state14_reg = 0x%08x, state15_reg = 0x%08x",
-               dut.core.\state_reg[12] , dut.core.\state_reg[13] , dut.core.\state_reg[14] , dut.core.\state_reg[15] );
-      $display("");
+    //  $display("");
+    //  $display("Core internal state");
+    //  $display("-------------------");
+    //  $display("Round state:");
+    //  $display("state0_reg  = 0x%08x, state1_reg  = 0x%08x, state2_reg  = 0x%08x, state3_reg  = 0x%08x",
+    //           dut.core.\state_reg[0] , dut.core.\state_reg[1] , dut.core.\state_reg[2] , dut.core.\state_reg[3] );
+    //  $display("state4_reg  = 0x%08x, state5_reg  = 0x%08x, state6_reg  = 0x%08x, state7_reg  = 0x%08x",
+    //           dut.core.\state_reg[4] , dut.core.\state_reg[5] , dut.core.\state_reg[6] , dut.core.\state_reg[7] );
+    //  $display("state8_reg  = 0x%08x, state9_reg  = 0x%08x, state10_reg = 0x%08x, state11_reg = 0x%08x",
+    //           dut.core.\state_reg[8] , dut.core.\state_reg[9] , dut.core.\state_reg[10] , dut.core.\state_reg[11] );
+    //  $display("state12_reg = 0x%08x, state13_reg = 0x%08x, state14_reg = 0x%08x, state15_reg = 0x%08x",
+    //           dut.core.\state_reg[12] , dut.core.\state_reg[13] , dut.core.\state_reg[14] , dut.core.\state_reg[15] );
+    //  $display("");
 
-      $display("rounds = %01x", dut.core.rounds);
-      $display("qr_ctr_reg = %01x, dr_ctr_reg  = %01x", dut.core.qr_ctr_reg, dut.core.dr_ctr_reg);
-      $display("block0_ctr_reg = %08x, block1_ctr_reg = %08x", dut.core.block0_ctr_reg, dut.core.block1_ctr_reg);
+    //  $display("rounds = %01x", dut.core.rounds);
+    //  $display("qr_ctr_reg = %01x, dr_ctr_reg  = %01x", dut.core.qr_ctr_reg, dut.core.dr_ctr_reg);
+    //  $display("block0_ctr_reg = %08x, block1_ctr_reg = %08x", dut.core.block0_ctr_reg, dut.core.block1_ctr_reg);
 
-      $display("");
+    //  $display("");
 
-      $display("chacha_ctrl_reg = %02x", dut.core.chacha_ctrl_reg);
-      $display("");
+    //  $display("chacha_ctrl_reg = %02x", dut.core.chacha_ctrl_reg);
+    //  $display("");
 
-      $display("data_in = %064x", dut.core.data_in);
-    //  $display("data_out_valid_reg = %01x", dut.core.data_out_valid_reg);
-      $display("");
+    //  $display("data_in = %064x", dut.core.data_in);
+    ////  $display("data_out_valid_reg = %01x", dut.core.data_out_valid_reg);
+    //  $display("");
 
-      $display("qr0_a_prim = %08x, qr0_b_prim = %08x", dut.core.qr0_a_prim, dut.core.qr0_b_prim);
-      $display("qr0_c_prim = %08x, qr0_d_prim = %08x", dut.core.qr0_c_prim, dut.core.qr0_d_prim);
-      $display("");
+    //  $display("qr0_a_prim = %08x, qr0_b_prim = %08x", dut.core.qr0_a_prim, dut.core.qr0_b_prim);
+    //  $display("qr0_c_prim = %08x, qr0_d_prim = %08x", dut.core.qr0_c_prim, dut.core.qr0_d_prim);
+    //  $display("");
     end
   endtask // dump_core_state
 
@@ -800,14 +800,14 @@ module tb_chacha();
 
 
 
-initial begin
-    $display("*******in here*******");
+//initial begin
+//    $display("*******in here*******");
   
-    $monitor("tb_data_out=0x%0h",tb_data_out);
-//, expected=0x%0h
-        $display("*******in here*******");
+//    $monitor("tb_data_out=0x%0h",tb_data_out);
+////, expected=0x%0h
+//        $display("*******in here*******");
 
-end
+//end
 
 
 endmodule // tb_chacha

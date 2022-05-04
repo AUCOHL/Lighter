@@ -60,8 +60,6 @@ abc -D 1250 -liberty ../platform/sky130/sky130_hd.lib
 splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
-splitnets
-opt_clean -purge
 insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit
 opt;; 
@@ -89,13 +87,7 @@ hierarchy -check -top """
             + test
             + """
 
-#proc;
-#opt;; 
-#memory_collect
-#memory_map
-#opt;; 
-#techmap -map ../src/map_file.v;;
-#opt;; 
+
 reg_clock_gating ../src/map_file.v
 opt_clean -purge
 synth -top """
@@ -106,8 +98,6 @@ abc -D 1250 -liberty ../platform/sky130/sky130_hd.lib
 splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
-splitnets
-opt_clean -purge
 insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit
 flatten

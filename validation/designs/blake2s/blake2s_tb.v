@@ -168,29 +168,29 @@ end
       $display("DUT internal state at cycle: %08d", cycle_ctr);
       $display("-------------------------------------");
       if (display_dut_state) begin
-        $display("block 0 ... 3:   0x%08x 0x%08x 0x%08x 0x%08x",
-                 dut.\block_mem[0] , 
-                 dut.\block_mem[1] , dut.\block_mem[2] , dut.\block_mem[3] );
-        $display("block 4 ... 7:   0x%08x 0x%08x 0x%08x 0x%08x",
-                 dut.\block_mem[4] , dut.\block_mem[5] , dut.\block_mem[6] , dut.\block_mem[7] );
-        $display("block 8 ... 11:  0x%08x 0x%08x 0x%08x 0x%08x",
-                 dut.\block_mem[8] , dut.\block_mem[9] , dut.\block_mem[10] , dut.\block_mem[11] );
-        $display("block 12 ... 15: 0x%08x 0x%08x 0x%08x 0x%08x",
-                 dut.\block_mem[12] , dut.\block_mem[13] , dut.\block_mem[14] , dut.\block_mem[15] );
-        $display("");
+        //$display("block 0 ... 3:   0x%08x 0x%08x 0x%08x 0x%08x",
+        //         dut.\block_mem[0] , 
+        //         dut.\block_mem[1] , dut.\block_mem[2] , dut.\block_mem[3] );
+        //$display("block 4 ... 7:   0x%08x 0x%08x 0x%08x 0x%08x",
+        //         dut.\block_mem[4] , dut.\block_mem[5] , dut.\block_mem[6] , dut.\block_mem[7] );
+        //$display("block 8 ... 11:  0x%08x 0x%08x 0x%08x 0x%08x",
+        //         dut.\block_mem[8] , dut.\block_mem[9] , dut.\block_mem[10] , dut.\block_mem[11] );
+        //$display("block 12 ... 15: 0x%08x 0x%08x 0x%08x 0x%08x",
+        //         dut.\block_mem[12] , dut.\block_mem[13] , dut.\block_mem[14] , dut.\block_mem[15] );
+        //$display("");
 
       end
 
       if (display_core_state) begin
-        $display("Core internal state");
-        $display("-------------------");
-        $display("init:     0x%01x, update: 0x%01x, finish: 0x%01x", dut.core.init, dut.core.update, dut.core.finish);
-        $display("block M:  0x%064x", dut.core.block[511 : 256]);
-        $display("block L:  0x%064x", dut.core.block[255 : 000]);
-        $display("blocklen: 0x%02x", dut.core.blocklen);
-        $display("digest:   0x%064x", dut.core.digest);
-        $display("ready:    0x%01x", dut.core.ready);
-        $display("");
+        //$display("Core internal state");
+        //$display("-------------------");
+        //$display("init:     0x%01x, update: 0x%01x, finish: 0x%01x", dut.core.init, dut.core.update, dut.core.finish);
+        //$display("block M:  0x%064x", dut.core.block[511 : 256]);
+        //$display("block L:  0x%064x", dut.core.block[255 : 000]);
+        //$display("blocklen: 0x%02x", dut.core.blocklen);
+        //$display("digest:   0x%064x", dut.core.digest);
+        //$display("ready:    0x%01x", dut.core.ready);
+        //$display("");
         //$display("blake2s_ctrl_reg: 0x%02x, blake2s_ctrl_new: 0x%02x, blake2s_ctrl_we: 0x%01x",
         //         dut.core.blake2s_ctrl_reg, dut.core.blake2s_ctrl_new, dut.core.blake2s_ctrl_we);
         //$display("");
@@ -199,15 +199,15 @@ end
         //         dut.core.h_reg[0], dut.core.h_reg[1], dut.core.h_reg[2], dut.core.h_reg[3]);
         //$display("h4: 0x%08x, h5: 0x%08x, h6: 0x%08x, h7: 0x%08x",
         //         dut.core.h_reg[4], dut.core.h_reg[5], dut.core.h_reg[6], dut.core.h_reg[7]);
-        $display("");
-        $display("v0:  0x%08x, v1:  0x%08x, v2:  0x%08x, v3:  0x%08x",
-                 dut.core.\v_reg[0] , dut.core.\v_reg[1] , dut.core.\v_reg[2] , dut.core.\v_reg[3] );
-        $display("v4:  0x%08x, v5:  0x%08x, v6:  0x%08x, v7:  0x%08x",
-                dut.core.\v_reg[4] , dut.core.\v_reg[5] , dut.core.\v_reg[6] , dut.core.\v_reg[7] );
-        $display("v8:  0x%08x, v9:  0x%08x, v10: 0x%08x, v11: 0x%08x",
-                 dut.core.\v_reg[8] , dut.core.\v_reg[9] , dut.core.\v_reg[10] , dut.core.\v_reg[11] );
-        $display("v12: 0x%08x, v13: 0x%08x, v14: 0x%08x, v15: 0x%08x",
-                 dut.core.\v_reg[12] , dut.core.\v_reg[13] , dut.core.\v_reg[14] , dut.core.\v_reg[15] );
+        //$display("");
+        //$display("v0:  0x%08x, v1:  0x%08x, v2:  0x%08x, v3:  0x%08x",
+        //         dut.core.\v_reg[0] , dut.core.\v_reg[1] , dut.core.\v_reg[2] , dut.core.\v_reg[3] );
+        //$display("v4:  0x%08x, v5:  0x%08x, v6:  0x%08x, v7:  0x%08x",
+        //        dut.core.\v_reg[4] , dut.core.\v_reg[5] , dut.core.\v_reg[6] , dut.core.\v_reg[7] );
+        //$display("v8:  0x%08x, v9:  0x%08x, v10: 0x%08x, v11: 0x%08x",
+        //         dut.core.\v_reg[8] , dut.core.\v_reg[9] , dut.core.\v_reg[10] , dut.core.\v_reg[11] );
+        //$display("v12: 0x%08x, v13: 0x%08x, v14: 0x%08x, v15: 0x%08x",
+        //         dut.core.\v_reg[12] , dut.core.\v_reg[13] , dut.core.\v_reg[14] , dut.core.\v_reg[15] );
         //$display("init_v: 0x%1x, update_v: 0x%1x, v_we: 0x%1x", dut.core.init_v, dut.core.update_v, dut.core.v_we);
         //$display("");
 
@@ -228,12 +228,12 @@ end
         //         dut.core.v_new[12], dut.core.v_new[13], dut.core.v_new[14], dut.core.v_new[15]);
         //$display("");
 
-        $display("G_mode: 0x%1x, ", dut.core.G_mode);
-        $display("G0_m0: 0x%08x, G0_m1: 0x%08x, G1_m0: 0x%08x, G1_m1: 0x%08x",
-                 dut.core.G0_m0, dut.core.G0_m1, dut.core.G1_m0, dut.core.G1_m1);
-        $display("G2_m0: 0x%08x, G2_m1: 0x%08x, G3_m0: 0x%08x, G3_m1: 0x%08x",
-                 dut.core.G2_m0, dut.core.G2_m1, dut.core.G3_m0, dut.core.G3_m1);
-        $display("round_ctr_reg: 0x%02x, round_ctr_new: 0x%02x", dut.core.round_ctr_reg, dut.core.round_ctr_reg);
+        //$display("G_mode: 0x%1x, ", dut.core.G_mode);
+        //$display("G0_m0: 0x%08x, G0_m1: 0x%08x, G1_m0: 0x%08x, G1_m1: 0x%08x",
+        //         dut.core.G0_m0, dut.core.G0_m1, dut.core.G1_m0, dut.core.G1_m1);
+        //$display("G2_m0: 0x%08x, G2_m1: 0x%08x, G3_m0: 0x%08x, G3_m1: 0x%08x",
+        //         dut.core.G2_m0, dut.core.G2_m1, dut.core.G3_m0, dut.core.G3_m1);
+        //$display("round_ctr_reg: 0x%02x, round_ctr_new: 0x%02x", dut.core.round_ctr_reg, dut.core.round_ctr_reg);
         //$display("round_ctr_rst: 0x%1x, round_ctr_inc: 0x%1x, round_ctr_we: 0x%1x",
         //         dut.core.round_ctr_rst, dut.core.round_ctr_inc, dut.core.round_ctr_we);
       end // if (display_core_state)

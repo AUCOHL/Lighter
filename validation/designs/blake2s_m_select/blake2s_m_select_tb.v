@@ -135,18 +135,18 @@ module tb_blake2s_m_select();
     begin
       if (VERBOSE)
         begin
-          $display("");
-          $display("DUT internal state");
-          $display("------------------");
-          $display("contents of m:");
-          $display("0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x ",
-                   dut.\m_mem[0] , dut.\m_mem[1] , dut.\m_mem[2] , dut.\m_mem[3] ,
-                   dut.\m_mem[4] , dut.\m_mem[5] , dut.\m_mem[6] , dut.\m_mem[7] );
+        //  $display("");
+        //  $display("DUT internal state");
+        //  $display("------------------");
+        //  $display("contents of m:");
+        //  $display("0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x ",
+        //           dut.\m_mem[0] , dut.\m_mem[1] , dut.\m_mem[2] , dut.\m_mem[3] ,
+        //           dut.\m_mem[4] , dut.\m_mem[5] , dut.\m_mem[6] , dut.\m_mem[7] );
 
-          $display("0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x ",
-                   dut.\m_mem[8] ,  dut.\m_mem[9] ,  dut.\m_mem[10] , dut.\m_mem[11] ,
-                   dut.\m_mem[12] , dut.\m_mem[13] , dut.\m_mem[14] , dut.\m_mem[15] );
-          $display("");
+        //  $display("0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x ",
+        //           dut.\m_mem[8] ,  dut.\m_mem[9] ,  dut.\m_mem[10] , dut.\m_mem[11] ,
+        //           dut.\m_mem[12] , dut.\m_mem[13] , dut.\m_mem[14] , dut.\m_mem[15] );
+        //  $display("");
         end
     end
   endtask // dump_dut_state

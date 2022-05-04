@@ -37,7 +37,7 @@
 
 
 
-`include "sdesigns/blake2s_core/blake2s_core.v"
+`include "designs/blake2s_core/blake2s_core.v"
 
 
 module blake2s(
