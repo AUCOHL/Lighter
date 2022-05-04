@@ -108,23 +108,26 @@ states_leakage = [
 benchmarks = [
     [
         "Design",
-        "Clock Gates",
-        "Flipflops",
-        "Clock-gated Flipflops",
+        "# Cells before", 
+        "# Cells after",
+        "# Clock Gates",
+        "# Flipflops",
+        "# Clock-gated Flipflops",
         "Total power before (W)",
         "Total power after (W)",
         "Total power difference (W)",
-        "Percentage power reduction %",
-        "Percentage # Cells reduction %",
+        "Power reduction %",
+        "Cells reduction %",
     ],
 ]
 
 power_report_summary = [
     [
         "Design",
-        "Clock Gates",
-        "Percentage power reduction %",
-        "Percentage # Cells reduction %",
+        "# Cells",
+        "# Clock Gates",
+        "Power reduction %",
+        "Cells reduction %",
     ],
 ]
 
@@ -410,9 +413,12 @@ exit
     benchmarks.append(
         [
             benchmarks_input[j][0],
+            benchmarks_input[j][4],
+            benchmarks_input[j][5],
             benchmarks_input[j][1],
             benchmarks_input[j][2],
             benchmarks_input[j][3],
+
             str(before_power[3]),
             str(after_power[3]),
             str(before_power[3] - after_power[3]),
@@ -424,6 +430,7 @@ exit
     power_report_summary.append(
         [
             benchmarks_input[j][0],
+            benchmarks_input[j][4],
             benchmarks_input[j][1],
             str(((before_power[3] - after_power[3]) / before_power[3]) * 100) + " %",
             str(area_reduction) + " %",
