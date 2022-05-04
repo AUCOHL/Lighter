@@ -18,6 +18,7 @@
 import os
 import csv
 import numpy as np
+from pyrsistent import v
 
 
 states = [
@@ -183,6 +184,60 @@ def gate_percentage(filename):
         stats_list.append(x)
     return stats_list, ratio_list
 
+def parse_cg_power(filename1,filename2, filename4 ):
+    count = 0
+    f = open(filename1, "r+")
+    acc_internal = np.longdouble(0)
+    acc_switch = np.longdouble(0)
+    acc_leakage = np.longdouble(0)
+    acc_total = np.longdouble(0)
+    for line in f:
+        count += 1
+        if count > 3:
+            line = line[3:]
+            line = line.split("   ")
+            acc_internal += np.longdouble(line[0])
+            acc_switch += np.longdouble(line[1])
+            acc_leakage += np.longdouble(line[2])
+            x = line[3].split(" ")
+            acc_total += np.longdouble(x[0])
+    f.truncate(0)
+    f.close()
+
+
+    count = 0
+    f = open(filename2, "r+")
+    for line in f:
+        count += 1
+        if count > 3:
+            line = line[3:]
+            line = line.split("   ")
+            acc_internal += np.longdouble(line[0])
+            acc_switch += np.longdouble(line[1])
+            acc_leakage += np.longdouble(line[2])
+            x = line[3].split(" ")
+            acc_total += np.longdouble(x[0])
+    f.truncate(0)
+    f.close()
+
+    count = 0
+    f = open(filename4, "r+")
+    for line in f:
+        count += 1
+        if count > 3:
+            line = line[3:]
+            line = line.split("   ")
+            acc_internal += np.longdouble(line[0])
+            acc_switch += np.longdouble(line[1])
+            acc_leakage += np.longdouble(line[2])
+            x = line[3].split(" ")
+            acc_total += np.longdouble(x[0])
+    f.truncate(0)
+    f.close()
+    power_array = [acc_internal, acc_switch, acc_leakage, acc_total]
+    return power_array
+
+
 
 def parse_ff_power(filename):
     count = 0
@@ -279,12 +334,20 @@ create_clock -period $period $clk
 set_power_activity -global -activity 0.1
 report_power $design >>./stats/all_dump_stats_0_1_after.txt
 report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_0_1_after.txt
+report_power $design -instances [get_cells -filter "ref_name == sky130_fd_sc_hd__dlclkp_1"] >./stats/cg1_0_1_after.txt
+report_power $design -instances [get_cells -filter "ref_name == sky130_fd_sc_hd__dlclkp_2"] >./stats/cg2_0_1_after.txt
+report_power $design -instances [get_cells -filter "ref_name == sky130_fd_sc_hd__dlclkp_4"] >./stats/cg4_0_1_after.txt
 
 set_power_activity -global -activity 0.05
 report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_0_05_after.txt
 
 set_power_activity -global -activity 1.0
 report_power $design -instances [all_registers -cells] >>./stats/ff_dump_stats_1_0_after.txt
+
+report_power $design -instances [get_cells -filter "ref_name == sky130_fd_sc_hd__dlclkp_1"] >./stats/cg1_1_0_after.txt
+report_power $design -instances [get_cells -filter "ref_name == sky130_fd_sc_hd__dlclkp_2"] >./stats/cg2_1_0_after.txt
+report_power $design -instances [get_cells -filter "ref_name == sky130_fd_sc_hd__dlclkp_4"] >./stats/cg4_1_0_after.txt
+
 exit
 ##############################
             """
@@ -299,6 +362,11 @@ exit
 
     ff_0_1_after = parse_ff_power("./stats/ff_dump_stats_0_1_after.txt")
     ff_0_05_after = parse_ff_power("./stats/ff_dump_stats_0_05_after.txt")
+
+    cg1_0_1 = parse_cg_power("./stats/cg1_0_1_after.txt", "./stats/cg2_0_1_after.txt", "./stats/cg4_0_1_after.txt")
+    cg1_1_0 = parse_cg_power("./stats/cg1_1_0_after.txt", "./stats/cg2_1_0_after.txt", "./stats/cg4_1_0_after.txt")
+
+
 
     ff_0_05_after[0] = (ratio_list[j] * ff_0_05_after[0]) + (
         (1 - ratio_list[j]) * ff_1_0_after[0]
@@ -323,10 +391,10 @@ exit
     before_power.append(all_0_1_before[3] - ff_0_1_before[3] + ff_1_0_before[3])
     # print(before_power[3])
     after_power = list()
-    after_power.append(all_0_1_after[0] - ff_0_1_after[0] + ff_0_05_after[0])
-    after_power.append(all_0_1_after[1] - ff_0_1_after[1] + ff_0_05_after[1])
-    after_power.append(all_0_1_after[2] - ff_0_1_after[2] + ff_0_05_after[2])
-    after_power.append(all_0_1_after[3] - ff_0_1_after[3] + ff_0_05_after[3])
+    after_power.append(all_0_1_after[0] - ff_0_1_after[0] + ff_0_05_after[0] - cg1_0_1[0] + cg1_1_0[0])
+    after_power.append(all_0_1_after[1] - ff_0_1_after[1] + ff_0_05_after[1] - cg1_0_1[1] + cg1_1_0[1])
+    after_power.append(all_0_1_after[2] - ff_0_1_after[2] + ff_0_05_after[2] - cg1_0_1[2] + cg1_1_0[2])
+    after_power.append(all_0_1_after[3] - ff_0_1_after[3] + ff_0_05_after[3] - cg1_0_1[3] + cg1_1_0[3])
     # print(after_power[3])
     states.append(
         [
