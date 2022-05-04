@@ -49,7 +49,7 @@ This repo provides a script to be run by the Yosys software, and attached to it 
 
 You can find the installation steps in [dependencies.txt](https://github.com/kanndil/Lighter/blob/main/dependencies.txt) for:
 - [MacOs](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-MacOs)
-- [Linux](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For Linux)
+- [Linux](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-Linux)
 - [Windows-10](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-Windows-10)
 
 
