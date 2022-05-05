@@ -99,7 +99,7 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 
 
 # 🔬 Power reduction analysis
-|Design          |# Cells |# Clock Gates|Power reduction %      |Cells reduction %     |
+|Design          |# Cells |# Added Clock Gates|Power Reduction %      |# Cells Reduction %     |
 |----------------|--------|-------------|-----------------------|----------------------|
 |AHB_SRAM        |245     |7            |20.83%                 |25.71%                |
 |blake2s         |14225   |16           |9.91%                  |-0.20%                |
