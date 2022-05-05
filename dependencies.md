@@ -30,7 +30,7 @@ You can find the installation steps in [Yosys installation](https://github.com/k
 
 - Install OpenSTA  
 
-You can find the installation steps in [OpenSTA installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-opensta) section.
+You can find the installation steps in [OpenSTA installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-OpenSTA) section.
 
 
 <br/><br/>
@@ -55,13 +55,13 @@ You can find the installation steps in [OpenSTA installation](https://github.com
 
         pip3 install pandas
 
-- Install OpenSta  
+- Install OpenSTA  
 
         conda install -y -c litex-hub -c conda-forge openroad
 
     or
 
-    You can find the installation steps in [OpenSta installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-opensta) section.
+    You can find the installation steps in [OpenSTA installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-OpenSTA) section.
 
 <br/><br/>
 
@@ -88,9 +88,9 @@ You can find the installation steps in [Yosys installation](https://github.com/k
 
         pip3 install pandas
 
-- Install OpenSta  
+- Install OpenSTA  
 
-You can find the installation steps in [OpenSta installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-opensta) section.
+You can find the installation steps in [OpenSTA installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-OpenSTA) section.
 
 
 <br/><br/>
@@ -234,7 +234,7 @@ When building CUDD you may use the --prefix option to configure to install in a 
     make
     make install
 
-    cd <opensta>/build
+    cd <OpenSTA>/build
     cmake .. -DUSE_CUDD -DCUDD_DIR=$HOME/cudd
 The Zlib library is an optional. If CMake finds libz, OpenSTA can read Verilog, SDF, SPF, and SPEF files compressed with gzip.
 

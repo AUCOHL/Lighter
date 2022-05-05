@@ -1,8 +1,8 @@
 # Dynamic Power Analysis
 
-To evaluate the performance of this tool, the OpenSta API was used to calculate the dynamic power of the designs before and after clock gating, and produce a power reduction summary. 
+To evaluate the performance of this tool, the OpenSTA API was used to calculate the dynamic power of the designs before and after clock gating, and produce a power reduction summary. 
 
-To understand how OpenSta calculates the power, we experimented with the power reports using an inverter-driven flipflop, and we got the following results:
+To understand how OpenSTA calculates the power, we experimented with the power reports using an inverter-driven flipflop, and we got the following results:
 
 ### Flipflop power at activity factor 1.0:
 
@@ -33,7 +33,7 @@ These results show that the... (WIP)
 
 
 
-Since that OpenSta calculates the activity factors by propagation over the cells, and does not assign a 100% activity factor for flipflops nor recognizes clock gates activity factor contribution, we applied the following formula to get reasonable and accurate power reports:
+Since that OpenSTA calculates the activity factors by propagation over the cells, and does not assign a 100% activity factor for flipflops nor recognizes clock gates activity factor contribution, we applied the following formula to get reasonable and accurate power reports:
 
     Total power before clk_gating = (power of all cells at alpha(0.1)) - (flipflops power at alpha(0.1)) + (flipflops power at alpha(1.0))
 
