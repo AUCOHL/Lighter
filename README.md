@@ -25,8 +25,9 @@ Several techniques can be utilized to reduce dynamic power through reducing the 
 
 Typically, RTL synthesizer maps load-enabled registers to flip-flops and multiplexors (or to load-enabled flip-flops if the standard cell library has them). In both cases, the dynamic power is very high as the flip-flops are connected to the clock, which is the fastest signal in the design. Instead of circulating the register output back to its input when the load condition is false (typically using multiplexors), the register clock can be enabled only when the load condition is true. This reduces the switching activities, which leads to lower dynamic power and less area (due to the elimination of the multiplexors). The following figure illustrates the automatic clock gating for a single flip flop.
 
-<img src="docs/clock_gating.png" alt="clock gating illustration" width="600"/>
+<img src="docs/clock_gating.png" alt="clock gating illustration" width="500"/>
 
+Lighter is a Yosys plugin and technology mapping files that can perform automatic clock gating for registers to reduce the dynamic power. Currently, Lighter supports Sky130 HD library. The support for other Sky130 libraries as well as other open-source PDKs will be added shortly.
 
 ## File structure
 
@@ -117,9 +118,9 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 |y_quantizer     |8281    |16           |1.70%                  |1.92%                 |
 |zigzag          |3807    |65           |31.95%                 |58.21%                |
 
-<img src="https://user-images.githubusercontent.com/63082375/166848697-6acd0cf3-93b4-4ba3-9a82-6eae41880400.png" alt="power_summary" width="600"/>
+<img src="https://user-images.githubusercontent.com/63082375/166848697-6acd0cf3-93b4-4ba3-9a82-6eae41880400.png" alt="power_summary" width="650"/>
 
-<img src="https://user-images.githubusercontent.com/63082375/166848706-394ab70c-6274-4ef0-8844-dd2e66346708.png" alt="cells_summary" width="600"/>
+<img src="https://user-images.githubusercontent.com/63082375/166848706-394ab70c-6274-4ef0-8844-dd2e66346708.png" alt="cells_summary" width="650"/>
 
 
 Full benchmarking data can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md)
