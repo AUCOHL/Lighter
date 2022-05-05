@@ -25,6 +25,7 @@ Several techniques can be utilized to reduce dynamic power through reducing the 
 
 Typically, RTL synthesizer maps load-enabled registers to flip-flops and multiplexors (or to load-enabled flip-flops if the standard cell library has them). In both cases, the dynamic power is very high as the flip-flops are connected to the clock, which is the fastest signal in the design. Instead of circulating the register output back to its input when the load condition is false (typically using multiplexors), the register clock can be enabled only when the load condition is true. This reduces the switching activities, which leads to lower dynamic power and less area (due to the elimination of the multiplexors). The following figure illustrates the automatic clock gating for a single flip flop.
 
+<img src="docs/clock_gating.png" alt="clock gating illustration" width="600"/>
 
 
 ## File structure
