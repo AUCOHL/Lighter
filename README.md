@@ -1,4 +1,4 @@
-# Lighter
+# ❄️ Lighter ❄️
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) ![example workflow](https://github.com/kanndil/Lighter/actions/workflows/main.yml/badge.svg)
 [![code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -17,7 +17,7 @@ An automatic clock gating utility.
 * [Authors](https://github.com/kanndil/Lighter#authors)
 * [Copyright and Licensing](https://github.com/kanndil/Lighter#%EF%B8%8F-copyright-and-licensing)
 
-# Overview
+# 📖 Overview
 
 
 Clock gating is a technique used to reduce the dynamic power by reducing the activation factor of the flip-flops in the design significantly, correspondingly reducing their switching frequency, by adding a clock gate cell at the input of each register.
@@ -45,7 +45,7 @@ This repo provides a script to be run by the Yosys software, and attached to it 
 * [validation/](https://github.com/kanndil/Lighter/tree/main/validation) contains automatic validation python code for clock-gated designs
 
     
-# Dependencies
+# 🧱 Dependencies
 
 You can find the installation steps in [dependencies.md](https://github.com/kanndil/Lighter/blob/main/dependencies.md) for:
 - [MacOs](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-MacOs)
@@ -53,7 +53,7 @@ You can find the installation steps in [dependencies.md](https://github.com/kann
 - [Windows-10](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-Windows-10)
 
 
-# How to use
+# 🔍 How to use
 
 First make sure to follow the dependancies section to install all requirements. 
 
@@ -98,12 +98,12 @@ Or TCL synthesis script as follows:
 
 
 
-# How it works
+# 🧐 How it works 
 
 A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/how_does_it_work.md)
 
 
-# Power reduction analysis
+# 🔬 Power reduction analysis
 |Design          |# Cells |# Clock Gates|Power reduction %      |Cells reduction %     |
 |----------------|--------|-------------|-----------------------|----------------------|
 |AHB_SRAM        |245     |7            |20.83%                 |25.71%                |
