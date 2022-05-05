@@ -26,7 +26,7 @@ struct CLK_Gating_Pass : public Pass {
         {
             //   |---v---|---v---|---v---|---v---|---v---|---v---|---v---|---v---|---v---|---v---|
             log("\n");
-            log("     reg_clock_gating mapfile.v\n");
+            log("     reg_clock_gating CG_map_file.v\n");
             log("\n");
             log("This pass calls the following passes to perform technology mapping \n");
             log("of enabled flip_flops to clock-gated flipflops.\n");

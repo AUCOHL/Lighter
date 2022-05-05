@@ -82,13 +82,13 @@ read_verilog designs/"""
             + test
             + """.v
 read_liberty -lib -ignore_miss_dir -setattr blackbox ../platform/sky130/sky130_hd.lib 
-#read_verilog blackbox_clk_gates.v
+#read_verilog sky130_clkg_blackbox.v
 hierarchy -check -top """
             + test
             + """
 
 
-reg_clock_gating ../src/map_file.v
+reg_clock_gating ../src/sky130_ff_map.v
 opt_clean -purge
 synth -top """
             + test

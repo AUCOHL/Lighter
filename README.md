@@ -19,19 +19,19 @@ An automatic clock gating utility.
 
 # 📖 Overview
 
-
+<!--
 Clock gating is a technique used to reduce the dynamic power by reducing the activation factor of the flip-flops in the design significantly, correspondingly reducing their switching frequency, by adding a clock gate cell at the input of each register.
 
 The clock-gating problem is transformed into a graph problem with the help of Yosys RTLIL (register transfer level intermediate language), where the tool replaces all flipflops with enable inputs into clock-gated flipflops. 
 
 <!--//include clkgate image-->
 
-This is a technology generic automatic clock gating tool, that takes an RTL design and a technology specification Jason file, then auto creates and runs a Yosys synthesis script and a clock-gate map file. The tool produces, a clock-gated gate-level design along with power reduction reports. 
+<!--This is a technology generic automatic clock gating tool, that takes an RTL design and a technology specification Jason file, then auto creates and runs a Yosys synthesis script and a clock-gate map file. The tool produces, a clock-gated gate-level design along with power reduction reports. -->
 
 
 
 <!--// rephrase
-This repo provides a script to be run by the Yosys software, and attached to it is a map file that is used to map all flipflops with enable inputs into clock-gated flipflops. An auto-testing python code is also implemented to autotest and analyze the dynamic power reduction of the provided design.-->
+This repo provides a script to be run by the Yosys software, and attached to it is a map file that is used to map all flipflops with enable inputs into clock-gated flipflops. An auto-testing python code is also implemented to autotest and analyze the dynamic power reduction of the provided design.-->-->
 
 
 ## File structure
@@ -63,9 +63,9 @@ Generate the Yosys plugin using the following command:
 
 Add the following files to your project directory:
 
-- [blackbox_clk_gates.v](https://github.com/kanndil/Lighter/blob/main/src/blackbox_clk_gates.v)
+- [sky130_clkg_blackbox.v](https://github.com/kanndil/Lighter/blob/main/src/sky130_clkg_blackbox.v)
 
-- [map_file.v](https://github.com/kanndil/Lighter/blob/main/src/map_file.v)
+- [sky130_ff_map.v](https://github.com/kanndil/Lighter/blob/main/src/sky130_ff_maps.v)
 
 Add the flipflop clock gating command to your synthesis script:
 
@@ -76,9 +76,9 @@ Add the flipflop clock gating command to your synthesis script:
 For example:
 
     read_verilog design
-    read_verilog blackbox_clk_gates.v
+    read_verilog sky130_clkg_blackbox.v
     hierarchy -check
-    reg_clock_gating map_file.v
+    reg_clock_gating sky130_ff_map.v
     synth -top design
     dfflibmap -liberty lib/sky130_hd.lib 
     abc -D 1250 -liberty lib/sky130_hd.lib 
