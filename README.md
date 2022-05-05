@@ -118,9 +118,9 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 |y_quantizer     |8281    |16           |1.70%                  |1.92%                 |
 |zigzag          |3807    |65           |31.95%                 |58.21%                |
 
-<img src="https://user-images.githubusercontent.com/63082375/166848697-6acd0cf3-93b4-4ba3-9a82-6eae41880400.png" alt="power_summary" width="650"/>
+<img src="https://user-images.githubusercontent.com/63082375/166848697-6acd0cf3-93b4-4ba3-9a82-6eae41880400.png" alt="power_summary" width="750"/>
 
-<img src="https://user-images.githubusercontent.com/63082375/166848706-394ab70c-6274-4ef0-8844-dd2e66346708.png" alt="cells_summary" width="650"/>
+<img src="https://user-images.githubusercontent.com/63082375/166848706-394ab70c-6274-4ef0-8844-dd2e66346708.png" alt="cells_summary" width="750"/>
 
 
 Full benchmarking data can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md)
