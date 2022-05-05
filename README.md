@@ -65,7 +65,7 @@ Add the following files to your project directory:
 
 - [sky130_clkg_blackbox.v](https://github.com/kanndil/Lighter/blob/main/src/sky130_clkg_blackbox.v)
 
-- [sky130_ff_map.v](https://github.com/kanndil/Lighter/blob/main/src/sky130_ff_maps.v)
+- [sky130_ff_map.v](https://github.com/kanndil/Lighter/blob/main/src/sky130_ff_map.v)
 
 Add the flipflop clock gating command to your synthesis script:
 
