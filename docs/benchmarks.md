@@ -29,7 +29,7 @@ To understand how OpenSta calculates the power, we experimented with the power r
 |3.99e-06|1.94e-08 |8.78e-12|4.01e-06|
 
 
-These results show that the...
+These results show that the... (WIP)
 
 
 

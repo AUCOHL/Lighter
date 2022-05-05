@@ -48,7 +48,7 @@ This repo provides a script to be run by the Yosys software, and attached to it 
 # 🧱 Dependencies
 
 You can find the installation steps in [dependencies.md](https://github.com/kanndil/Lighter/blob/main/dependencies.md) for:
-- [MacOs](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-MacOs)
+- [macos](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-macos)
 - [Linux](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-Linux)
 - [Windows-10](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-Windows-10)
 
@@ -69,8 +69,8 @@ Add the following files to your project directory:
 
 Add the flipflop clock gating command to your synthesis script:
 
-    read_verilog blackbox_clk_gates.v
-    clock_gating map_file.v
+    read_verilog sky130_clkg_blackbox.v
+    reg_clock_gating sky130_ff_map.v
 
 
 For example:

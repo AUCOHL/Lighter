@@ -1,5 +1,5 @@
 
-# For MacOs
+# For macos
 
 ## Install python3.6+
 - get homebrew
@@ -28,9 +28,9 @@ You can find the installation steps in [Yosys installation](https://github.com/k
 
         pip3 install pandas
 
-- Install OpenSta  
+- Install OpenSTA  
 
-You can find the installation steps in [OpenSta installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-opensta) section.
+You can find the installation steps in [OpenSTA installation](https://github.com/kanndil/Lighter/blob/main/dependencies.md#installing-opensta) section.
 
 
 <br/><br/>
@@ -272,6 +272,12 @@ If you make changes to CMakeLists.txt you may need to clean out existing CMake c
 <br/><br/>
 
 ## Dependancies references
+
+
+
+<!-- check links for installation 
+
+and remove the copied steps -->
 
 https://github.com/YosysHQ/yosys
 
