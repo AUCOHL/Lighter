@@ -27,7 +27,7 @@ Typically, RTL synthesizer maps load-enabled registers to flip-flops and multipl
 
 <img src="docs/clock_gating.png" alt="clock gating illustration" width="500"/>
 
-Lighter is a Yosys plugin and technology mapping files that can perform automatic clock gating for registers to reduce the dynamic power. Currently, Lighter supports Sky130 HD library. The support for other Sky130 libraries as well as other open-source PDKs will be added shortly. Experiments results showed significat power and area savings. Check the results [here](https://github.com/kanndil/Lighte/#-Power-reduction-analysis).
+Lighter is a Yosys plugin and technology mapping files that can perform automatic clock gating for registers to reduce the dynamic power. Currently, Lighter supports Sky130 HD library. The support for other Sky130 libraries as well as other open-source PDKs will be added shortly. Experiments results showed significat power and area savings. Check the results [here](https://github.com/kanndil/Lighter#-power-reduction-analysis)
 
 ## File structure
 
