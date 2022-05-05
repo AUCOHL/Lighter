@@ -12,10 +12,10 @@ An automatic clock gating utility.
 * [File structure](https://github.com/kanndil/Lighter#file-structure)
 * [Dependencies](https://github.com/kanndil/Lighter#Dependencies)
 * [How to use](https://github.com/kanndil/Lighter#how-to-use)
-* [How it works](https://github.com/kanndil/Lighter#how-does-it-work)
+* [How it works](https://github.com/kanndil/Lighter#how-it-works)
 * [Power reduction analysis](https://github.com/kanndil/Lighter#power-reduction-analysis)
 * [Authors](https://github.com/kanndil/Lighter#authors)
-* [Copyright and Licensing](https://github.com/kanndil/Lighter#copyright-and-licensing)
+* [Copyright and Licensing](https://github.com/kanndil/Lighter#%EF%B8%8F-copyright-and-licensing)
 
 # Overview
 
@@ -123,7 +123,7 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 |y_quantizer     |8281    |16           |1.70%                  |1.92%                 |
 |zigzag          |3807    |65           |31.95%                 |58.21%                |
 
-Full benchmarking data be found [here](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md)
+Full benchmarking data can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md)
 
 # Authors
 
