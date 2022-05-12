@@ -85,11 +85,11 @@ For example:
 
 Run your Yosys synthesis script as follows:
 
-    yosys -m cg_plugin.so -p your_script.ys
+    yosys -m cg_plugin.so your_script.ys
 
 Or TCL synthesis script as follows:
 
-    yosys -m cg_plugin.so -p your_script.tcl
+    yosys -m cg_plugin.so your_script.tcl
 
 
 
