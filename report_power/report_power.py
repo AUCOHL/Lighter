@@ -297,7 +297,7 @@ for test in dir_list:
 
         f.write(
             '''
-read_liberty ../platform/sky130/sky130_hd.lib
+read_liberty ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib
 ##############################
 ##############################
 puts "'''

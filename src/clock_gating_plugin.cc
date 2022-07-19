@@ -17,7 +17,7 @@
 #include "kernel/yosys.h" 
 
 USING_YOSYS_NAMESPACE
-
+#include <iostream>
 struct CLK_Gating_Pass : public Pass {
 
     CLK_Gating_Pass() : Pass("reg_clock_gating", "perform flipflop clock gating") { }
@@ -26,7 +26,23 @@ struct CLK_Gating_Pass : public Pass {
         {
             //   |---v---|---v---|---v---|---v---|---v---|---v---|---v---|---v---|---v---|---v---|
             log("\n");
-            log("     reg_clock_gating CG_map_file.v\n");
+            log("     reg_clock_gating [-map CG_map_filename] [selection]\n");
+            log("\n");
+            log("\n");
+            log("    -map filename\n");
+            log("        the mapfile for clock gating cells implementations to be used.\n");
+            log("        maps from enable-flipflops to clock gated flipflops.\n");
+            log("        without this parameter a builtin library is used that\n");
+            log("        transforms the internal RTL cells to the internal gate\n");
+            log("        library.\n");
+            log("        check techmap command for mare details.\n");
+            log("     selection\n");
+            log("        this option is used to specify the flipflops to be clockgated.\n");
+            log("        for example:.\n");
+            log("        put the following attribute in you design: \n");
+            log("        (* clock gating *).\n");
+            log("        and use the following command: .\n");
+            log("        reg_clock_gating -map CG_map_filename.v a:clock_gate.\n");
             log("\n");
             log("This pass calls the following passes to perform technology mapping \n");
             log("of enabled flip_flops to clock-gated flipflops.\n");
@@ -36,7 +52,7 @@ struct CLK_Gating_Pass : public Pass {
             log("    memory_collect\n");
             log("    memory_map\n");
             log("    opt;; \n");
-            log("    techmap -map\n");
+            log("    techmap -map [-map CG_map_filename] [selection]\n");
             log("    opt;;\n");
             log("\n");
         }
@@ -45,29 +61,63 @@ struct CLK_Gating_Pass : public Pass {
     {
 
 
-        if (args.size() < 2) {
+
+        if (args.size() < 2) 
+        {
             log_error("Incorrect number of arguments");
             log_error("Clock gating map file is required");         
         }
-        else {
 
-            log_header(design, "Executing Clock gating pass.\n");
-            log_push();
-            Pass::call(design, "proc");
-            Pass::call(design, "opt;;");
-            Pass::call(design, "memory_collect");
-            Pass::call(design, "memory_map;;");
-            Pass::call(design, "opt;;");
-        
-            Pass::call(design, "techmap -map " + args[1]);
-            Pass::call(design, "opt;;");
+		string map_file="";
 
-            design->optimize();
-            design->sort();
-            design->check();
-
-            log_header(design, "Finished Clock gating pass.\n");
-            log_pop();
+		size_t argidx;
+		for (argidx = 1; argidx < args.size(); argidx++) {
+			if (args[argidx] == "-map" && argidx+1 < args.size()) {
+				map_file= args[++argidx];
+				continue;
+			}
+			break;
+		}
+        int x=0;
+        std::stringstream ss;
+        for(unsigned long i = argidx; i < args.size(); i++)
+        {
+            if(x != 0)
+                ss << " ";
+            ss << args[i];
+            x++;
         }
+        std::string s = ss.str();
+        //args.push_back(s);
+        std::cout<<s<<"\n";
+        log(" in here 1");
+        //std::cout<<args[argidx]<<"\n";
+		//extra_args(args, argidx, design, 0);	
+        //select_stmt(design, args[argidx]);
+       
+
+
+        //std::cout<<design->selection_stack<<"\n";
+        //log(design.selection_stack);
+        log_header(design, "Executing Clock gating pass.\n");
+        log_push();
+
+        Pass::call(design, "proc");
+        Pass::call(design, "opt;;");
+        Pass::call(design, "memory_collect");
+        Pass::call(design, "memory_map;;");
+        Pass::call(design, "opt;;");
+
+        log(" in here 2\n\n");
+        Pass::call(design, "select -list " + s);
+        Pass::call(design, "techmap -map " + map_file+ " "+s);
+        Pass::call(design, "opt;;");
+
+        design->optimize();
+        design->sort();
+        design->check();
+
+        log_header(design, "Finished Clock gating pass.\n");
+        log_pop();
     }
 } CLK_Gating_Pass;

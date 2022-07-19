@@ -11,4 +11,7 @@
 *.plist
 *_before.txt
 *_after.txt
-
+*techmap_attribute
+sky130_fd_sc_ls
+sky130_fd_sc_lp
+.vscode

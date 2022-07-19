@@ -70,7 +70,7 @@ read_verilog ../designs/"""
             + """/"""
             + test
             + """.v
-read_liberty -lib -ignore_miss_dir -setattr blackbox ../platform/sky130/sky130_hd.lib 
+read_liberty -lib -ignore_miss_dir -setattr blackbox ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
 hierarchy -check -top """
             + test
             + """
@@ -84,8 +84,8 @@ opt_clean -purge
 synth -top """
             + test
             + """
-dfflibmap -liberty ../platform/sky130/sky130_hd.lib 
-abc -D 1250 -liberty ../platform/sky130/sky130_hd.lib 
+dfflibmap -liberty ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
+abc -D 1250 -liberty ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
 splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
@@ -102,7 +102,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   ../designs/"""
             """
         )
 
-    os.system("yosys ./synth.ys")
+    #os.system("yosys ./synth.ys")
 
     with open("./synth2.ys", "w") as f:
 
@@ -113,19 +113,19 @@ read_verilog ../designs/"""
             + """/"""
             + test
             + """.v
-read_liberty -lib -ignore_miss_dir -setattr blackbox ../platform/sky130/sky130_hd.lib 
+read_liberty -lib -ignore_miss_dir -setattr blackbox ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
 #read_verilog sky130_clkg_blackbox.v
 hierarchy -check -top """
             + test
             + """
 
-reg_clock_gating sky130_ff_map.v
+reg_clock_gating ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd_ff_map.v
 opt_clean -purge
 synth -top """
             + test
             + """
-dfflibmap -liberty ../platform/sky130/sky130_hd.lib 
-abc -D 1250 -liberty ../platform/sky130/sky130_hd.lib 
+dfflibmap -liberty ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
+abc -D 1250 -liberty ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
 splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
@@ -135,7 +135,7 @@ insbuf -buf sky130_fd_sc_hd__buf_2 A X
 dffinit
 flatten
 opt;; 
-check
+#check
 write_verilog -noattr -noexpr -nohex -nodec -defparam   ../designs/"""
             + test
             + """/after_gl.v
@@ -181,8 +181,8 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   ../designs/"""
     ]
     states.append(row)
 
-f = open("../report_power/stats/stats_cells_file.csv", "w")
-writer = csv.writer(f)
-for row in states:
-    writer.writerow(row)
-f.close()
+#f = open("../report_power/stats/stats_cells_file.csv", "w")
+#writer = csv.writer(f)
+#for row in states:
+#    writer.writerow(row)
+#f.close()

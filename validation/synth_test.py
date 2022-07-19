@@ -55,8 +55,8 @@ opt;;
 synth -top """
             + test
             + """
-dfflibmap -liberty ../platform/sky130/sky130_hd.lib 
-abc -D 1250 -liberty ../platform/sky130/sky130_hd.lib 
+dfflibmap -liberty ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
+abc -D 1250 -liberty ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
 splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
@@ -81,20 +81,20 @@ read_verilog designs/"""
             + """/"""
             + test
             + """.v
-read_liberty -lib -ignore_miss_dir -setattr blackbox ../platform/sky130/sky130_hd.lib 
-#read_verilog sky130_clkg_blackbox.v
+read_liberty -lib -ignore_miss_dir -setattr blackbox ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
+#read_verilog ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd_clkg_blackbox.v
 hierarchy -check -top """
             + test
             + """
 
 
-reg_clock_gating ../src/sky130_ff_map.v
+reg_clock_gating ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd_ff_map.v
 opt_clean -purge
 synth -top """
             + test
             + """
-dfflibmap -liberty ../platform/sky130/sky130_hd.lib 
-abc -D 1250 -liberty ../platform/sky130/sky130_hd.lib 
+dfflibmap -liberty ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
+abc -D 1250 -liberty ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
 splitnets
 opt_clean -purge
 hilomap -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
