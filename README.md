@@ -50,6 +50,8 @@ You can find the installation steps in [dependencies.md](https://github.com/kann
 
 # 🔍 How to use
 
+## Option one
+
 First make sure to follow the dependancies section to install all requirements. 
 
 Generate the Yosys plugin using the following command:
@@ -67,13 +69,16 @@ Add the flipflop clock gating command to your synthesis script:
     read_verilog sky130_clkg_blackbox.v
     reg_clock_gating sky130_ff_map.v
 
+ 
+* Check the [platform](https://github.com/kanndil/Lighter/blob/main/platform.v) directory to find the files for your standard cell library
+    * Sky130 libraries are supported
 
 For example:
 
     read_verilog design
     read_verilog sky130_clkg_blackbox.v
     hierarchy -check
-    reg_clock_gating sky130_ff_map.v
+    reg_clock_gating -map sky130_ff_map.v
     synth -top design
     dfflibmap -liberty lib/sky130_hd.lib 
     abc -D 1250 -liberty lib/sky130_hd.lib 
@@ -92,7 +97,43 @@ Or TCL synthesis script as follows:
     yosys -m cg_plugin.so your_script.tcl
 
 
+## Option two 
 
+
+Follow the same steps above for generating the Yosys plugin and adding the library files. 
+
+you can use the selection option to specify the flipflops you want to map in the clock gating step by doing the following:
+
+* You need to add an attribute (pragma) to the module intended (inside the module declaration), for example:
+
+        module test (...);
+        (* clock_gate *)
+        ...
+        ...
+        endmodule
+
+
+* Then add the attribute to the clock gating command as a selection like:
+
+        reg_clock_gating -map sky130_hd_ff_map.v a:clock_gate
+
+
+
+For example:
+
+    read_verilog design
+    read_verilog sky130_clkg_blackbox.v
+    hierarchy -check
+    reg_clock_gating -map sky130_hd_ff_map.v a:clock_gate
+    synth -top design
+    dfflibmap -liberty lib/sky130_hd.lib 
+    abc -D 1250 -liberty lib/sky130_hd.lib 
+    splitnets
+    opt_clean -purge
+    opt;; 
+    write_verilog -noattr -noexpr -nohex -nodec -defparam  design.gl.v
+
+    
 # 🧐 How it works 
 
 A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/how_does_it_work.md)
