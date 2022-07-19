@@ -70,7 +70,7 @@ Add the flipflop clock gating command to your synthesis script:
     reg_clock_gating sky130_ff_map.v
 
  
-* Check the [platform](https://github.com/kanndil/Lighter/blob/main/platform.v) directory to find the files for your standard cell library
+* Check the [platform](https://github.com/AUCOHL/Lighter/tree/main/platform) directory to find the files for your standard cell library
     * Sky130 libraries are supported
 
 For example:
