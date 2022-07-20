@@ -18,7 +18,6 @@
 import os
 import csv
 import numpy as np
-from pyrsistent import v
 
 
 states = [
@@ -249,7 +248,7 @@ def parse_ff_power(filename):
     for line in f:
         count += 1
         if count > 3:
-
+            
             line = line[3:]
             line = line.split("   ")
             # print(line)
@@ -353,7 +352,12 @@ exit
             """
         )
     f.close()
-    os.system("/Users/youssef/OpenSTA/app/sta -no_splash ./power_report.tcl")
+    
+    get_yosys_path = os.popen("which yosys")
+    yosys_path = get_yosys_path.read()
+    
+    
+    os.system("/usr/local/OpenSTA/app/sta -no_splash ./power_report.tcl")
 
     ff_0_1_before = parse_ff_power("./stats/ff_dump_stats_0_1_before.txt")
 
