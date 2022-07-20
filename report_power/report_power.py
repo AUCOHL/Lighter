@@ -530,14 +530,14 @@ for row in states_leakage:
     writer.writerow(row)
 f.close()
 
-f = open("../benchmarks.csv", "w")
+f = open("../stats/benchmarks.csv", "w")
 writer = csv.writer(f)
 for row in benchmarks:
     writer.writerow(row)
 f.close()
 
 
-f = open("../power_report_summary.csv", "w")
+f = open("../stats/power_report_summary.csv", "w")
 writer = csv.writer(f)
 for row in power_report_summary:
     writer.writerow(row)
