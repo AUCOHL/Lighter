@@ -15,3 +15,5 @@
 sky130_fd_sc_ls
 sky130_fd_sc_lp
 .vscode
+test_sta_commands
+report_power_old.py
