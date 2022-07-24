@@ -25,7 +25,7 @@ Several techniques can be utilized to reduce dynamic power through reducing the 
 
 Typically, RTL synthesizer maps load-enabled registers to flip-flops and multiplexors (or to load-enabled flip-flops if the standard cell library has them). In both cases, the dynamic power is very high as the flip-flops are connected to the clock, which is the fastest signal in the design. Instead of circulating the register output back to its input when the load condition is false (typically using multiplexors), the register clock can be enabled only when the load condition is true. This reduces the switching activities, which leads to lower dynamic power and less area (due to the elimination of the multiplexors). The following figure illustrates the automatic clock gating for a single flip flop.
 
-<img src="docs/clock_gating.png" alt="clock gating illustration" width="500"/>
+<img src="https://github.com/AUCOHL/Lighter/blob/main/docs/diagrams/clock_gating.png" width="500"/>
 
 Lighter is a Yosys plugin and technology mapping files that can perform automatic clock gating for registers to reduce the dynamic power. Currently, Lighter supports Sky130 HD library. The support for other Sky130 libraries as well as other open-source PDKs will be added shortly. Experiments results showed significat power and area savings. Check the results [here](https://github.com/kanndil/Lighter#-power-reduction-analysis)
 
@@ -140,28 +140,29 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 
 
 # 🔬 Power reduction analysis
-|Design          |# Cells |# Added Clock Gates|Power Reduction %      |# Cells Reduction %     |
-|----------------|--------|-------------|-----------------------|----------------------|
-|AHB_SRAM        |245     |7            |20.83%                 |25.71%                |
-|blake2s         |14225   |16           |9.91%                  |-0.20%                |
-|chacha          |12857   |26           |14.93%                 |-0.19%                |
-|genericfir      |143703  |128          |4.01%                  |-0.98%                |
-|i2c_master      |759     |21           |12.68%                 |10.41%                |
-|jpeg_encoder    |63757   |388          |30.26%                 |11.83%                |
-|ldpcenc         |19947   |28           |45.05%                 |6.19%                 |
-|NfiVe32_RF      |3362    |32           |30.46%                 |30.58%                |
-|picorv32a       |14348   |85           |20.90%                 |12.02%                |
-|PPU             |10156   |405          |19.96%                 |32.55%                |
-|prv32_cpu       |2186    |10           |28.45%                 |23.97%                |
-|rf_64x64        |13461   |64           |32.02%                 |31.97%                |
-|sha512          |20240   |74           |30.21%                 |12.82%                |
-|spi_master      |179     |8            |10.64%                 |18.99%                |
-|y_quantizer     |8281    |16           |1.70%                  |1.92%                 |
-|zigzag          |3807    |65           |31.95%                 |58.21%                |
+|Design          |# Cells|# Added Clock Gates|Power reduction %|# Cells reduction %|
+|----------------|-------|-------------------|-----------------|-------------------|
+|AHB_SRAM        |245    |47                 |17.29%           |25.71%             |
+|blake2s         |14225  |512                |5.65%            |-0.20%             |
+|chacha          |12857  |832                |13.49%           |-0.19%             |
+|genericfir      |143703 |1536               |7.57%            |-0.98%             |
+|i2c_master      |759    |106                |12.97%           |10.41%             |
+|jpeg_encoder    |63757  |4637               |30.26%           |11.83%             |
+|ldpcenc         |19947  |1273               |17.65%           |6.19%              |
+|NfiVe32_RF      |3362   |1024               |30.46%           |30.58%             |
+|picorv32a       |14348  |1011               |22.31%           |12.02%             |
+|PPU             |10156  |2824               |19.62%           |32.55%             |
+|prv32_cpu       |2186   |207                |28.63%           |23.97%             |
+|rf_64x64        |13461  |4096               |32.02%           |31.97%             |
+|sha512          |20240  |3669               |30.22%           |12.82%             |
+|spi_master      |179    |43                 |8.45%            |18.99%             |
+|y_quantizer     |8281   |176                |1.06%            |1.92%              |
+|zigzag          |3807   |769                |31.95%           |58.21%             |
 
-<img src="https://user-images.githubusercontent.com/63082375/166848697-6acd0cf3-93b4-4ba3-9a82-6eae41880400.png" alt="power_summary" width="750"/>
 
-<img src="https://user-images.githubusercontent.com/63082375/166848706-394ab70c-6274-4ef0-8844-dd2e66346708.png" alt="cells_summary" width="750"/>
+<img src="https://github.com/AUCOHL/Lighter/blob/main/docs/diagrams/power_reduction_summary.png" alt="power_summary" width="750"/>
+
+<img src="https://github.com/AUCOHL/Lighter/blob/main/docs/diagrams/area_reduction_summary.png" alt="cells_summary" width="750"/>
 
 
 Full benchmarking data can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md)
