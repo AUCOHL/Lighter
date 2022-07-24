@@ -47,8 +47,6 @@ designs = [
 ]
 
 
-
-
 cell_states = [
     [
         "module",
@@ -78,7 +76,7 @@ states = [
 ]
 
 # removed temporarily
-#states_internal = [
+# states_internal = [
 #    [
 #        "module",
 #        "all cells Internal before at 0.1",
@@ -98,10 +96,10 @@ states = [
 #        "total power difference",
 #        "percentage reduction",
 #    ],
-#]
+# ]
 
 # removed temporarily
-#states_switching = [
+# states_switching = [
 #    [
 #        "module",
 #        "all cells switching before at 0.1",
@@ -121,10 +119,10 @@ states = [
 #        "total power difference",
 #        "percentage reduction",
 #    ],
-#]
+# ]
 
 # removed temporarily
-#states_leakage = [
+# states_leakage = [
 #    [
 #        "module",
 #        "all cells leakage before at 0.1",
@@ -144,7 +142,7 @@ states = [
 #        "total power difference",
 #        "percentage reduction",
 #    ],
-#]
+# ]
 
 benchmarks = [
     [
@@ -158,7 +156,7 @@ benchmarks = [
         "Total power after (W)",
         "Total power difference (W)",
         "Power reduction %",
-        "Cells reduction %",
+        "# Cells reduction %",
     ],
 ]
 
@@ -166,24 +164,25 @@ power_report_summary = [
     [
         "Design",
         "# Cells",
-        "# Clock Gates",
+        "# Added Clock Gates",
         "Power reduction %",
-        "Cells reduction %",
+        "# Cells reduction %",
     ],
 ]
 
-class Design_Data  :
-    
-    def __init__(self,
-                 design,
-                 clk_gates_no,
-                 flipflops_no,
-                 icg_flipflops_no,
-                 cells_before_no,
-                 cells_after_no,
-                 cell_diff
-                 ):
-        
+
+class Design_Data:
+    def __init__(
+        self,
+        design,
+        clk_gates_no,
+        flipflops_no,
+        icg_flipflops_no,
+        cells_before_no,
+        cells_after_no,
+        cell_diff,
+    ):
+
         self.design = design
         self.clk_gates_no = clk_gates_no
         self.flipflops_no = flipflops_no
@@ -191,7 +190,7 @@ class Design_Data  :
         self.cells_before_no = cells_before_no
         self.cells_after_no = cells_after_no
         self.cell_diff = cell_diff
-  
+
 
 def parse_cell_collection_power_report(file_Path):
     count = 0
@@ -224,7 +223,7 @@ def parse_all_cells_power_report(file_Path):
     acc_switch = np.longdouble(0)
     acc_leakage = np.longdouble(0)
     acc_total = np.longdouble(0)
-    
+
     for line in f:
         if "Total                  " in line:
             x = line.split("Total                  ")
@@ -239,13 +238,12 @@ def parse_all_cells_power_report(file_Path):
     power_array = [acc_internal, acc_switch, acc_leakage, acc_total]
     f.truncate(0)
     f.close()
-        
+
     return power_array
 
 
-
 def get_cells_stats(design):
-        
+
     cells_before = os.popen(
         "grep sky130_fd_sc_hd ../designs/" + design + "/before_gl.v | wc -l"
     )
@@ -280,22 +278,21 @@ def get_cells_stats(design):
         icg_flipflops_no,
         cells_before_no,
         cells_after_no,
-        cell_diff
+        cell_diff,
     ]
-    design_data = Design_Data(  design,
-                                clk_gates_no,
-                                flipflops_no,
-                                icg_flipflops_no,
-                                cells_before_no,
-                                cells_after_no,
-                                cell_diff
-                                )
-    
-    cell_states.append(row)  
-        
+    design_data = Design_Data(
+        design,
+        clk_gates_no,
+        flipflops_no,
+        icg_flipflops_no,
+        cells_before_no,
+        cells_after_no,
+        cell_diff,
+    )
+
+    cell_states.append(row)
+
     return design_data
-
-
 
 
 for design in designs:
@@ -385,8 +382,8 @@ exit
     f.close()
 
     os.system("/usr/local/OpenSTA/app/sta -no_splash ./power_report.tcl")
-    
-    # first lets grep for the designs and get their stats 
+
+    # first lets grep for the designs and get their stats
     design_data = get_cells_stats(design[0])
 
     # lets parse the complete power reports at
@@ -706,34 +703,50 @@ exit
     # )
 
     ###########################################
-    
-    area_reduction = - float(design_data.cell_diff) / float(design_data.cells_before_no) * 100
+
+    area_reduction = (
+        -float(design_data.cell_diff) / float(design_data.cells_before_no) * 100
+    )
     benchmarks.append(
-       [
-           design_data.design,
-           design_data.cells_before_no,
-           design_data.cells_after_no,
-           design_data.clk_gates_no,
-           design_data.cells_after_no,
-           design_data.icg_flipflops_no,
-           str(power_before_clock_gating[3]),
-           str(power_after_clock_gating[3]),
-           str(power_before_clock_gating[3] - power_after_clock_gating[3]),
-           str(((power_before_clock_gating[3] - power_after_clock_gating[3]) / power_before_clock_gating[3]) * 100) + " %",
-           str(area_reduction) + " %",
-       ]
+        [
+            design_data.design,
+            design_data.cells_before_no,
+            design_data.cells_after_no,
+            design_data.clk_gates_no,
+            design_data.cells_after_no,
+            design_data.icg_flipflops_no,
+            str(power_before_clock_gating[3]),
+            str(power_after_clock_gating[3]),
+            str(power_before_clock_gating[3] - power_after_clock_gating[3]),
+            str(
+                (
+                    (power_before_clock_gating[3] - power_after_clock_gating[3])
+                    / power_before_clock_gating[3]
+                )
+                * 100
+            )
+            + " %",
+            str(area_reduction) + " %",
+        ]
     )
 
     ############################################
 
     power_report_summary.append(
-       [
-           design_data.design,
-           design_data.cells_before_no,
-           design_data.icg_flipflops_no,
-           str(((power_before_clock_gating[3] - power_after_clock_gating[3]) / power_before_clock_gating[3]) * 100) + " %",
-           str(area_reduction) + " %",
-       ]
+        [
+            design_data.design,
+            design_data.cells_before_no,
+            design_data.icg_flipflops_no,
+            str(
+                (
+                    (power_before_clock_gating[3] - power_after_clock_gating[3])
+                    / power_before_clock_gating[3]
+                )
+                * 100
+            )
+            + " %",
+            str(area_reduction) + " %",
+        ]
     )
 
     ############################################
@@ -766,14 +779,14 @@ f.close()
 f = open("../stats/benchmarks.csv", "w")
 writer = csv.writer(f)
 for row in benchmarks:
-   writer.writerow(row)
+    writer.writerow(row)
 f.close()
 
 
 f = open("../stats/power_report_summary.csv", "w")
 writer = csv.writer(f)
 for row in power_report_summary:
-   writer.writerow(row)
+    writer.writerow(row)
 f.close()
 
 
