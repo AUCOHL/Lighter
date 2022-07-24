@@ -9,8 +9,7 @@
 *.d
 *_gl.v
 *.plist
-*_before.txt
-*_after.txt
+*/stats/*.txt
 *techmap_attribute
 sky130_fd_sc_ls
 sky130_fd_sc_lp
