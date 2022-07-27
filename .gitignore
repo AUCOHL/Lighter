@@ -5,7 +5,7 @@
 *.vvp
 *.tcl
 *.ys
-*.so
+*.so*
 *.d
 *_gl.v
 *.plist
@@ -15,3 +15,4 @@ sky130_fd_sc_ls
 sky130_fd_sc_lp
 .vscode
 report_power_old.py
+*.xlsx

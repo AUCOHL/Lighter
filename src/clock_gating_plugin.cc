@@ -20,7 +20,7 @@ USING_YOSYS_NAMESPACE
 #include <iostream>
 struct CLK_Gating_Pass : public Pass {
 
-    CLK_Gating_Pass() : Pass("reg_clock_gating", "perform flipflop clock gating") { }
+    CLK_Gating_Pass() : Pass("reg_clock_gating", "performs flipflop clock gating") { }
 
     void help() override
         {
@@ -60,45 +60,35 @@ struct CLK_Gating_Pass : public Pass {
     virtual void execute(std::vector<std::string> args, RTLIL::Design *design) 
     {
 
-
-
         if (args.size() < 2) 
         {
-            log_error("Incorrect number of arguments");
-            log_error("Clock gating map file is required");         
+            log_error("Incorrect number of arguments \nClock gating map file is required \n");         
         }
 
 		string map_file="";
 
 		size_t argidx;
 		for (argidx = 1; argidx < args.size(); argidx++) {
-			if (args[argidx] == "-map" && argidx+1 < args.size()) {
-				map_file= args[++argidx];
+			if (args[argidx] == "-map" && argidx + 1 < args.size()) {
+				map_file = args[++argidx];
 				continue;
 			}
 			break;
 		}
         int x=0;
-        std::stringstream ss;
+        std::stringstream selection_string_stream;
         for(unsigned long i = argidx; i < args.size(); i++)
         {
             if(x != 0)
-                ss << " ";
-            ss << args[i];
+                selection_string_stream << " ";
+            selection_string_stream << args[i];
             x++;
         }
-        std::string s = ss.str();
-        //args.push_back(s);
-        std::cout<<s<<"\n";
-        log(" in here 1");
-        //std::cout<<args[argidx]<<"\n";
-		//extra_args(args, argidx, design, 0);	
-        //select_stmt(design, args[argidx]);
-       
+        std::string selection = selection_string_stream.str();
+
+        std::cout << selection << "\n";
 
 
-        //std::cout<<design->selection_stack<<"\n";
-        //log(design.selection_stack);
         log_header(design, "Executing Clock gating pass.\n");
         log_push();
 
@@ -108,9 +98,7 @@ struct CLK_Gating_Pass : public Pass {
         Pass::call(design, "memory_map;;");
         Pass::call(design, "opt;;");
 
-        log(" in here 2\n\n");
-        Pass::call(design, "select -list " + s);
-        Pass::call(design, "techmap -map " + map_file+ " "+s);
+        Pass::call(design, "techmap -map " + map_file + " " + selection);
         Pass::call(design, "opt;;");
 
         design->optimize();
