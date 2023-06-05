@@ -21,12 +21,12 @@ We will run the following script to perform synthesis and flipflop clock-gating.
 
 The reg_clock_gating command performs the following commands:
 
-    proc;
+    proc
     opt;; 
     memory_collect
-    memory_map
+    memory_map;;
     opt;; 
-    techmap -map lib/map_file.v;;
+    techmap -map lib/map_file.v
     opt;; 
 
 

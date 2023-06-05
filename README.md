@@ -140,24 +140,40 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 
 
 # 🔬 Power reduction analysis
-|Design          |# Cells|# Added Clock Gates|Power reduction %|# Cells reduction %|
-|----------------|-------|-------------------|-----------------|-------------------|
-|AHB_SRAM        |245    |47                 |17.29%           |25.71%             |
-|blake2s         |14225  |512                |5.65%            |-0.20%             |
-|chacha          |12857  |832                |13.49%           |-0.19%             |
-|genericfir      |143703 |1536               |7.57%            |-0.98%             |
-|i2c_master      |759    |106                |12.97%           |10.41%             |
-|jpeg_encoder    |63757  |4637               |30.26%           |11.83%             |
-|ldpcenc         |19947  |1273               |17.65%           |6.19%              |
-|NfiVe32_RF      |3362   |1024               |30.46%           |30.58%             |
-|picorv32a       |14348  |1011               |22.31%           |12.02%             |
-|PPU             |10156  |2824               |19.62%           |32.55%             |
-|prv32_cpu       |2186   |207                |28.63%           |23.97%             |
-|rf_64x64        |13461  |4096               |32.02%           |31.97%             |
-|sha512          |20240  |3669               |30.22%           |12.82%             |
-|spi_master      |179    |43                 |8.45%            |18.99%             |
-|y_quantizer     |8281   |176                |1.06%            |1.92%              |
-|zigzag          |3807   |769                |31.95%           |58.21%             |
+
+| Design       | \# Cells | \# Added Clock Gates | Power reduction % | \# Cells reduction % |
+| ------------ | -------- | -------------------- | ----------------- | -------------------- |
+| AHB_SRAM     | 245      | 47                   | 17.29%            | 25.71%               |
+| blake2s      | 14225    | 512                  | 5.40%             | \-0.54%              |
+| chacha       | 12857    | 832                  | 12.87%            | \-0.27%              |
+| genericfir   | 143703   | 1536                 | 7.57%             | \-0.98%              |
+| i2c_master   | 759      | 106                  | 12.97%            | 10.41%               |
+| jpeg_encoder | 63757    | 4637                 | 30.85%            | 13.56%               |
+| ldpcenc      | 19947    | 1273                 | 17.66%            | 5.35%                |
+| NfiVe32_RF   | 3362     | 1024                 | 30.46%            | 30.58%               |
+| picorv32a    | 14348    | 1011                 | 22.38%            | 12.02%               |
+| PPU          | 10156    | 2824                 | 19.61%            | 31.85%               |
+| prv32_cpu    | 2186     | 207                  | 28.63%            | 23.97%               |
+| rf_64x64     | 13461    | 4096                 | 32.02%            | 28.89%               |
+| sha512       | 20240    | 3669                 | 30.24%            | 13.08%               |
+| spi_master   | 179      | 43                   | 8.45%             | 18.99%               |
+| y_quantizer  | 8281     | 176                  | 1.06%             | 1.92%                |
+| zigzag       | 3807     | 769                  | 31.95%            | 58.21%               |
+
+
+## Further Stats:
+
+| Avarage Power Reduction % | Avarage cell Reduction % |
+| ------------------------- | ------------------------ |
+| 19.34%                    | 17.05%                   |
+
+| Max Power Reduction % | Min Power Reduction % |
+| --------------------- | --------------------- |
+| 32.02%                | 1.06%                 |
+
+| Max cell Reduction % | Min cell Reduction % |
+| -------------------- | -------------------- |
+| 58.21%               | \-0.98%              |
 
 
 <img src="https://github.com/AUCOHL/Lighter/blob/main/docs/diagrams/power_reduction_summary.png" alt="power_summary" width="750"/>
@@ -165,7 +181,7 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 <img src="https://github.com/AUCOHL/Lighter/blob/main/docs/diagrams/area_reduction_summary.png" alt="cells_summary" width="750"/>
 
 
-Full benchmarking data can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md)
+## To access the complete benchmarking data, methodology, and all the necessary details, we have prepared a dedicated file called [benchmarking.md](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md).
 
 # Authors
 
