@@ -42,7 +42,7 @@ dir_list = [
     "y_dct",
     "y_huff",
     "y_quantizer",
-    "zigzag",   # check license
+    "zigzag",  # check license
 ]
 
 
@@ -102,7 +102,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   ../designs/"""
             """
         )
 
-    #os.system("yosys ./synth.ys")
+    os.system("yosys ./synth.ys")
 
     with open("./synth2.ys", "w") as f:
 
@@ -142,47 +142,47 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   ../designs/"""
             """
         )
 
-    os.system("yosys -m cg_plugin.so ./synth2.ys")
-    cells_before = os.popen(
-        "grep sky130_fd_sc_hd ../designs/" + test + "/before_gl.v | wc -l"
-    )
-    cells_before_no = cells_before.read()
-    cells_before_no = cells_before_no[:-1]
-    cells_after = os.popen(
-        "grep sky130_fd_sc_hd ../designs/" + test + "/after_gl.v | wc -l"
-    )
-    cells_after_no = cells_after.read()
-    cells_after_no = cells_after_no[:-1]
-    clk_gates = os.popen("grep dlclk ../designs/" + test + "/after_gl.v | wc -l")
-    clk_gates_no = clk_gates.read()
-    clk_gates_no = clk_gates_no[:-1]
-    cell_diff = int(cells_after_no) - int(cells_before_no)
+    os.system("yosys ./synth2.ys")
+    # cells_before = os.popen(
+    #    "grep sky130_fd_sc_hd ../designs/" + test + "/before_gl.v | wc -l"
+    # )
+    # cells_before_no = cells_before.read()
+    # cells_before_no = cells_before_no[:-1]
+    # cells_after = os.popen(
+    #    "grep sky130_fd_sc_hd ../designs/" + test + "/after_gl.v | wc -l"
+    # )
+    # cells_after_no = cells_after.read()
+    # cells_after_no = cells_after_no[:-1]
+    # clk_gates = os.popen("grep dlclk ../designs/" + test + "/after_gl.v | wc -l")
+    # clk_gates_no = clk_gates.read()
+    # clk_gates_no = clk_gates_no[:-1]
+    # cell_diff = int(cells_after_no) - int(cells_before_no)
 
-    flipflops = os.popen(
-        "grep sky130_fd_sc_hd__df ../designs/" + test + "/after_gl.v | wc -l"
-    )
-    flipflops_no = flipflops.read()
-    flipflops_no = flipflops_no[:-1]
+    # flipflops = os.popen(
+    #    "grep sky130_fd_sc_hd__df ../designs/" + test + "/after_gl.v | wc -l"
+    # )
+    # flipflops_no = flipflops.read()
+    # flipflops_no = flipflops_no[:-1]
 
-    icg_flipflops = os.popen(
-        "grep '    .CLK(_' ../designs/" + test + "/after_gl.v | wc -l"
-    )
-    icg_flipflops_no = icg_flipflops.read()
-    icg_flipflops_no = icg_flipflops_no[:-1]
+    # icg_flipflops = os.popen(
+    #    "grep '    .CLK(_' ../designs/" + test + "/after_gl.v | wc -l"
+    # )
+    # icg_flipflops_no = icg_flipflops.read()
+    # icg_flipflops_no = icg_flipflops_no[:-1]
 
-    row = [
-        test,
-        clk_gates_no,
-        flipflops_no,
-        icg_flipflops_no,
-        cells_before_no,
-        cells_after_no,
-        cell_diff,
-    ]
-    states.append(row)
+    # row = [
+    #    test,
+    #    clk_gates_no,
+    #    flipflops_no,
+    #    icg_flipflops_no,
+    #    cells_before_no,
+    #    cells_after_no,
+    #    cell_diff,
+    # ]
+    # states.append(row)
 
-#f = open("../report_power/stats/stats_cells_file.csv", "w")
-#writer = csv.writer(f)
-#for row in states:
+# f = open("../report_power/stats/stats_cells_file.csv", "w")
+# writer = csv.writer(f)
+# for row in states:
 #    writer.writerow(row)
-#f.close()
+# f.close()

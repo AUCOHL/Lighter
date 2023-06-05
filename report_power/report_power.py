@@ -205,7 +205,6 @@ def parse_cell_collection_power_report(file_Path):
 
             line = line[3:]
             line = line.split("   ")
-            # print(line)
             acc_internal += np.longdouble(line[0])
             acc_switch += np.longdouble(line[1])
             acc_leakage += np.longdouble(line[2])
@@ -295,6 +294,7 @@ def get_cells_stats(design):
     return design_data
 
 
+# main loop
 for design in designs:
     print(design)
 
@@ -381,7 +381,7 @@ exit
         )
     f.close()
 
-    os.system("/usr/local/OpenSTA/app/sta -no_splash ./power_report.tcl")
+    os.system("sta -no_splash ./power_report.tcl")
 
     # first lets grep for the designs and get their stats
     design_data = get_cells_stats(design[0])
