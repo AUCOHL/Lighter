@@ -3,12 +3,7 @@ channels:
   - litex-hub
   - conda-forge
 dependencies:
-  - openroad
-  - iverilog
   - yosys
-  - python
-  - pip
-  - pytest
   - pip:
     - pandas
     

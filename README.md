@@ -8,14 +8,14 @@ An automatic clock gating utility.
 
 ## Table of contents
 
-* [Overview](https://github.com/kanndil/Lighter#-overview)
-* [File structure](https://github.com/kanndil/Lighter#file-structure)
-* [Dependencies](https://github.com/kanndil/Lighter#-dependencies)
-* [How to use](https://github.com/kanndil/Lighter#-how-to-use)
-* [How it works](https://github.com/kanndil/Lighter#-how-it-works)
-* [Power reduction analysis](https://github.com/kanndil/Lighter#-power-reduction-analysis)
-* [Authors](https://github.com/kanndil/Lighter#authors)
-* [Copyright and Licensing](https://github.com/kanndil/Lighter#%EF%B8%8F-copyright-and-licensing)
+* [Overview](#-overview)
+* [File structure](#file-structure)
+* [Dependencies](#-dependencies)
+* [How to use](#-how-to-use)
+* [How it works](#-how-it-works)
+* [Power reduction analysis](#-power-reduction-analysis)
+* [Authors](#authors)
+* [Copyright and Licensing](#%EF%B8%8F-copyright-and-licensing)
 
 # 📖 Overview
 
