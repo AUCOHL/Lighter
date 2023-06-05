@@ -181,7 +181,7 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 <img src="https://github.com/AUCOHL/Lighter/blob/main/docs/diagrams/area_reduction_summary.png" alt="cells_summary" width="750"/>
 
 
-## To access the complete benchmarking data, methodology, and all the necessary details, we have prepared a dedicated file called [benchmarking.md](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md).
+## To access the complete benchmarking data, methodology, and all the necessary details, we have prepared a dedicated file called [benchmarks.md](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md).
 
 # Authors
 
