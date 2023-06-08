@@ -1,9 +1,0 @@
-name: Dynamic_power_clk_gate
-channels:
-  - litex-hub
-  - conda-forge
-dependencies:
-  - yosys
-  - pip:
-    - pandas
-    
