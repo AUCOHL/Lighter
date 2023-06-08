@@ -114,7 +114,6 @@ read_verilog ../designs/"""
             + test
             + """.v
 read_liberty -lib -ignore_miss_dir -setattr blackbox ../platform/sky130_fd_sc_hd/sky130_fd_sc_hd.lib 
-#read_verilog sky130_clkg_blackbox.v
 hierarchy -check -top """
             + test
             + """

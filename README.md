@@ -17,6 +17,9 @@ An automatic clock gating utility.
 * [Authors](#authors)
 * [Copyright and Licensing](#%EF%B8%8F-copyright-and-licensing)
 
+<br>
+<br>
+
 # 📖 Overview
 
 Electrical Power reduction in digital systems is significant for several reasons, including portability, reliability, and cost reduction. Because of this, power dissipation has become a critical parameter in low-power VLSI circuit designs. There are two sources for power dissipation in CMOS circuits: static power and dynamic power. Dynamic power is associated with the circuit switching activities due to the charging and discharging of internal node capacitances. On the other hand, static power is due to leakage current, or current that flows through the transistor when there is no activity. Dynamic power is the dominating component in mature fabrication processes such as sky130. It is still dominating in cutting-edge fabrication technologies. However, static power contribution to the total power is higher than mature technologies.
@@ -27,10 +30,20 @@ Typically, RTL synthesizer maps load-enabled registers to flip-flops and multipl
 
 <img src="https://github.com/AUCOHL/Lighter/blob/main/docs/diagrams/clock_gating.png" width="500"/>
 
-Lighter is a Yosys plugin and technology mapping files that can perform automatic clock gating for registers to reduce the dynamic power. Currently, Lighter supports Sky130 HD library. The support for other Sky130 libraries as well as other open-source PDKs will be added shortly. Experiments results showed significat power and area savings. Check the results [here](https://github.com/kanndil/Lighter#-power-reduction-analysis)
+Lighter is a Yosys plugin and technology mapping files that can perform automatic clock gating for registers to reduce the dynamic power. Currently, Lighter currently supports the following open-source standard cell libraries:
+
+1. sky130_fd_sc_hd
+2. sky130_fd_sc_hs
+3. sky130_fd_sc_hvl
+4. sky130_fd_sc_ms
+5. gf180mcu_fd_sc_mcu7t5v0
+6. gf180mcu_fd_sc_mcu9t5v0
+
+Through extensive experimentation, Lighter has demonstrated significant power and area savings. To explore the detailed results, kindly refer to the following link: [here](https://github.com/kanndil/Lighter#-power-reduction-analysis)
+<br>
+<br>
 
 ## File structure
-
 * [designs](https://github.com/kanndil/Lighter/tree/main/designs) / conatains verilog designs for benchmarking
 * [docs/](https://github.com/kanndil/Lighter/tree/main/docs) contains documentation
 * [platform/](https://github.com/kanndil/Lighter/tree/main/platform/sky130) contains standard cell libraries 
@@ -38,7 +51,8 @@ Lighter is a Yosys plugin and technology mapping files that can perform automati
     * [stats/](https://github.com/kanndil/Lighter/tree/main/report_power/stats) contains full benchmarking results
 * [src/](https://github.com/kanndil/Lighter/tree/main/src) contains clock gating Yosys plugin code
 * [validation/](https://github.com/kanndil/Lighter/tree/main/validation) contains automatic validation python code for clock-gated designs
-
+<br>
+<br>
     
 # 🧱 Dependencies
 
@@ -47,6 +61,8 @@ You can find the installation steps in [dependencies.md](https://github.com/kann
 - [Linux](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-Linux)
 - [Windows-10](https://github.com/kanndil/Lighter/blob/main/dependencies.md#For-Windows-10)
 
+<br>
+<br>
 
 # 🔍 How to use
 
@@ -58,30 +74,25 @@ Generate the Yosys plugin using the following command:
 
     yosys-config --build cg_plugin.so clock_gating_plugin.cc
 
-Add the following files to your project directory:
+Add the clock gating technology maping file to your project directory. 
+For example, if you are using the sky130_fd_sc_hd standard cell library add the following file. You can find other supported libraries [here](https://github.com/AUCOHL/Lighter/tree/main/platform). 
 
-- [sky130_clkg_blackbox.v](https://github.com/kanndil/Lighter/blob/main/src/sky130_clkg_blackbox.v)
-
-- [sky130_ff_map.v](https://github.com/kanndil/Lighter/blob/main/src/sky130_ff_map.v)
+- [sky130_fd_sc_hd_ff_map.v](https://github.com/kanndil/Lighter/blob/main/platform/sky130_fd_sc_hd/sky130_fd_sc_hd_ff_map.v)
 
 Add the flipflop clock gating command to your synthesis script:
 
-    read_verilog sky130_clkg_blackbox.v
-    reg_clock_gating sky130_ff_map.v
+    reg_clock_gating sky130_fd_sc_hd_ff_map.v
 
- 
-* Check the [platform](https://github.com/AUCOHL/Lighter/tree/main/platform) directory to find the files for your standard cell library
-    * Sky130 libraries are supported
 
 For example:
 
     read_verilog design
-    read_verilog sky130_clkg_blackbox.v
+    read_liberty -lib -ignore_miss_dir -setattr blackbox sky130_fd_sc_hd.lib
     hierarchy -check
-    reg_clock_gating -map sky130_ff_map.v
+    reg_clock_gating -map sky130_fd_sc_hd_ff_map.v
     synth -top design
-    dfflibmap -liberty lib/sky130_hd.lib 
-    abc -D 1250 -liberty lib/sky130_hd.lib 
+    dfflibmap -liberty sky130_fd_sc_hd.lib
+    abc -D 1250 -liberty sky130_fd_sc_hd.lib
     splitnets
     opt_clean -purge
     opt;; 
@@ -122,22 +133,25 @@ you can use the selection option to specify the flipflops you want to map in the
 For example:
 
     read_verilog design
-    read_verilog sky130_clkg_blackbox.v
+    read_liberty -lib -ignore_miss_dir -setattr blackbox sky130_fd_sc_hd.lib
     hierarchy -check
     reg_clock_gating -map sky130_hd_ff_map.v a:clock_gate
     synth -top design
-    dfflibmap -liberty lib/sky130_hd.lib 
-    abc -D 1250 -liberty lib/sky130_hd.lib 
+    dfflibmap -liberty sky130_fd_sc_hd.lib 
+    abc -D 1250 -liberty sky130_fd_sc_hd.lib 
     splitnets
     opt_clean -purge
     opt;; 
     write_verilog -noattr -noexpr -nohex -nodec -defparam  design.gl.v
 
-    
+<br>
+<br>
+
 # 🧐 How it works 
 
 A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/how_does_it_work.md)
-
+<br>
+<br>
 
 # 🔬 Power reduction analysis
 
@@ -182,12 +196,15 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 
 
 ## To access the complete benchmarking data, methodology, and all the necessary details, we have prepared a dedicated file called [benchmarks.md](https://github.com/kanndil/Lighter/blob/main/docs/benchmarks.md).
+<br>
+<br>
 
 # Authors
 
 * [Mohamed Shalan](https://github.com/shalan)
 * [Youssef Kandil](https://github.com/kanndil)
-
+<br>
+<br>
 
 # ⚖️ Copyright and Licensing
 
