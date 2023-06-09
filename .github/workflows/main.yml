@@ -7,27 +7,40 @@ on:
 jobs:
   build-linux:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 5
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.8.1
-      uses: actions/setup-python@v3
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.8.1
-    - name: Add conda to system path
+        python-version: '3.8'
+
+    - name: Install iverilog
       run: |
-        echo $CONDA/bin >> $GITHUB_PATH
-    - name: Install dependencies
+            sudo apt-get update -y
+            sudo apt-get install iverilog -y
+
+    - name: Install yosys
       run: |
-        conda env update --file environment.yml --name base
+
+            sudo apt-get install build-essential clang bison flex libreadline-dev gawk tcl-dev libffi-dev git  graphviz xdot pkg-config python3 libboost-system-dev libboost-python-dev libboost-filesystem-dev zlib1g-dev       
+            git clone https://github.com/YosysHQ/yosys.git
+            cd yosys
+            make
+            sudo make install
+            export PATH=/usr/local/bin:$PATH
+
+
+    - name: Install gcc
+      run: |
+            sudo apt install gcc
+
     - name: synthesis
       run: |
         cd validation/
-        conda install -c conda-forge gxx
         yosys-config --build cg_plugin.so clock_gating_plugin.cc
         python3 synth_test.py
+
     - name: validation
       run: |
         cd validation/
