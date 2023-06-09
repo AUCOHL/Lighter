@@ -1,1 +1,0 @@
-To build and use the plugin please refer to [how to use](https://github.com/Cloud-V/Lighter#-how-to-use) section. 
