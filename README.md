@@ -30,7 +30,7 @@ Typically, RTL synthesizer maps load-enabled registers to flip-flops and multipl
 
 <img src="https://github.com/AUCOHL/Lighter/blob/main/docs/diagrams/clock_gating.png" width="500"/>
 
-Lighter is a Yosys plugin and technology mapping files that can perform automatic clock gating for registers to reduce the dynamic power. Currently, Lighter currently supports the following open-source standard cell libraries:
+Lighter is a Yosys plugin and technology mapping files that can perform automatic clock gating for registers to reduce the dynamic power. Currently, Lighter supports the following open-source standard cell libraries:
 
 1. sky130_fd_sc_hd
 2. sky130_fd_sc_hs
