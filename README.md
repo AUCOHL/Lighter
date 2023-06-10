@@ -113,7 +113,7 @@ Or TCL synthesis script as follows:
 
 Follow the same steps above for generating the Yosys plugin and adding the library files. 
 
-you can use the selection option to specify the flipflops you want to map in the clock gating step by doing the following:
+You can use the selection option to specify the flipflops you want to map in the clock gating step by doing the following:
 
 * You need to add an attribute (pragma) to the module intended (inside the module declaration), for example:
 
@@ -149,7 +149,7 @@ For example:
 
 # 🧐 How it works 
 
-A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/how_does_it_work.md)
+A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/main/docs/how_it_works.md)
 <br>
 <br>
 
