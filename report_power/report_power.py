@@ -40,7 +40,7 @@ designs = [
     # ["riscv_top_151",       "clk",         "50.0"],
     ["sha512", "clk", "40.0"],
     ["spi_master", "clk", "20.0"],
-    ["y_dct", "clk", "20.0"],
+    #["y_dct", "clk", "20.0"],
     ["y_huff", "clk", "14.0"],
     ["y_quantizer", "clk", "1.0"],
     ["zigzag", "clk", "0.8"],
