@@ -155,39 +155,43 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 
 # 🔬 Power reduction analysis
 
-| Design       | \# Cells | \# Added Clock Gates | Power reduction % | \# Cells reduction % |
-| ------------ | -------- | -------------------- | ----------------- | -------------------- |
-| AHB_SRAM     | 245      | 47                   | 17.29%            | 25.71%               |
-| blake2s      | 14225    | 512                  | 5.40%             | \-0.54%              |
-| chacha       | 12857    | 832                  | 12.87%            | \-0.27%              |
-| genericfir   | 143703   | 1536                 | 7.57%             | \-0.98%              |
-| i2c_master   | 759      | 106                  | 12.97%            | 10.41%               |
-| jpeg_encoder | 63757    | 4637                 | 30.85%            | 13.56%               |
-| ldpcenc      | 19947    | 1273                 | 17.66%            | 5.35%                |
-| NfiVe32_RF   | 3362     | 1024                 | 30.46%            | 30.58%               |
-| picorv32a    | 14348    | 1011                 | 22.38%            | 12.02%               |
-| PPU          | 10156    | 2824                 | 19.61%            | 31.85%               |
-| prv32_cpu    | 2186     | 207                  | 28.63%            | 23.97%               |
-| rf_64x64     | 13461    | 4096                 | 32.02%            | 28.89%               |
-| sha512       | 20240    | 3669                 | 30.24%            | 13.08%               |
-| spi_master   | 179      | 43                   | 8.45%             | 18.99%               |
-| y_quantizer  | 8281     | 176                  | 1.06%             | 1.92%                |
-| zigzag       | 3807     | 769                  | 31.95%            | 58.21%               |
+|Design          |# Cells|# Added Clock Gates|Power reduction %|# Cells reduction %|
+|----------------|-------|-------------------|-----------------|-------------------|
+|AHB_SRAM        |245    |47                 |17.29%           |25.71%             |
+|blabla          |10589  |1098               |28.80%           |3.72%              |
+|blake2s         |14207  |1872               |33.70%           |11.05%             |
+|blake2s_core    |12971  |1353               |36.05%           |12.53%             |
+|blake2s_m_select|4518   |512                |43.00%           |22.29%             |
+|chacha          |12857  |1936               |31.49%           |4.28%              |
+|genericfir      |143575 |11624              |32.62%           |5.51%              |
+|i2c_master      |758    |106                |13.29%           |13.19%             |
+|jpeg_encoder    |62472  |4637               |30.23%           |11.78%             |
+|ldpcenc         |20134  |1273               |18.04%           |6.14%              |
+|NfiVe32_RF      |3362   |1024               |30.46%           |30.58%             |
+|picorv32a       |14271  |1244               |25.42%           |12.48%             |
+|PPU             |10248  |2845               |19.74%           |34.44%             |
+|prv32_cpu       |2241   |207                |28.57%           |23.47%             |
+|rf_64x64        |13475  |4096               |32.01%           |32.07%             |
+|sha512          |20187  |3669               |30.53%           |12.85%             |
+|spi_master      |175    |43                 |9.16%            |17.14%             |
+|y_huff          |11004  |2345               |19.55%           |21.33%             |
+|y_quantizer     |8281   |2816               |30.96%           |30.85%             |
+|zigzag          |3807   |769                |31.95%           |58.21%             |
 
 
 ## Further Stats:
 
 | Avarage Power Reduction % | Avarage cell Reduction % |
 | ------------------------- | ------------------------ |
-| 19.34%                    | 17.05%                   |
+| 27.14%                    | 19.48%                   |
 
 | Max Power Reduction % | Min Power Reduction % |
 | --------------------- | --------------------- |
-| 32.02%                | 1.06%                 |
+| 43.00%                | 9.16%                |
 
 | Max cell Reduction % | Min cell Reduction % |
 | -------------------- | -------------------- |
-| 58.21%               | \-0.98%              |
+| 58.21%               | 3.72%                |
 
 
 <img src="https://github.com/AUCOHL/Lighter/blob/main/docs/diagrams/power_reduction_summary.png" alt="power_summary" width="750"/>

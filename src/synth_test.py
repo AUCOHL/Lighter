@@ -141,7 +141,7 @@ write_verilog -noattr -noexpr -nohex -nodec -defparam   ../designs/"""
             """
         )
 
-    os.system("yosys ./synth2.ys")
+    os.system("yosys -m cg_plugin.so ./synth2.ys")
     # cells_before = os.popen(
     #    "grep sky130_fd_sc_hd ../designs/" + test + "/before_gl.v | wc -l"
     # )
