@@ -181,7 +181,7 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 
 ## Further Stats:
 
-| Avarage Power Reduction % | Avarage cell Reduction % |
+| Average Power Reduction % | Average cell Reduction % |
 | ------------------------- | ------------------------ |
 | 27.14%                    | 19.48%                   |
 

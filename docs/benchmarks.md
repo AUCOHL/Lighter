@@ -93,7 +93,7 @@ The benchmarking results presented below demonstrate the remarkable energy savin
 
 ## Further Stats:
 
-| Avarage Power Reduction % | Avarage cell Reduction % |
+| Average Power Reduction % | Average cell Reduction % |
 | ------------------------- | ------------------------ |
 | 27.14%                    | 19.48%                   |
 
