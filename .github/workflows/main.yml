@@ -24,10 +24,16 @@ jobs:
       run: |
 
             sudo apt-get install build-essential clang bison flex libreadline-dev gawk tcl-dev libffi-dev git  graphviz xdot pkg-config python3 libboost-system-dev libboost-python-dev libboost-filesystem-dev zlib1g-dev       
+            
             git clone https://github.com/YosysHQ/yosys.git
             cd yosys
+
+            make config-clang
+            make config-gcc
+
             make
             sudo make install
+            
             export PATH=/usr/local/bin:$PATH
 
 
