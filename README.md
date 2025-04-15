@@ -210,6 +210,30 @@ A detailed guide can be found [here](https://github.com/kanndil/Lighter/blob/mai
 <br>
 <br>
 
+### 📄 Paper
+
+Youssef Kandil and Mohamed Shalan,  
+*Lighter: An Open-Source Automatic Clock Gating Tool for Dynamic Power Reduction in ASIC*.  
+Presented at the **Workshop on Open Source EDA Technologies (WOSET)**, 2024.  
+🔗 [Read the paper on OpenReview](https://openreview.net/forum?id=tNriFilLTO)
+
+---
+
+### 📚 Citation
+
+If you use **Lighter** in your work, please cite:
+
+```bibtex
+@misc{WOSET2024lighter,
+  author       = {Youssef Kandil and Mohamed Shalan},
+  title        = {Lighter: An Open-Source Automatic Clock Gating Tool for Dynamic Power Reduction in ASIC},
+  howpublished = {Presented at the Workshop on Open Source EDA Technologies (WOSET)},
+  year         = {2024},
+  url          = {https://woset-workshop.github.io/PDFs/2024/15_Lighter_An_Open_Source_Auto.pdf},
+  note         = {Available on OpenReview}
+}
+```
+
 # ⚖️ Copyright and Licensing
 
 Copyright 2022 AUC Open Source Hardware Lab
